@@ -1,11 +1,11 @@
 import React, {Component} from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 
-export default class Trophy extends Component<Props> {
+export default class Awards extends Component<Props> {
   render() {
     return (
       <View style={styles.container}>
-        <Text style={styles.welcome}>Trophy</Text>
+        <Text style={styles.welcome}>Awards</Text>
       </View>
     );
   }
