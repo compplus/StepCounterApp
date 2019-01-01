@@ -1,12 +1,14 @@
 import React, {Component} from 'react';
-import {StyleSheet, Text, View} from 'react-native';
+import {StyleSheet, Text, View,TouchableWithoutFeedback} from 'react-native';
 
 export default class Login extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text style={styles.Name}>Login</Text>
-      </View>
+				<TouchableWithoutFeedback onPress={this.props.go}>
+				<Text style={styles.Name}>Login</Text>
+				</TouchableWithoutFeedback>
+			</View>
     );
   }
 }

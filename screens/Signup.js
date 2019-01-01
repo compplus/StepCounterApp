@@ -1,11 +1,13 @@
 import React, {Component} from 'react';
-import {StyleSheet, Text, View} from 'react-native';
+import {StyleSheet, Text, View, TouchableWithoutFeedback} from 'react-native';
 
-export default class Signup extends Component<Props> {
+export default class Signup extends Component{
   render() {
     return (
       <View style={styles.container}>
-        <Text style={styles.welcome}>Signup</Text>
+        <TouchableWithoutFeedback onPress={this.props.go}>
+			<Text style={styles.Name}>Signup</Text>
+		</TouchableWithoutFeedback>
       </View>
     );
   }

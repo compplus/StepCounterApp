@@ -1,14 +1,16 @@
 import React, {Component} from 'react';
-import {StyleSheet, Text, View} from 'react-native';
+import {StyleSheet, Text, View, TouchableWithoutFeedback} from 'react-native';
 
-export default class Awards extends Component<Props> {
-  render() {
-    return (
-      <View style={styles.container}>
-        <Text style={styles.welcome}>Awards</Text>
-      </View>
-    );
-  }
+export default class Awards extends Component{
+	render() {
+		return (
+			<View style={styles.container}>
+				<TouchableWithoutFeedback onPress={this.props.go}>
+				<Text style={styles.Name}>Awards</Text>
+				</TouchableWithoutFeedback>
+			</View>
+		);
+	}
 }
 
 const styles = StyleSheet.create({
