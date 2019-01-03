@@ -1,14 +1,15 @@
 import React, {Component} from 'react';
-import {StyleSheet, Text, View,TouchableWithoutFeedback} from 'react-native';
+import {StyleSheet, Text, View,TouchableWithoutFeedback,ImageBackground} from 'react-native';
+import {Images} from '../assets/assets'
 
 export default class Login extends Component {
   render() {
     return (
-      <View style={styles.container}>
-				<TouchableWithoutFeedback onPress={this.props.go}>
+		<ImageBackground source={Images['background']} style={styles.container}>
+			<TouchableWithoutFeedback onPress={()=>this.props.go(1)}>
 				<Text style={styles.Name}>Login</Text>
-				</TouchableWithoutFeedback>
-			</View>
+			</TouchableWithoutFeedback>
+		</ImageBackground>
     );
   }
 }
@@ -23,5 +24,6 @@ const styles = StyleSheet.create({
     fontSize: 20,
     textAlign: 'center',
     margin: 10,
+	color:'white'
   }
 });

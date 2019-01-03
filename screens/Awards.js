@@ -5,9 +5,9 @@ export default class Awards extends Component{
 	render() {
 		return (
 			<View style={styles.container}>
-				<TouchableWithoutFeedback onPress={this.props.go}>
+				
 				<Text style={styles.Name}>Awards</Text>
-				</TouchableWithoutFeedback>
+				
 			</View>
 		);
 	}

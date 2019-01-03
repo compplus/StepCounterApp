@@ -1,25 +1,21 @@
 import React, {Component} from 'react';
-import {StyleSheet, Text, View} from 'react-native';
+import {StyleSheet, Text, View, SafeAreaView} from 'react-native';
+import Screen from './screens/screens'
+import Background from './screens/components/background'
 
-export default class App extends Component<Props> {
-  render() {
-    return (
-      <View style={styles.container}>
-        <Text style={styles.Name}>Step-counter app</Text>
-      </View>
-    );
-  }
+export default class App extends Component{
+	state={screen:0}
+	render() {
+		return (
+			<SafeAreaView style={styles.container}>
+				<Screen screen={this.state.screen} setScreen={(screen)=>{this.setState({screen})}}/>
+			</SafeAreaView>
+		);
+	}
 }
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center'
-  },
-  Name: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
+    flex: 1
   }
 });

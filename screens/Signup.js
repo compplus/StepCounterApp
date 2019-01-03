@@ -5,9 +5,7 @@ export default class Signup extends Component{
   render() {
     return (
       <View style={styles.container}>
-        <TouchableWithoutFeedback onPress={this.props.go}>
 			<Text style={styles.Name}>Signup</Text>
-		</TouchableWithoutFeedback>
       </View>
     );
   }

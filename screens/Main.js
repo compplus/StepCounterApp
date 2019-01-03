@@ -5,9 +5,7 @@ export default class Main extends Component{
   render() {
     return (
 			<View style={styles.container}>
-				<TouchableWithoutFeedback onPress={this.props.go}>
 				<Text style={styles.Name}>Main</Text>
-				</TouchableWithoutFeedback>
 			</View>
     );
   }
