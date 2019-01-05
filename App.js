@@ -20,6 +20,7 @@ export default class App extends Component{
 		return true;
 	}
 	
+	
 	back(){
 		this.setState({screen:0})
 	}
