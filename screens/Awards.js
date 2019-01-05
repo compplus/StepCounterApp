@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {StyleSheet, Text, View, TouchableWithoutFeedback,FlatList} from 'react-native';
 import AwardItem from './components/AwardItem'
 
-let dummyAwards=[{name: 'fast'}, {name: 'participation'}]
+let dummyAwards=[{name: 'fast'}, {name: 'participation'}, {name: '10km'}, {name: '11km'}, {name: '12km'}, {name: '13km'},{name: 'fast'}, {name: 'participation'}, {name: '10km'}, {name: '11km'}, {name: '12km'}, {name: '13km'},{name: 'fast'}, {name: 'participation'}, {name: '10km'}, {name: '11km'}, {name: '12km'}, {name: '13km'}]
 
 export default class Awards extends Component{
   render() {

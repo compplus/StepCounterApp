@@ -15,8 +15,9 @@ export default class AwardItem extends Component{
 
 const styles = StyleSheet.create({
 	container:{
-		width:'100%',
-		marginTop:'2%',
+		width:'96%',
+		backgroundColor:'white',
+		margin:'2%',
 		elevation: 2, //android shadow
 		shadowColor: '#000',
 		shadowOffset: { width: 0, height: 2 },
