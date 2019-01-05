@@ -10,8 +10,8 @@ export default class Screen extends Component{
 	}
 	view=[
 		this.viewCreate(Login),
-		this.viewCreate(Awards),
 		this.viewCreate(Main),
+		this.viewCreate(Awards),
 		this.viewCreate(Signup),
 	]
 	render(){

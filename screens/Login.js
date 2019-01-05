@@ -9,6 +9,9 @@ export default class Login extends Component {
 			<TouchableWithoutFeedback onPress={()=>this.props.go(1)}>
 				<Text style={styles.Name}>Login</Text>
 			</TouchableWithoutFeedback>
+			<TouchableWithoutFeedback onPress={()=>this.props.go(3)}>
+				<Text style={styles.Name}>Signup</Text>
+			</TouchableWithoutFeedback>
 		</ImageBackground>
     );
   }

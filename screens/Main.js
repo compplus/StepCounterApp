@@ -1,14 +1,18 @@
 import React, {Component} from 'react';
 import {StyleSheet, Text, View, TouchableWithoutFeedback} from 'react-native';
+import CommonStats from './components/CommonStats'
+import DynamicStats from './components/DynamicStats'
 
 export default class Main extends Component{
-  render() {
-    return (
+	render() {
+		return (
 			<View style={styles.container}>
+				<DynamicStats/>
 				<Text style={styles.Name}>Main</Text>
+				<CommonStats/>
 			</View>
-    );
-  }
+		);
+	}
 }
 
 const styles = StyleSheet.create({
@@ -23,3 +27,4 @@ const styles = StyleSheet.create({
     margin: 10,
   }
 });
+
