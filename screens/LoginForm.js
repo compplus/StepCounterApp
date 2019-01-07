@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { StyleSheet, Text, View, TouchableWithoutFeedback, TextInput, TouchableOpacity, TouchableHighlight } from 'react-native';
 import { Images } from '../assets/assets'
 
-export default class Login extends Component {
+export default class LoginForm extends Component {
   render() {
     return (
     <View style={styles.container}>
