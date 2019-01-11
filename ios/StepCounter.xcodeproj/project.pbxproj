@@ -57,6 +57,10 @@
 		21B7EE3C25F04AB39AF4C756 /* libAirMaps.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 860C710494F9405AB5567AFC /* libAirMaps.a */; };
 		43BFBC2F46634B35BC534180 /* libRNSVG.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 609E5FA5925E485DB5507947 /* libRNSVG.a */; };
 		52F9FB58C1A64F3D8A5D787C /* libRNSVG-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 05DDF1EF73F84E1680B404B3 /* libRNSVG-tvOS.a */; };
+		8FF68758E3284635B03C892E /* libRNSVG.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 748E57DCF93540978B10EF68 /* libRNSVG.a */; };
+		9824905042964841A06685FA /* libRNSVG-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7BDFAC8B83034CBBAFA2DCFA /* libRNSVG-tvOS.a */; };
+		2310DA79A1BA46158234AFF2 /* libBMDPedometer.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B6B1CDC9D6AE4306A086D5D4 /* libBMDPedometer.a */; };
+		170992A212F8465484F70F13 /* libRNPedometer.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F8AD6D377620487C8C9F5FEE /* libRNPedometer.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -385,6 +389,13 @@
 		D819115871B447068C1067F1 /* RNSVG.xcodeproj */ = {isa = PBXFileReference; name = "RNSVG.xcodeproj"; path = "../node_modules/react-native-svg/ios/RNSVG.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
 		609E5FA5925E485DB5507947 /* libRNSVG.a */ = {isa = PBXFileReference; name = "libRNSVG.a"; path = "libRNSVG.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
 		05DDF1EF73F84E1680B404B3 /* libRNSVG-tvOS.a */ = {isa = PBXFileReference; name = "libRNSVG-tvOS.a"; path = "libRNSVG-tvOS.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
+		866F75A3A5E14DF69E1BDA5C /* RNSVG.xcodeproj */ = {isa = PBXFileReference; name = "RNSVG.xcodeproj"; path = "../node_modules/react-native-svg/ios/RNSVG.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
+		748E57DCF93540978B10EF68 /* libRNSVG.a */ = {isa = PBXFileReference; name = "libRNSVG.a"; path = "libRNSVG.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
+		7BDFAC8B83034CBBAFA2DCFA /* libRNSVG-tvOS.a */ = {isa = PBXFileReference; name = "libRNSVG-tvOS.a"; path = "libRNSVG-tvOS.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
+		1F21ADA956C54035B7A43A50 /* BMDPedometer.xcodeproj */ = {isa = PBXFileReference; name = "BMDPedometer.xcodeproj"; path = "../node_modules/@asserdata/react-native-universal-pedometer/ios/BMDPedometer.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
+		B6B1CDC9D6AE4306A086D5D4 /* libBMDPedometer.a */ = {isa = PBXFileReference; name = "libBMDPedometer.a"; path = "libBMDPedometer.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
+		7173F463A5CA4E81A4EAEE5D /* RNPedometer.xcodeproj */ = {isa = PBXFileReference; name = "RNPedometer.xcodeproj"; path = "../node_modules/react-native-pedometer/RNPedometer.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
+		F8AD6D377620487C8C9F5FEE /* libRNPedometer.a */ = {isa = PBXFileReference; name = "libRNPedometer.a"; path = "libRNPedometer.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -415,6 +426,9 @@
 				0DAED55BD7E54D259A10A840 /* libRNVectorIcons.a in Frameworks */,
 				21B7EE3C25F04AB39AF4C756 /* libAirMaps.a in Frameworks */,
 				43BFBC2F46634B35BC534180 /* libRNSVG.a in Frameworks */,
+				8FF68758E3284635B03C892E /* libRNSVG.a in Frameworks */,
+				2310DA79A1BA46158234AFF2 /* libBMDPedometer.a in Frameworks */,
+				170992A212F8465484F70F13 /* libRNPedometer.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -432,6 +446,7 @@
 				2D02E4C81E0B4AEC006451C7 /* libRCTWebSocket-tvOS.a in Frameworks */,
 				115526F4AC3E45989287093C /* libRNVectorIcons-tvOS.a in Frameworks */,
 				52F9FB58C1A64F3D8A5D787C /* libRNSVG-tvOS.a in Frameworks */,
+				9824905042964841A06685FA /* libRNSVG-tvOS.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -606,6 +621,9 @@
 				4CF29B135D4D46FEA7B24C9B /* RNVectorIcons.xcodeproj */,
 				579D1E6BC7464C5193AFB742 /* AirMaps.xcodeproj */,
 				D819115871B447068C1067F1 /* RNSVG.xcodeproj */,
+				866F75A3A5E14DF69E1BDA5C /* RNSVG.xcodeproj */,
+				1F21ADA956C54035B7A43A50 /* BMDPedometer.xcodeproj */,
+				7173F463A5CA4E81A4EAEE5D /* RNPedometer.xcodeproj */,
 			);
 			name = Libraries;
 			sourceTree = "<group>";
@@ -1277,12 +1295,16 @@
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)\..\node_modules\react-native-vector-icons\RNVectorIconsManager",
 					"$(SRCROOT)\..\node_modules\react-native-maps\lib\ios/**",
 					"$(SRCROOT)\..\node_modules\react-native-svg\ios/**",
+					"$(SRCROOT)\..\node_modules\@asserdata\react-native-universal-pedometer\ios\BMDPedometer",
+					"$(SRCROOT)\..\node_modules\react-native-pedometer\RNPedometer",
 				);
 			};
 			name = Debug;
@@ -1309,12 +1331,16 @@
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)\..\node_modules\react-native-vector-icons\RNVectorIconsManager",
 					"$(SRCROOT)\..\node_modules\react-native-maps\lib\ios/**",
 					"$(SRCROOT)\..\node_modules\react-native-svg\ios/**",
+					"$(SRCROOT)\..\node_modules\@asserdata\react-native-universal-pedometer\ios\BMDPedometer",
+					"$(SRCROOT)\..\node_modules\react-native-pedometer\RNPedometer",
 				);
 			};
 			name = Release;
@@ -1340,6 +1366,8 @@
 					"$(SRCROOT)\..\node_modules\react-native-vector-icons\RNVectorIconsManager",
 					"$(SRCROOT)\..\node_modules\react-native-maps\lib\ios/**",
 					"$(SRCROOT)\..\node_modules\react-native-svg\ios/**",
+					"$(SRCROOT)\..\node_modules\@asserdata\react-native-universal-pedometer\ios\BMDPedometer",
+					"$(SRCROOT)\..\node_modules\react-native-pedometer\RNPedometer",
 				);
 			};
 			name = Debug;
@@ -1364,6 +1392,8 @@
 					"$(SRCROOT)\..\node_modules\react-native-vector-icons\RNVectorIconsManager",
 					"$(SRCROOT)\..\node_modules\react-native-maps\lib\ios/**",
 					"$(SRCROOT)\..\node_modules\react-native-svg\ios/**",
+					"$(SRCROOT)\..\node_modules\@asserdata\react-native-universal-pedometer\ios\BMDPedometer",
+					"$(SRCROOT)\..\node_modules\react-native-pedometer\RNPedometer",
 				);
 			};
 			name = Release;
@@ -1398,12 +1428,16 @@
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)\..\node_modules\react-native-vector-icons\RNVectorIconsManager",
 					"$(SRCROOT)\..\node_modules\react-native-maps\lib\ios/**",
 					"$(SRCROOT)\..\node_modules\react-native-svg\ios/**",
+					"$(SRCROOT)\..\node_modules\@asserdata\react-native-universal-pedometer\ios\BMDPedometer",
+					"$(SRCROOT)\..\node_modules\react-native-pedometer\RNPedometer",
 				);
 			};
 			name = Debug;
@@ -1438,12 +1472,16 @@
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)\..\node_modules\react-native-vector-icons\RNVectorIconsManager",
 					"$(SRCROOT)\..\node_modules\react-native-maps\lib\ios/**",
 					"$(SRCROOT)\..\node_modules\react-native-svg\ios/**",
+					"$(SRCROOT)\..\node_modules\@asserdata\react-native-universal-pedometer\ios\BMDPedometer",
+					"$(SRCROOT)\..\node_modules\react-native-pedometer\RNPedometer",
 				);
 			};
 			name = Release;
@@ -1477,12 +1515,16 @@
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)\..\node_modules\react-native-vector-icons\RNVectorIconsManager",
 					"$(SRCROOT)\..\node_modules\react-native-maps\lib\ios/**",
 					"$(SRCROOT)\..\node_modules\react-native-svg\ios/**",
+					"$(SRCROOT)\..\node_modules\@asserdata\react-native-universal-pedometer\ios\BMDPedometer",
+					"$(SRCROOT)\..\node_modules\react-native-pedometer\RNPedometer",
 				);
 			};
 			name = Debug;
@@ -1516,12 +1558,16 @@
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)\..\node_modules\react-native-vector-icons\RNVectorIconsManager",
 					"$(SRCROOT)\..\node_modules\react-native-maps\lib\ios/**",
 					"$(SRCROOT)\..\node_modules\react-native-svg\ios/**",
+					"$(SRCROOT)\..\node_modules\@asserdata\react-native-universal-pedometer\ios\BMDPedometer",
+					"$(SRCROOT)\..\node_modules\react-native-pedometer\RNPedometer",
 				);
 			};
 			name = Release;

@@ -8,12 +8,17 @@
   },
   "dependencies": {
     "paths-js": "^0.4.7",
+    "@asserdata/react-native-universal-pedometer": "^1.0.3",
+    "i": "^0.3.6",
+    "npm": "^6.5.0",
     "react": "16.6.3",
     "react-native": "0.57.8",
+    "react-native-circular-progress": "^1.1.0",
     "react-native-elements": "^1.0.0-beta7",
     "react-native-geolocation-service": "^2.0.0",
     "react-native-maps": "^0.22.1",
     "react-native-pure-chart": "^0.0.24",
+    "react-native-pedometer": "0.0.7",
     "react-native-svg": "^8.0.10",
     "react-native-vector-icons": "^6.1.0"
   },
