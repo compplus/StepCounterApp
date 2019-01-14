@@ -6,7 +6,7 @@ import Map from './Map'
 import Dots from './Dots'
 
 export default class DynamicStats extends Component{
-	state={currentPage:0}
+	state={currentPage:0,width:width*0.95}
 	
 	setCurrentPage(index){
 		this.setState({currentPage:index})
@@ -14,11 +14,17 @@ export default class DynamicStats extends Component{
 	
 	render(){
 		return(
-			<View style={styles.container}>
-			<ScrollView style={{flex:1}} horizontal showsHorizontalScrollIndicator={false} pagingEnabled onMomentumScrollEnd={(event)=>{this.setCurrentPage(event.nativeEvent.contentOffset.x/(width*0.95))}}>
-				<Activity/>
-				<Analysis/>
-				<Map/>
+			<View style={{...styles.container,width:this.props.portrait?'95%':undefined,height:this.props.portrait?undefined:'95%'}} onLayout={(event)=>{this.setState({width:event.nativeEvent.layout.width})}}>
+			<ScrollView style={{flex:1}} 
+			horizontal 
+			showsHorizontalScrollIndicator={false} 
+			pagingEnabled 
+			onMomentumScrollEnd={(event)=>{this.setCurrentPage(event.nativeEvent.contentOffset.x/(this.state.width))}} 
+			onContentSizeChange={()=>{this.scrollview.scrollTo({x:this.state.currentPage*this.state.width,y:0,animated:true})}}
+			ref={(scrollview)=>{this.scrollview=scrollview}}>
+				<Activity width={this.state.width} portrait={this.props.portrait}/>
+				<Analysis width={this.state.width} portrait={this.props.portrait}/>
+				<Map width={this.state.width}/>
 			</ScrollView>
 			<Dots numofpage={3} currentPage={this.state.currentPage}/>
 			</View>
@@ -31,7 +37,6 @@ const {width, height} = Dimensions.get('window')
 const styles = StyleSheet.create({
 	container:{
 		backgroundColor:'white',
-		width:'95%',
 		flex:1,
 		elevation: 2, //android shadow
 		shadowColor: '#000',

@@ -27,7 +27,7 @@ export default class Login extends Component {
 
           <View style={styles.signupWrapper}>
             <Text style={styles.bottomText}>Don't have an account?  </Text>
-            <TouchableOpacity>
+            <TouchableOpacity onPress={()=>this.props.go(3)}>
               <Text style={styles.signupText}>Sign up.</Text>
             </TouchableOpacity>
           </View>

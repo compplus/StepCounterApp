@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import {ButtonGroup} from 'react-native-elements'
 import {StyleSheet, Text, View, SafeAreaView, BackHandler} from 'react-native';
 import Screen from './screens/screens'
-import Background from './screens/components/background'
 
 export default class App extends Component{
 	state={screen:0}
