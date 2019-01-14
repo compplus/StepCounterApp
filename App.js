@@ -6,7 +6,7 @@ import Background from './screens/components/background'
 
 export default class App extends Component{
 	state={screen:0}
-	
+
 	componentDidMount() {
 		BackHandler.addEventListener('hardwareBackPress', this.handleBackPress);
 	}
@@ -16,15 +16,15 @@ export default class App extends Component{
 	}
 
 	handleBackPress = () => {
-		this.back(); 
+		this.back();
 		return true;
 	}
-	
-	
+
+
 	back(){
 		this.setState({screen:0})
 	}
-	
+
 	render() {
 		return (
 			<SafeAreaView style={styles.container}>
@@ -33,7 +33,7 @@ export default class App extends Component{
 					<ButtonGroup
 					  onPress={(i)=>{this.setState({screen:i+1})}}
 					  selectedIndex={this.state.screen-1}
-					  buttons={['Main','Awards']}
+					  buttons={['Main','Trophy']}
 					  containerStyle={{}}
 					/>:null}
 			</SafeAreaView>
