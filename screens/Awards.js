@@ -38,20 +38,23 @@ export default class Awards extends Component{
   render() {
     return (
 			<View style={styles.container}>
-				<Text style={styles.Name}>Trophy</Text>
+			<View style={styles.titlebox}>
+				<Text style={styles.Name}>Awards</Text>
+			</View>
 				<View style={styles.awardList}>
 					<FlatList
-					style={styles.awardList}
+					style={{flex:1}}
 					data={json}
 					keyExtractor={(item, index) => index.toString()}
+					showsVerticalScrollIndicator={false}
 					renderItem={({item}) =>
-            <AwardItem
-              title={item.title}
-              description={item.description}
-              imageuri={item.imageuri}
-              status={item.status}
-            />
-          }
+						<AwardItem
+							title={item.title}
+							description={item.description}
+							imageuri={item.imageuri}
+							status={item.status}
+						/>
+					}
 					/>
 				</View>
 			</View>
@@ -63,16 +66,22 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#60D4E1',
-    justifyContent: 'center',
-    alignItems: 'center'
+	alignItems:'center'
+  },
+  titlebox:{
+	  backgroundColor:'rgba(255,255,255,0.7)',
+	  justifyContent:'center',
+	  width:'100%'
   },
   Name: {
     fontSize: 20,
     textAlign: 'center',
     margin: 10,
+	fontWeight:'bold',
+	color:'#4e4e4e'
   },
   awardList:{
 	  flex:1,
-	  width:'95%',
+	  width:'95%'
   }
 });

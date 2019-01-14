@@ -3,12 +3,13 @@ import {View,StyleSheet,Text, Image, TouchableOpacity} from 'react-native'
 
 export default class AwardItem extends Component{
 	state={
-		pressStatus: false
+		pressStatus: false,
+		height:undefined
 	};
 
 	render(){
 		return(
-			<View style={styles.container}>
+			<View style={{...styles.container,height:this.state.height}} onLayout={(e)=>{this.setState({height:e.nativeEvent.layout.height})}}>
 
 
 				<Image style={{width: 50, height: 50}} source={this.props.imageuri}/>
@@ -58,21 +59,19 @@ const styles = StyleSheet.create({
 		fontSize: 18,
 		color: 'white',
 		fontWeight: "600",
-		margin:'3%'
+		margin:'2%'
 	},
 	description:{
 		fontSize: 15,
 		color: 'lightgrey',
 		fontWeight: '600',
-		margin:'3%'
+		margin:'2%'
 	},
 	button:{
 		justifyContent: 'center',
 		alignItems: 'center',
 		backgroundColor: '#459cff',
 		borderRadius: 5,
-		height: 30,
-		width: 70
 	},
 	buttonPress:{
 		justifyContent: 'center',
@@ -80,13 +79,12 @@ const styles = StyleSheet.create({
 		borderColor: 'white',
 		borderWidth: 1.5,
 		borderRadius: 5,
-		height: 30,
-		width: 70
 	},
 	buttonText:{
 		fontSize: 15,
 		color: 'white',
-		fontWeight: "600"
+		fontWeight: "600",
+		margin:'2%'
 	}
 
 })

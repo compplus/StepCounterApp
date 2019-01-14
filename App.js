@@ -32,7 +32,7 @@ export default class App extends Component{
 					<ButtonGroup
 					  onPress={(i)=>{this.setState({screen:i+1})}}
 					  selectedIndex={this.state.screen-1}
-					  buttons={['Main','Trophy']}
+					  buttons={['Main','Awards']}
 					  containerStyle={{}}
 					/>:null}
 			</SafeAreaView>
