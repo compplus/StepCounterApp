@@ -3,6 +3,7 @@ package com.stepcounter;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
+import com.BV.LinearGradient.LinearGradientPackage;
 import com.emesonsantana.BMDPedometer.BMDPedometer;
 import com.agontuk.RNFusedLocation.RNFusedLocationPackage;
 import com.horcrux.svg.SvgPackage;
@@ -28,6 +29,7 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
+            new LinearGradientPackage(),
             new BMDPedometer(),
             new RNFusedLocationPackage(),
             new MapsPackage(),
