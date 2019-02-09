@@ -4,96 +4,87 @@ import { Images } from '../assets/assets'
 import LoginForm from './LoginForm';
 
 export default class Login extends Component {
-  render() {
-    return (
-		<ImageBackground source={Images['background']} style={styles.container}>
-			{/*<TouchableWithoutFeedback onPress={()=>this.props.go(1)}>
-				<Text style={styles.Name}>Login</Text>
-			</TouchableWithoutFeedback>
-			<TouchableWithoutFeedback onPress={()=>this.props.go(3)}>
-				<Text style={styles.Name}>Signup</Text>
-			</TouchableWithoutFeedback>*/}
+	nav_screen=this.props.go
 
-      <KeyboardAvoidingView behavior="padding" style={styles.wrapper}>
-        <View style={styles.loginWrapper}>
+	render() {
+		var nav_screen = this.nav_screen
+		return <ImageBackground source={Images['background']} style={styles.container}>
+			<KeyboardAvoidingView behavior="padding" style={styles.wrapper}>
+				<View style={styles.loginWrapper}>
 
-          <TouchableWithoutFeedback onPress={()=>this.props.go(1)}>
-            <Text style={styles.title}>Log in to your account</Text>
-          </TouchableWithoutFeedback>
-        
-          <View>
-            <LoginForm />
-          </View>
+					<TouchableWithoutFeedback onPress={()=>nav_screen('In')}>
+						<Text style={styles.title}>Log in to your account</Text>
+					</TouchableWithoutFeedback>
 
-          <View style={styles.signupWrapper}>
-            <Text style={styles.bottomText}>Don't have an account?  </Text>
-            <TouchableOpacity onPress={()=>this.props.go(3)}>
-              <Text style={styles.signupText}>Sign up.</Text>
-            </TouchableOpacity>
-          </View>
+					<LoginForm />
 
-          <TouchableOpacity>
-              <Text style={styles.forgotpwText}>Forgot password?</Text>
-          </TouchableOpacity>
+					<View style={styles.signupWrapper}>
+						<Text style={styles.bottomText}>Don't have an account?  </Text>
+							<TouchableOpacity onPress={()=>nav_screen('Signup')}>
+						<Text style={styles.signupText}>Sign up.</Text>
+						</TouchableOpacity>
+					</View>
 
-        </View>
-      </KeyboardAvoidingView>
+					<TouchableOpacity>
+						<Text style={styles.forgotpwText}>Forgot password?</Text>
+					</TouchableOpacity>
+				</View>
+			</KeyboardAvoidingView>
 		</ImageBackground>
-    );
-  }
+	}
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center'
-  },
+	container: {
+		flex: 1,
+		justifyContent: 'center',
+		alignItems: 'center'
+	},
 
-  wrapper: {
-    flex: 1
-  },
+	wrapper: {
+		flex: 1
+	},
 
-  loginWrapper: {
-    flexGrow: 1,
-    justifyContent: 'center'
-  },
+	loginWrapper: {
+		flexGrow: 1,
+		justifyContent: 'center'
+	},
 
-  title: {
-    fontSize: 35,
-    textAlign: 'center',
-	  color: 'white',
-    fontWeight: '400',
-    width: 300,
-    fontFamily: 'Gill Sans'
-  },
+	title: {
+		fontSize: 35,
+		textAlign: 'center',
+		color: 'white',
+		fontWeight: '400',
+		width: 300,
+		fontFamily: 'Gill Sans'
+	},
 
-  signupWrapper: {
-    justifyContent: 'center',
-    flexDirection: "row"
-  },
+	signupWrapper: {
+		justifyContent: 'center',
+		flexDirection: "row"
+	},
 
-  bottomText: {
-    fontSize: 13,
-    textAlign: 'center',
-    color: 'white',
-    fontFamily: 'Gill Sans'
-  },
+	bottomText: {
+		fontSize: 13,
+		textAlign: 'center',
+		color: 'white',
+		fontFamily: 'Gill Sans'
+	},
 
-  signupText: {
-    fontSize: 13,
-    textAlign: 'center',
-    color: 'white',
-    fontFamily: 'Gill Sans',
-    fontWeight: '600'
-  },
+	signupText: {
+		fontSize: 13,
+		textAlign: 'center',
+		color: 'white',
+		fontFamily: 'Gill Sans',
+		fontWeight: '600'
+	},
 
-  forgotpwText: {
-    fontSize: 13,
-    textAlign: 'center',
-    color: 'white',
-    fontFamily: 'Gill Sans',
-    marginTop: 10
-  }
+	forgotpwText: {
+		fontSize: 13,
+		textAlign: 'center',
+		color: 'white',
+		fontFamily: 'Gill Sans',
+		marginTop: 10
+	}
 
 });

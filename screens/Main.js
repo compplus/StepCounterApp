@@ -9,25 +9,18 @@ export default class Main extends Component{
 		return Dimensions.get('window').height>Dimensions.get('window').width
 	}
 	render() {
-		return (
-			<View style={{...styles.container,flexDirection:(this.state.portrait?'column':'row')}} onLayout={()=>{this.setState({portrait:this.isPortrait()});}}>
-				<DynamicStats portrait={this.state.portrait}/>
-				<CommonStats portrait={this.state.portrait}/>
-			</View>
-		);
+		return <View style={{...styles.container,flexDirection:(this.state.portrait?'column':'row')}} onLayout={()=>{this.setState({portrait:this.isPortrait()});}}>
+			<DynamicStats portrait={this.state.portrait}/>
+			<CommonStats portrait={this.state.portrait}/>
+		</View>
 	}
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center'
-  },
-  Name: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  }
+	container: {
+		flex: 1,
+		justifyContent: 'center',
+		alignItems: 'center'
+	}
 });
 

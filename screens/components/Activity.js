@@ -34,10 +34,8 @@ export default class Activity extends Component{
 		
 	}
 	
-	renderStepCounts(){
-		
-		return(
-			<AnimatedCircularProgress
+	renderStepCounts() {
+		return <AnimatedCircularProgress
 			size={dayDim.size}
 			width={dayDim.width}
 			fill={this.state.fill}
@@ -58,17 +56,14 @@ export default class Activity extends Component{
 					</View>
 				)
 			}
-			</AnimatedCircularProgress>
-		)
+		</AnimatedCircularProgress>
 	}
 
 	render() {
-		return (
-			<View style={{...styles.container,width:this.props.width}}>
-				{this.renderStepCounts()}
-			</View>
-		)
-    }
+		return <View style={{...styles.container,width:this.props.width}}>
+			{this.renderStepCounts()}
+		</View>
+	}
 }
 
 

@@ -1,52 +1,37 @@
-import React, {Component} from 'react';
-import {ButtonGroup} from 'react-native-elements'
-import {StyleSheet, Text, View, SafeAreaView, BackHandler} from 'react-native';
-import Screen from './screens/screens'
+import React, {Component} from 'react'
+import {StyleSheet, Text, View, SafeAreaView, BackHandler} from 'react-native'
+import * as screens from './screens' 
 
 export default class App extends Component{
-	state={screen:0}
+	state = {screen: 'Login'}
+
 
 	componentDidMount() {
-		BackHandler.addEventListener('hardwareBackPress', this.handleBackPress);
+		BackHandler.addEventListener('hardwareBackPress', this.handleBackPress)
 	}
-
 	componentWillUnmount() {
-		BackHandler.removeEventListener('hardwareBackPress', this.handleBackPress);
-	}
-
-	handleBackPress = () => {
-		this.back();
-		return true;
+		BackHandler.removeEventListener('hardwareBackPress', this.handleBackPress)
 	}
 
 
-	back(){
-		this.setState({screen:0})
+	handleBackPress() {
+		this.back()
+		return true
 	}
-
+	back() {
+		this.setState({screen: 'Login'})
+	}
 	render() {
-		return (
-			<SafeAreaView style={styles.container}>
-				<Screen screen={this.state.screen} setScreen={(screen)=>{this.setState({screen})}}/>
-					{(this.state.screen==1 || this.state.screen==2)?
-					<ButtonGroup
-					  onPress={(i)=>{this.setState({screen:i+1})}}
-					  selectedIndex={this.state.screen-1}
-					  buttons={['Main','Awards']}
-					  containerStyle={{}}
-					/>:null}
-			</SafeAreaView>
-		);
+		var screen_name = this.state.screen
+		var ActiveScreen = screens [screen_name]
+		return <SafeAreaView style={styles.container}>
+			<ActiveScreen go={screen => this.setState({screen})} />
+		</SafeAreaView>
 	}
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1
-  },
-  tab:{
-	  backgroundColor:'red',
-	  width:'100%',
-	  height:'5%'
-  }
-});
+	container: {
+		flex: 1
+	}
+})

@@ -12,23 +12,21 @@ export default class DynamicStats extends Component{
 		this.setState({currentPage:index})
 	}
 	
-	render(){
-		return(
-			<View style={{...styles.container,width:this.props.portrait?'95%':undefined,height:this.props.portrait?undefined:'95%'}} onLayout={(event)=>{this.setState({width:event.nativeEvent.layout.width})}}>
+	render() {
+		return <View style={{...styles.container,width:this.props.portrait?'95%':undefined,height:this.props.portrait?undefined:'95%'}} onLayout={(event)=>{this.setState({width:event.nativeEvent.layout.width})}}>
 			<ScrollView style={{flex:1}} 
-			horizontal 
-			showsHorizontalScrollIndicator={false} 
-			pagingEnabled 
-			onMomentumScrollEnd={(event)=>{this.setCurrentPage(event.nativeEvent.contentOffset.x/(this.state.width))}} 
-			onContentSizeChange={()=>{this.scrollview.scrollTo({x:this.state.currentPage*this.state.width,y:0,animated:true})}}
-			ref={(scrollview)=>{this.scrollview=scrollview}}>
+				horizontal 
+				showsHorizontalScrollIndicator={false} 
+				pagingEnabled 
+				onMomentumScrollEnd={(event)=>{this.setCurrentPage(event.nativeEvent.contentOffset.x/(this.state.width))}} 
+				onContentSizeChange={()=>{this.scrollview.scrollTo({x:this.state.currentPage*this.state.width,y:0,animated:true})}}
+				ref={(scrollview)=>{this.scrollview=scrollview}}>
 				<Activity width={this.state.width} portrait={this.props.portrait}/>
 				<Analysis width={this.state.width} portrait={this.props.portrait}/>
 				<Map width={this.state.width}/>
 			</ScrollView>
 			<Dots numofpage={3} currentPage={this.state.currentPage}/>
-			</View>
-		)
+		</View>
 	}
 }
 
