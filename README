@@ -1,14 +1,7 @@
-Installation Guide
+tldr to get running
 
-Steps:
-
-1. git clone https://github.com/mrex1/StepCounterApp.git
-
+1. git clone https://github.com/compplus/StepCounterApp.git
+3. react-native upgrade
 2. npm install
-
-3. npm update
-
 4. react-native link
-
 5. react-native run-ios
-
