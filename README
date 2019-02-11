@@ -1,8 +1,9 @@
 tldr to get running
 
 1. git clone https://github.com/compplus/StepCounterApp.git
-3. react-native upgrade
 2. npm install
+3. react-native upgrade
+*Important! Make sure you say `y` when asked whether to replace the ios files, in order to avoid the CFBundleIdentifier error*
 4. react-native link
 5. react-native link react-native-svg
 6. react-native link react-native-vector-icons
