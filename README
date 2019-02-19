@@ -3,9 +3,8 @@ tldr to get running
 1. git clone https://github.com/compplus/StepCounterApp.git
 2. npm install
 3. react-native upgrade
-*Important! Make sure you say `y` when asked whether to replace the ios files, in order to avoid the CFBundleIdentifier error*
+*Important! Make sure you say `y` when asked whether to replace the ios files, in order to avoid the CFBundleIdentifier error. Sometimes, you may have to run this command twice lol*
 4. react-native link
-5. react-native link react-native-svg
-6. react-native link react-native-vector-icons
-7. react-native link react-native-maps
+5. react-native unlink @asserdata/react-native-universal-pedometer
+*Important! Without this, all the react-native links won't work. If you are already running the Metro Bundler, close it before linking or unlinking*
 8. react-native run-ios
