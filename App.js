@@ -3,7 +3,7 @@ import {StyleSheet, Text, View, SafeAreaView, BackHandler} from 'react-native'
 import * as screens from './screens' 
 
 export default class App extends Component{
-	state = {screen: 'Login'}
+	state = {screen: 'In'}
 
 
 	componentDidMount() {

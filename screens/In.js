@@ -5,10 +5,11 @@ import CommonStats from './components/CommonStats'
 import DynamicStats from './components/DynamicStats'
 import Main from './Main'
 import Awards from './Awards'
+import Setting from './Setting'
 
-var tabs = [ {Main}, {Awards} ]
+var tabs = [ {Main}, {Awards}, {Setting} ]
 export default class In extends Component{
-	state={tab_name: 'Main'}
+	state={tab_name: 'Setting'}
 
 	render() {
 		var tab_name = this.state.tab_name
