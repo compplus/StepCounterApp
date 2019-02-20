@@ -13,15 +13,16 @@ import {
 import { AnimatedCircularProgress } from 'react-native-circular-progress';
 import Icon from 'react-native-vector-icons/Ionicons';
 
-const tintColor = "#8BBF71";
+const tintColor = "#44C591";
 const backgroundColor = "#717BA5";
 const rotation = 360;
 
 const dayDim = {
-    size: 270,
+    size: 300,
     width: 10,
-    iconSize: 50
+    iconSize: 125
 };
+
 export default class Activity extends Component{
 
 	constructor(props) {
@@ -31,9 +32,9 @@ export default class Activity extends Component{
 			steps: 2400,
 			fill: 2400/10000*100
 		};
-		
+
 	}
-	
+
 	renderStepCounts() {
 		return <AnimatedCircularProgress
 			size={dayDim.size}
@@ -46,17 +47,20 @@ export default class Activity extends Component{
 			{
 				(fill) => (
 					<View style={styles.dayFill}>
-						<Icon name='ios-walk' size={dayDim.iconSize} color='#29b8e5'/>
+						<Icon name='ios-walk' size={dayDim.iconSize} color='#7ADAE9'/>
+
 						<Text style={styles.steps}>
-						{this.state.steps}  Steps
+						{this.state.steps} Steps
 						</Text>
-						<Text style={styles.goal}>
-							Goal: 10000
-						</Text>
+
+            <Text style={styles.goal}>
+              Goal: 10000
+            </Text>
 					</View>
 				)
 			}
 		</AnimatedCircularProgress>
+
 	}
 
 	render() {
@@ -75,7 +79,7 @@ const {width,height} = Dimensions.get('window')
 const styles = StyleSheet.create({
 	container:{
 		flex:1,
-		backgroundColor:'#bce0ee',
+		backgroundColor:'#171D33',
 		alignItems:'center',
 		justifyContent:'center'
 	},
@@ -84,7 +88,7 @@ const styles = StyleSheet.create({
         backgroundColor: 'transparent',
         position: 'absolute',
         top: 10,
-        left: 10,
+        left: 15,
         alignItems: 'center',
         justifyContent: 'center',
         width: 250,
@@ -96,11 +100,17 @@ const styles = StyleSheet.create({
     },
     steps: {
         backgroundColor: 'transparent',
-        fontSize: 30,
+        fontSize: 40,
         textAlign: 'center',
-        color: '#29b8e5'
+        color: '#7ADAE9',
+        fontFamily: 'Gill Sans',
+        justifyContent: 'center'
     },
     goal: {
-        color: '#29b8e5'
+        position: 'relative',
+        top: 5,
+        color: '#7ADAE9',
+        fontFamily: 'Gill Sans',
+        fontSize: 20
     }
 })

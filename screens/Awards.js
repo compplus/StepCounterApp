@@ -65,20 +65,20 @@ export default class Awards extends Component{
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#60D4E1',
+    backgroundColor: '#171D33',
 	alignItems:'center'
   },
   titlebox:{
-	  backgroundColor:'rgba(255,255,255,0.7)',
+	  backgroundColor:'#171D33',
 	  justifyContent:'center',
 	  width:'100%'
   },
   Name: {
     fontSize: 20,
     textAlign: 'center',
-    margin: 10,
-	fontWeight:'bold',
-	color:'#4e4e4e'
+    margin: 20,
+	  fontWeight:'bold',
+	  color:'white'
   },
   awardList:{
 	  flex:1,

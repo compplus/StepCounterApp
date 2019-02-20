@@ -10,9 +10,9 @@ export default class Main extends Component{
 	}
 	render() {
 		return <View style={{...styles.container,flexDirection:(this.state.portrait?'column':'row')}} onLayout={()=>{this.setState({portrait:this.isPortrait()});}}>
-			<DynamicStats portrait={this.state.portrait}/>
-			<CommonStats portrait={this.state.portrait}/>
-		</View>
+						<DynamicStats portrait={this.state.portrait}/>
+						<CommonStats portrait={this.state.portrait}/>
+				</View>
 	}
 }
 
@@ -23,4 +23,3 @@ const styles = StyleSheet.create({
 		alignItems: 'center'
 	}
 });
-
