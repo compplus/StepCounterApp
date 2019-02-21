@@ -1,9 +1,9 @@
 import React, {Component} from 'react'
 import {StyleSheet, Text, View, SafeAreaView, BackHandler} from 'react-native'
-import * as screens from './screens' 
+import * as screens from './screens'
 
 export default class App extends Component{
-	state = {screen: 'In'}
+	state = {screen: 'Login'}
 
 
 	componentDidMount() {
