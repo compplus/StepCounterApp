@@ -12,7 +12,7 @@ export default class Login extends Component {
 			<KeyboardAvoidingView behavior="padding" style={styles.wrapper}>
 				<View style={styles.loginWrapper}>
 
-					<TouchableWithoutFeedback onPress={()=>nav_screen('In')}>
+					<TouchableWithoutFeedback onPress={()=>nav_screen('Info')}>
 						<Text style={styles.title}>Log in to your account</Text>
 					</TouchableWithoutFeedback>
 
