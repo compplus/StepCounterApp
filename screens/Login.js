@@ -2,9 +2,22 @@ import React, { Component } from 'react';
 import { StyleSheet, Text, View, TouchableWithoutFeedback, ImageBackground,  KeyboardAvoidingView, TouchableOpacity } from 'react-native';
 import { Images } from '../assets/assets'
 import LoginForm from './LoginForm';
+import DialogInput from 'react-native-dialog-input';
 
 export default class Login extends Component {
 	nav_screen=this.props.go
+	constructor(props){
+    super(props);
+    this.state = {
+      isDialogVisible: false,
+    }
+  }
+  showDialog(isShow){
+    this.setState({isDialogVisible: isShow});
+  }
+  sendInput(inputText){
+    console.log("sendInput (DialogInput#1): "+inputText);
+  }
 
 	render() {
 		var nav_screen = this.nav_screen
@@ -19,15 +32,24 @@ export default class Login extends Component {
 					<LoginForm />
 
 					<View style={styles.signupWrapper}>
-						<Text style={styles.bottomText}>Don't have an account?  </Text>
+						<Text style={styles.bottomText}>Don't have an account?</Text>
 							<TouchableOpacity onPress={()=>nav_screen('Signup')}>
-						<Text style={styles.signupText}>Sign up.</Text>
+						<Text style={styles.signupText}> Sign up.</Text>
 						</TouchableOpacity>
 					</View>
 
-					<TouchableOpacity>
+					<TouchableOpacity onPress={()=>{this.showDialog(true)}} style={{padding:10}}>
 						<Text style={styles.forgotpwText}>Forgot password?</Text>
 					</TouchableOpacity>
+
+					<DialogInput isDialogVisible={this.state.isDialogVisible}
+									 title={"Forgot your password?"}
+									 message={"Enter your registered email."}
+									 hintInput ={"Email"}
+									 submitInput={ (inputText) => {this.sendInput(inputText)} }
+									 closeDialog={ () => {this.showDialog(false)}}>
+			 		</DialogInput>
+
 				</View>
 			</KeyboardAvoidingView>
 		</ImageBackground>
