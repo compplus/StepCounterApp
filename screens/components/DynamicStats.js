@@ -9,8 +9,8 @@ import GoBack from './GoBack'
 export default class DynamicStats extends Component{
 	state={currentPage:0,width:width*0.95}
 	
-	setCurrentPage(index){
-		this.setState({currentPage:index})
+	setCurrentPage(currentPage){
+		this.setState({currentPage})
 	}
 	
 	render() {
@@ -19,15 +19,15 @@ export default class DynamicStats extends Component{
 			<ScrollView style={{flex:1}} 
 				horizontal 
 				showsHorizontalScrollIndicator={false} 
-				pagingEnabled 
-				onMomentumScrollEnd={(event)=>{this.setCurrentPage(event.nativeEvent.contentOffset.x/(this.state.width))}} 
+				pagingEnabled
+				onScroll={(event)=>{ let page=Math.round(event.nativeEvent.contentOffset.x/(this.state.width));if(page!=currentPage)this.setCurrentPage(page)}}
 				onContentSizeChange={()=>{this.scrollview.scrollTo({x:this.state.currentPage*this.state.width,y:0,animated:true})}}
 				ref={(scrollview)=>{this.scrollview=scrollview}}>
 				<Activity width={this.state.width} portrait={this.props.portrait}/>
 				<Analysis width={this.state.width} portrait={this.props.portrait}/>
 				<Map width={this.state.width}/>
 			</ScrollView>
-			<GoBack visible={currentPage==2} goback={()=>{this.scrollview.scrollTo({x:this.state.width,y:0,animated:true});this.setState({currentPage:1})}}/>
+			<GoBack visible={currentPage==2} goback={()=>{this.scrollview.scrollTo({x:this.state.width,y:0,animated:true})}}/>
 			<Dots numofpage={3} currentPage={currentPage}/>
 		</View>
 	}
