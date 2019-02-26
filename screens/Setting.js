@@ -8,11 +8,7 @@ export default class Setting extends Component{
 		var bgColor = '#DCE3F4';
 
   	return(
-    <View style={{backgroundColor:'#EFEFF4',flex:1}}>
-      <View style={{borderBottomWidth:1, backgroundColor:'#f7f7f8',borderColor:'#c8c7cc'}}>
-        <Text style={{alignSelf:'center',marginTop:20,marginBottom:10,fontWeight:'bold',fontSize:20}}>Settings</Text>
-      </View>
-      <View style={{backgroundColor:'#EFEFF4',flex:1}}>
+      <View style={styles.container}>
         {/*<SettingsList borderColor='#c8c7cc' defaultItemSize={50}>
           <SettingsList.Header headerStyle={{marginTop:15}}/>
           <SettingsList.Item
@@ -80,7 +76,6 @@ export default class Setting extends Component{
           />
         </SettingsList>*/}
       </View>
-    </View>
 		)
 	}
 }
@@ -88,6 +83,6 @@ export default class Setting extends Component{
 const styles = StyleSheet.create({
 	container: {
 		flex: 1,
-		backgroundColor:'white'
+		backgroundColor:'#EFEFF4'
 	}
 })

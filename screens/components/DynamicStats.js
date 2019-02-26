@@ -4,6 +4,7 @@ import Analysis from './Analysis'
 import Activity from './Activity'
 import Map from './Map'
 import Dots from './Dots'
+import GoBack from './GoBack'
 
 export default class DynamicStats extends Component{
 	state={currentPage:0,width:width*0.95}
@@ -13,6 +14,7 @@ export default class DynamicStats extends Component{
 	}
 	
 	render() {
+		var currentPage=this.state.currentPage
 		return <View style={{...styles.container,width:this.props.portrait?'95%':undefined,height:this.props.portrait?undefined:'95%'}} onLayout={(event)=>{this.setState({width:event.nativeEvent.layout.width})}}>
 			<ScrollView style={{flex:1}} 
 				horizontal 
@@ -25,7 +27,8 @@ export default class DynamicStats extends Component{
 				<Analysis width={this.state.width} portrait={this.props.portrait}/>
 				<Map width={this.state.width}/>
 			</ScrollView>
-			<Dots numofpage={3} currentPage={this.state.currentPage}/>
+			<GoBack visible={currentPage==2} goback={()=>{this.scrollview.scrollTo({x:this.state.width,y:0,animated:true});this.setState({currentPage:1})}}/>
+			<Dots numofpage={3} currentPage={currentPage}/>
 		</View>
 	}
 }

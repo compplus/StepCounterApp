@@ -38,9 +38,6 @@ export default class Awards extends Component{
   render() {
     return (
 			<View style={styles.container}>
-			<View style={styles.titlebox}>
-				<Text style={styles.Name}>Awards</Text>
-			</View>
 				<View style={styles.awardList}>
 					<FlatList
 					style={{flex:1}}
@@ -67,13 +64,7 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#171D33',
 	alignItems:'center'
-  },
-  titlebox:{
-	  backgroundColor:'#171D33',
-	  justifyContent:'center',
-	  width:'100%'
-  },
-  Name: {
+  },Name: {
     fontSize: 20,
     textAlign: 'center',
     margin: 20,

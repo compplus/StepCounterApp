@@ -1,6 +1,5 @@
 import Login from './Login'
 import Signup from './Signup'
-import In from './In'
-import Info from './Info'
+import Entry from './Entry'
 
-export { Login, Signup, In, Info }
+export { Login, Signup, Entry }

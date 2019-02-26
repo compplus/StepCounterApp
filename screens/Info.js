@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import { StyleSheet, Text, View,  KeyboardAvoidingView, TouchableOpacity} from 'react-native';
+import { StyleSheet, Text, View,  KeyboardAvoidingView, TouchableOpacity,ScrollView} from 'react-native';
 
 import { Dropdown } from 'react-native-material-dropdown';
 
@@ -24,7 +24,7 @@ export default class Info extends Component {
 
         return (
             <KeyboardAvoidingView behavior="padding" style={styles.wrapper}>
-
+            <ScrollView>
                 <View style={styles.container}>
 
                     <Text style={styles.titleText}>
@@ -96,6 +96,7 @@ export default class Info extends Component {
                         <Text style={styles.buttonText}>GET STARTED</Text>
                     </TouchableOpacity>
                 </View>
+            </ScrollView>
             </KeyboardAvoidingView>
         );
     }
@@ -107,7 +108,8 @@ const styles = StyleSheet.create({
     },
 
     wrapper: {
-        flex: 1
+        flex: 1,
+        backgroundColor:'#EFEFF4'
     },
 
     buttonContainer: {

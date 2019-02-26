@@ -10,7 +10,7 @@ export default class Signup extends Component{
 				<KeyboardAvoidingView behavior="padding" style={styles.wrapper}>
 					<View style={styles.signupWrapper}>
 
-						<TouchableWithoutFeedback onPress={() => nav_screen('In')}>
+						<TouchableWithoutFeedback onPress={() => nav_screen('Entry')}>
 							<Text style={styles.title}>Sign Up Here</Text>
 						</TouchableWithoutFeedback>
 

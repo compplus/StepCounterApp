@@ -1,35 +1,33 @@
 import React, {Component} from 'react';
 import {StyleSheet, Text, View, TouchableWithoutFeedback,Dimensions} from 'react-native';
 import {ButtonGroup} from 'react-native-elements';
-import CommonStats from './components/CommonStats'
-import DynamicStats from './components/DynamicStats'
 import Main from './Main'
 import Awards from './Awards'
-import Setting from './Setting'
 
-var tabs = [ {Main}, {Awards}, {Setting} ]
+var tabs = [ {Main}, {Awards}]
 export default class In extends Component{
-	state={tab_name: 'Setting'}
+	state={tab_name: 'Main'}
 
 	render() {
 		var tab_name = this.state.tab_name
 		var ActiveTab = tab_of (tab_name)
-		return <View style={{ flex: 1 }}>
+		return (
+		
+		<View style={styles.container}>
 			<ActiveTab />
 			<ButtonGroup
 			  onPress={(i)=>{this.setState({tab_name: tab_names[i]})}}
 			  selectedIndex={tab_name_index(tab_name)}
 			  buttons={tab_names}
 			  containerStyle={{}} />
-		</View>
+		</View>)
 	}
 }
 
 const styles = StyleSheet.create({
 	container: {
 		flex: 1,
-		justifyContent: 'center',
-		alignItems: 'center'
+		backgroundColor:'black'
 	}
 });
 

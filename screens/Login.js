@@ -5,7 +5,6 @@ import LoginForm from './LoginForm';
 import DialogInput from 'react-native-dialog-input';
 
 export default class Login extends Component {
-	nav_screen=this.props.go
 	constructor(props){
     super(props);
     this.state = {
@@ -20,12 +19,12 @@ export default class Login extends Component {
   }
 
 	render() {
-		var nav_screen = this.nav_screen
+		var nav_screen = this.props.go
 		return <ImageBackground source={Images['background']} style={styles.container}>
 			<KeyboardAvoidingView behavior="padding" style={styles.wrapper}>
 				<View style={styles.loginWrapper}>
 
-					<TouchableWithoutFeedback onPress={()=>nav_screen('Info')}>
+					<TouchableWithoutFeedback onPress={()=>nav_screen('Entry')}>
 						<Text style={styles.title}>Log in to your account</Text>
 					</TouchableWithoutFeedback>
 
