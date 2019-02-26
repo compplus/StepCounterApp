@@ -7,7 +7,6 @@ import { Dropdown } from 'react-native-material-dropdown';
 import { TextField } from 'react-native-material-textfield';
 
 export default class Info extends Component {
-    nav_screen=this.props.go
 
     state = {
         faculty: '',
@@ -20,7 +19,7 @@ export default class Info extends Component {
     };
 
     render() {
-        var nav_screen = this.nav_screen
+        var nav_screen = this.props.go
 
         return (
             <KeyboardAvoidingView behavior="padding" style={styles.wrapper}>

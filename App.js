@@ -30,6 +30,13 @@ export default class App extends Component{
 		}
 		return false
 	}
+	go=screen => {
+		if(screen in screens){
+			this.setState({screen})
+		}else{
+			console.warn("screen \""+screen+"\" do not exist")
+		}
+	} 
 
 		 
 	render() {
@@ -39,15 +46,7 @@ export default class App extends Component{
 		<SafeAreaView style={styles.container}>	
 			<ActiveScreen
 				EntryScreen={this.state.EntryScreen}//for Entry
-				go={screen => {
-					if(screen_name!='Entry'){
-						this.setState({screen})
-						if(screen=='Entry')this.setState({EntryScreen:'In'})
-					}
-					else this.setState({EntryScreen:screen})
-					} 
-				}
-				back={this.back}
+				go={this.go}
 			/>
 		</SafeAreaView>)}
 }
