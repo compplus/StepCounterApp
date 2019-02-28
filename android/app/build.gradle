@@ -143,7 +143,6 @@ dependencies {
     implementation project(':react-native-linear-gradient')
     implementation project(':react-native-geolocation-service')
     implementation project(':@asserdata_react-native-universal-pedometer')
-    compile project(':@asserdata_react-native-universal-pedometer')
     compile project(':react-native-svg')
     compile project(':react-native-vector-icons')
     compile project(':react-native-maps')
