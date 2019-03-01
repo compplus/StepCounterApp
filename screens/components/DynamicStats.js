@@ -14,20 +14,20 @@ export default class DynamicStats extends Component{
 	}
 	
 	render() {
-		var currentPage=this.state.currentPage
+		const {currentPage,width}=this.state
 		return <View style={{...styles.container,width:this.props.portrait?'95%':undefined,height:this.props.portrait?undefined:'95%'}} onLayout={(event)=>{this.setState({width:event.nativeEvent.layout.width})}}>
 			<ScrollView style={{flex:1}} 
 				horizontal 
 				showsHorizontalScrollIndicator={false} 
 				pagingEnabled
-				onScroll={(event)=>{ let page=Math.round(event.nativeEvent.contentOffset.x/(this.state.width));if(page!=currentPage)this.setCurrentPage(page)}}
-				onContentSizeChange={()=>{this.scrollview.scrollTo({x:this.state.currentPage*this.state.width,y:0,animated:true})}}
+				onScroll={(event)=>{ let page=Math.round(event.nativeEvent.contentOffset.x/(width));if(page!=currentPage)this.setCurrentPage(page)}}
+				onContentSizeChange={()=>{this.scrollview.scrollTo({x:currentPage*width,y:0,animated:true})}}
 				ref={(scrollview)=>{this.scrollview=scrollview}}>
-				<Activity width={this.state.width} portrait={this.props.portrait}/>
-				<Analysis width={this.state.width} portrait={this.props.portrait}/>
-				<Map width={this.state.width}/>
+				<Activity width={width} portrait={this.props.portrait}/>
+				<Analysis width={width} portrait={this.props.portrait}/>
+				<Map width={width}/>
 			</ScrollView>
-			<GoBack visible={currentPage==2} goback={()=>{this.scrollview.scrollTo({x:this.state.width,y:0,animated:true})}}/>
+			<GoBack visible={currentPage==2} goback={()=>{this.scrollview.scrollTo({x:width,y:0,animated:true})}}/>
 			<Dots numofpage={3} currentPage={currentPage}/>
 		</View>
 	}
