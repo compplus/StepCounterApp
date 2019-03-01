@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {StyleSheet, Text, View, TouchableWithoutFeedback,Dimensions,Platform} from 'react-native';
+import {StyleSheet, Text, View, TouchableWithoutFeedback,Platform} from 'react-native';
 import {Header} from 'react-native-elements'
 import SideMenu from 'react-native-side-menu'
 import Menu from './components/Menu'
@@ -8,7 +8,7 @@ import Setting from './Setting'
 import In from './In'
 
 const screens={Info,Setting,In} //after login
-const screenTitle={Info:'Info',In:'Home',Setting:'Setting'}
+const screenTitle={In:'Home',Info:'Info',Setting:'Setting'}
 
 export default class Entry extends Component{
 	state={isOpen: false,screen:'In'}
@@ -39,7 +39,7 @@ export default class Entry extends Component{
 		var screenName = this.state.screen
 		var ActiveScreen = screens[screenName]
 		let shouldLogout=screenName=='In'
-		const menu =  <Menu onItemSelected={this.onMenuItemSelected}/>;
+		const menu =  <Menu screenTitle={screenTitle} onItemSelected={this.onMenuItemSelected}/>;
 		return (
 		<SideMenu 
 		menu={menu}

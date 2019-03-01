@@ -11,8 +11,6 @@ include ':react-native-geolocation-service'
 project(':react-native-geolocation-service').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-geolocation-service/android')
 include ':@asserdata_react-native-universal-pedometer'
 project(':@asserdata_react-native-universal-pedometer').projectDir = new File(rootProject.projectDir, '../node_modules/@asserdata/react-native-universal-pedometer/android')
-include ':@asserdata_react-native-universal-pedometer'
-project(':@asserdata_react-native-universal-pedometer').projectDir = new File(rootProject.projectDir, '../node_modules/@asserdata/react-native-universal-pedometer/android')
 include ':react-native-svg'
 project(':react-native-svg').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-svg/android')
 include ':react-native-vector-icons'

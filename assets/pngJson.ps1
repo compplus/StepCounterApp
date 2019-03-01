@@ -11,7 +11,7 @@ foreach ($i in $a){
 }
 }
 
-echo 'export const assets = {' | Out-File -Encoding Ascii assets.js
+echo 'export const Images = {' | Out-File -Encoding Ascii assets.js
 	getfileby('.png') | Out-File -Encoding Ascii -Append assets.js
 	getfileby('.jpg') | Out-File -Encoding Ascii -Append assets.js
 echo '}' | Out-File -Encoding Ascii -Append assets.js
