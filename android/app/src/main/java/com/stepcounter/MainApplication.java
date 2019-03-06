@@ -3,6 +3,7 @@ package com.stepcounter;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
+import com.emesonsantana.BMDPedometer.BMDPedometer;
 import com.oblador.vectoricons.VectorIconsPackage;
 import com.horcrux.svg.SvgPackage;
 import com.airbnb.android.react.maps.MapsPackage;
@@ -28,6 +29,7 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
+            new BMDPedometer(),
             new VectorIconsPackage(),
             new SvgPackage(),
             new MapsPackage(),

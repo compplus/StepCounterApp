@@ -2,13 +2,18 @@ import React,{Component} from 'react'
 import {View,ScrollView,StyleSheet,Dimensions} from 'react-native'
 import Analysis from './Analysis'
 import Activity from './Activity'
-import Map from './Map'
 import Dots from './Dots'
 import GoBack from './GoBack'
+
+let Map=null
 
 export default class DynamicStats extends Component{
 	state={currentPage:0,width:width*0.95}
 	
+	componentDidMount(){
+		Map=require('./Map').default;
+	}
+
 	setCurrentPage(currentPage){
 		this.setState({currentPage})
 	}
@@ -25,7 +30,7 @@ export default class DynamicStats extends Component{
 				ref={(scrollview)=>{this.scrollview=scrollview}}>
 				<Activity width={width} portrait={this.props.portrait}/>
 				<Analysis width={width} portrait={this.props.portrait}/>
-				<Map width={width}/>
+				{Map?<Map width={width}/>:null}
 			</ScrollView>
 			<GoBack visible={currentPage==2} goback={()=>{this.scrollview.scrollTo({x:width,y:0,animated:true})}}/>
 			<Dots numofpage={3} currentPage={currentPage}/>

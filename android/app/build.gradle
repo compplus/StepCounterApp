@@ -137,6 +137,7 @@ android {
 }
 
 dependencies {
+    compile project(':@asserdata_react-native-universal-pedometer')
     implementation project(':react-native-vector-icons')
     implementation project(':react-native-svg')
     implementation project(':react-native-maps')

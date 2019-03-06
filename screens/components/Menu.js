@@ -15,12 +15,10 @@ import {Images} from '../../assets/assets.js'
 const window = Dimensions.get('window');
 
 export default class Menu extends Component{
-  state={selected:'Home'}
 
   menuItem=({item}) =>{
-    const {selected} = this.state
-    const {onItemSelected} = this.props
-    const isSelected=(item.title==selected)
+    const {onItemSelected,selected} = this.props
+    const isSelected=(item.screen==selected)
     const color = isSelected?'#008000':'rgb(50,50,50)'
 
     return (
@@ -37,7 +35,7 @@ export default class Menu extends Component{
       titleStyle={{color:color,marginLeft:10}}
       title={item.title}
       backgroundColor="transparent"
-      onPress={() => {this.setState({selected:item.title});onItemSelected(item.screen)}}
+      onPress={() => {onItemSelected(item.screen)}}
     />)
   }
 
@@ -54,7 +52,7 @@ export default class Menu extends Component{
             keyExtractor={(item, index) => index.toString()}
             showsVerticalScrollIndicator={false}
             renderItem={this.menuItem}
-            extraData={this.state}
+            extraData={this.props}
 				/>
       </View>
     );

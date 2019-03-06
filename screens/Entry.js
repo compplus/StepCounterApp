@@ -39,10 +39,9 @@ export default class Entry extends Component{
 		var screenName = this.state.screen
 		var ActiveScreen = screens[screenName]
 		let shouldLogout=screenName=='In'
-		const menu =  <Menu screenTitle={screenTitle} onItemSelected={this.onMenuItemSelected}/>;
 		return (
 		<SideMenu 
-		menu={menu}
+		menu={<Menu screenTitle={screenTitle} selected={screenName} onItemSelected={this.onMenuItemSelected}/>}
 		isOpen={this.state.isOpen}
 		onChange={isOpen => this.updateMenuState(isOpen)}
 		>
@@ -67,7 +66,6 @@ const styles = StyleSheet.create({
 	},
 	header:{
 		borderBottomWidth:0,
-		marginTop:Platform.OS === 'ios' ? 0 : - 30,
-		elevation:2
+		marginTop:Platform.OS === 'ios' ? 0 : - 30
 	}
 });
