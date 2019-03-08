@@ -12,6 +12,8 @@ export default class Info extends Component {
         faculty: '',
         department: '',
         category: '',
+        firstname: '',
+        lastname: '',
         gender: '',
         age: '',
         height: '',
@@ -71,6 +73,16 @@ export default class Info extends Component {
                         onChangeText = {(data)=>this.setState({gender: data})}
                     />
 
+                    <TextField
+                        label='First Name'
+                        value={this.state.firstname}
+                        onChangeText={(firstname)=>this.setState({firstname: firstname})}
+                    />
+                    <TextField
+                        label='Last Name'
+                        value={this.state.lastname}
+                        onChangeText={(lastname)=>this.setState({lastname: lastname})}
+                    />
                     <TextField
                         label='Age'
                         value={this.state.age}
