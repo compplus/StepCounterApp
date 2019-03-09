@@ -4,84 +4,93 @@ import SettingsList from 'react-native-settings-list';
 import { Images } from '../assets/assets'
 
 export default class Setting extends Component{
-  state={switchValue:false}
-  onValueChange=(value)=>{
-    this.setState({switchValue: value});
+  constructor(){
+    super();
+    this.onValueChange = this.onValueChange.bind(this);
+    this.state = {switchValue: false};
   }
 	render(){
 		var bgColor = '#DCE3F4';
+    var nav_screen = this.props.go
 
   	return(
       <View style={styles.container}>
         <SettingsList borderColor='#c8c7cc' defaultItemSize={50}>
-          <SettingsList.Header headerStyle={{marginTop:15}}/>
+          <SettingsList.Header headerText='PREFERENCES' headerStyle={styles.headerStyle}/>
           <SettingsList.Item
-            icon={
-                <Image style={styles.imageStyle} source={Images['settings']}/>
-            }
-            hasSwitch={true}
-            switchState={this.state.switchValue}
-            switchOnValueChange={this.onValueChange}
+            //icon={<Image style={styles.imageStyle} source={Images['settings']}/>}
+            title='Syncronization'
+            titleInfo='Daily'
+            titleInfoStyle={styles.titleInfoStyle}
+            onPress={() => nav_screen('SettingSync')}
+          />
+          <SettingsList.Item
+            //icon={<Image style={styles.imageStyle} source={Images['settings']}/>}
+            title='Goal'
+            titleInfo='10000 Steps'
+            titleInfoStyle={styles.titleInfoStyle}
+            onPress={() => nav_screen('SettingGoal')}
+          />
+          <SettingsList.Item
+            //icon={<Image style={styles.imageStyle} source={Images['settings']}/>}
+            title='Units'
+            titleInfo='Kilometer (km)'
+            titleInfoStyle={styles.titleInfoStyle}
+            onPress={() => nav_screen('SettingUnits')}
+          />
+          <SettingsList.Item
+            //icon={<Image style={styles.imageStyle} source={Images['settings']}/>}
+            title='Theme'
+            titleInfo='Light'
+            titleInfoStyle={styles.titleInfoStyle}
+            onPress={() => nav_screen('SettingTheme')}
+          />
+          <SettingsList.Header headerText='ACCOUNT' headerStyle={styles.headerStyle}/>
+          <SettingsList.Item
+            title='Change Personal Information'
             hasNavArrow={false}
-            title='Airplane Mode'
+            //onPress={() => }
           />
           <SettingsList.Item
-            icon={<Image style={styles.imageStyle} source={Images['settings']}/>}
-            title='Wi-Fi'
-            titleInfo='Bill Wi The Science Fi'
-            titleInfoStyle={styles.titleInfoStyle}
-            onPress={() => Alert.alert('Route to Wifi Page')}
+            title='Change Password'
+            hasNavArrow={false}
+            //onPress={() => }
           />
           <SettingsList.Item
-            icon={<Image style={styles.imageStyle} source={Images['settings']}/>}
-            title='Blutooth'
-            titleInfo='Off'
-            titleInfoStyle={styles.titleInfoStyle}
-            onPress={() => Alert.alert('Route to Blutooth Page')}
+            title='Submission History'
+            hasNavArrow={false}
+            //onPress={() => }
+          />
+          <SettingsList.Header headerText='SUPPORT' headerStyle={styles.headerStyle}/>
+          <SettingsList.Item
+            title='Help'
+            hasNavArrow={false}
+            //onPress={() => }
           />
           <SettingsList.Item
-            icon={<Image style={styles.imageStyle} source={Images['settings']}/>}
-            title='Cellular'
-            onPress={() => Alert.alert('Route To Cellular Page')}
-          />
-          <SettingsList.Item
-            icon={<Image style={styles.imageStyle} source={Images['settings']}/>}
-            title='Personal Hotspot'
-            titleInfo='Off'
-            titleInfoStyle={styles.titleInfoStyle}
-            onPress={() => Alert.alert('Route To Hotspot Page')}
+            title='Contact Us'
+            hasNavArrow={false}
+            //onPress={() => }
           />
           <SettingsList.Header headerStyle={{marginTop:15}}/>
           <SettingsList.Item
-            icon={<Image style={styles.imageStyle} source={Images['settings']}/>}
-            title='Notifications'
-            onPress={() => Alert.alert('Route To Notifications Page')}
-          />
-          <SettingsList.Item
-            icon={<Image style={styles.imageStyle} source={Images['settings']}/>}
-            title='Control Center'
-            onPress={() => Alert.alert('Route To Control Center Page')}
-          />
-          <SettingsList.Item
-            icon={<Image style={styles.imageStyle} source={Images['settings']}/>}
-            title='Do Not Disturb'
-            onPress={() => Alert.alert('Route To Do Not Disturb Page')}
+            title='About'
+            hasNavArrow={false}
+            //onPress={() => }
           />
           <SettingsList.Header headerStyle={{marginTop:15}}/>
           <SettingsList.Item
-            icon={<Image style={styles.imageStyle} source={Images['settings']}/>}
-            title='General'
-            onPress={() => Alert.alert('Route To General Page')}
-          />
-          <SettingsList.Item
-            icon={<Image style={styles.imageStyle} source={Images['settings']}/>}
-            title='Display & Brightness'
-            onPress={() => Alert.alert('Route To Display Page')}
+            title='Log Out'
+            hasNavArrow={false}
+            //onPress={() => }
           />
         </SettingsList>
       </View>
 		)
 	}
+  onValueChange(value){
+    this.setState({switchValue: value});
+  }
 }
 
 const styles = StyleSheet.create({
@@ -89,8 +98,16 @@ const styles = StyleSheet.create({
 		flex: 1,
 		backgroundColor:'#EFEFF4'
   },
+  headerStyle: {
+    marginTop:15,
+    marginLeft:15,
+    color:'gray'
+  },
   imageStyle:{
-    alignSelf:'center',height:40, width:40
+    alignSelf:'center',
+    marginLeft:15,
+    height:40,
+    width:40
   },
   titleInfoStyle:{}
 })

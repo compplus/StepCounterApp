@@ -6,8 +6,12 @@ import Menu from './components/Menu'
 import Info from './Info';
 import Setting from './Setting'
 import In from './In'
+import SettingSync from './SettingSync'
+import SettingGoal from './SettingGoal'
+import SettingUnits from './SettingUnits'
+import SettingTheme from './SettingTheme'
 
-const screens={Info,Setting,In} //after login
+const screens={Info,Setting,In,SettingSync,SettingGoal,SettingUnits,SettingTheme} //after login
 const screenTitle={In:'Home',Info:'Info',Setting:'Setting'}
 
 export default class Entry extends Component{
