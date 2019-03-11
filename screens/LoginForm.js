@@ -1,9 +1,17 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, View, TouchableWithoutFeedback, TextInput, TouchableOpacity, TouchableHighlight } from 'react-native';
 import { Images } from '../assets/assets'
+import { login } from '../api'
 
 export default class LoginForm extends Component {
 	render() {
+		const self = this
+		const submit = _ => {
+			login (
+				{ email: this .emailInput ._lastNativeText
+				, password: this .passwordInput ._lastNativeText })
+			.catch (err => {
+				alert (err) }) }
 		return (
 			<View style={styles.container}>
 				<TextInput 
@@ -14,7 +22,8 @@ export default class LoginForm extends Component {
 					keyboardType="email-address"
 					autoCapitalize="none"
 					autoCorrect={false}
-					style={styles.input}/>
+					style={styles.input}
+					ref={(input) => input && (this.emailInput = input)} />
 
 				<TextInput 
 					placeholder="Password"
@@ -22,13 +31,13 @@ export default class LoginForm extends Component {
 					returnKeyType="go"
 					secureTextEntry={true}
 					style={styles.input}
-					ref={(input) => this.passwordInput = input}/>
+					ref={(input) => input && (this.passwordInput = input)} />
 
-				<TouchableOpacity style={styles.buttonContainer}>
+				<TouchableOpacity onPress={submit} style={styles.buttonContainer}>
 					<Text style={styles.buttonText}>LOGIN</Text>
 				</TouchableOpacity>
 			</View>
-		);
+		)
 	}
 }
 

@@ -8,8 +8,10 @@
   },
   "dependencies": {
     "@asserdata/react-native-universal-pedometer": "^1.0.3",
+    "camarche": "0.0.19",
     "i": "^0.3.6",
     "npm": "^6.7.0",
+    "partial.lenses": "^14.17.0",
     "paths-js": "^0.4.7",
     "react": "16.6.3",
     "react-native": "^0.57.8",

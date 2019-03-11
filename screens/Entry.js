@@ -1,5 +1,9 @@
 import React, {Component} from 'react';
 import {StyleSheet, Text, View, TouchableWithoutFeedback,Platform} from 'react-native';
+import {please, L_, not, gentle_calmm, mark, S} from 'camarche'
+
+import {logged_in} from '../api'
+
 import {Header} from 'react-native-elements'
 import SideMenu from 'react-native-side-menu'
 import Menu from './components/Menu'
@@ -14,7 +18,7 @@ import SettingTheme from './SettingTheme'
 const screens={Info,Setting,In,SettingSync,SettingGoal,SettingUnits,SettingTheme} //after login
 const screenTitle={In:'Home',Info:'Info',Setting:'Setting'}
 
-export default class Entry extends Component{
+export default gentle_calmm (class Entry extends Component{
 	state={isOpen: false,screen:'In'}
 	go=(screen)=>{
 		if(screen in screens){
@@ -26,7 +30,7 @@ export default class Entry extends Component{
 	back=()=>{
 		let screen=this.state.screen
 		if(screen=='In'){
-			this.go('Login')
+			please (L_ .set (false)) (logged_in)
 		}else{
 			this.go('In')
 		}
@@ -40,9 +44,15 @@ export default class Entry extends Component{
 	}
 
 	render() {
+		const self = this
+		var $__log_out_transition = S (_ => {
+			if (not (mark (logged_in))) {
+				self .go ('Login') }
+		})
+
 		var screenName = this.state.screen
 		var ActiveScreen = screens[screenName]
-		let shouldLogout=screenName=='In'
+		let screenIsIn = screenName=='In'
 		return (
 		<SideMenu 
 		menu={<Menu screenTitle={screenTitle} selected={screenName} onItemSelected={this.onMenuItemSelected}/>}
@@ -55,14 +65,14 @@ export default class Entry extends Component{
 					backgroundColor='black'
 					leftComponent={{ icon: 'menu', color: '#fff' ,onPress:()=>this.updateMenuState(!this.state.isOpen)}}
 					centerComponent={{ text: screenTitle[screenName], style: { color: '#fff',fontWeight:'bold' } }}
-					rightComponent={{ icon: shouldLogout?'logout':'home',type:shouldLogout?'antdesign':'material', color: '#fff' ,onPress:this.back}}
+					rightComponent={{ icon: screenIsIn?'logout':'home',type:screenIsIn?'antdesign':'material', color: '#fff' ,onPress:this.back}}
 					/>
 				<ActiveScreen go={this.go}/>
 			</View>
 		</SideMenu>
 		)
 	}
-}
+})
 
 const styles = StyleSheet.create({
 	container: {

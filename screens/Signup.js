@@ -2,27 +2,31 @@ import React, { Component } from 'react';
 import { StyleSheet, Text, View, TouchableWithoutFeedback, ImageBackground, KeyboardAvoidingView, TouchableOpacity } from 'react-native';
 import { Images } from '../assets/assets'
 import SignupForm from './SignupForm'
+import { suppose, mark, gentle_calmm, S, equals } from 'camarche'
 
-export default class Signup extends Component{
-	render() {
-		var nav_screen = this.props.go
-		return <ImageBackground source={Images['background']} style={styles.container}>
-				<KeyboardAvoidingView behavior="padding" style={styles.wrapper}>
-					<View style={styles.signupWrapper}>
+import { logged_in } from '../api'
 
-						<TouchableWithoutFeedback onPress={() => nav_screen('Entry')}>
-							<Text style={styles.title}>Sign Up Here</Text>
-						</TouchableWithoutFeedback>
+const Signup = gentle_calmm (({ go }) =>
+	suppose (
+	( $__logged_in_transition = S (_ => {
+		if (equals (mark (logged_in)) (true)) {
+			go ('Entry')  } })
+	) =>
+	<ImageBackground source={Images['background']} style={styles.container}>
+		<KeyboardAvoidingView behavior="padding" style={styles.wrapper}>
+			<View style={styles.signupWrapper}>
 
-						<View>
-							<SignupForm />
-						</View>
+				<TouchableWithoutFeedback onPress={() => go ('Entry')}>
+					<Text style={styles.title}>Sign Up Here</Text>
+				</TouchableWithoutFeedback>
 
-					</View>
-				</KeyboardAvoidingView>
-			</ImageBackground>
-	}
-}
+				<View>
+					<SignupForm />
+				</View>
+
+			</View>
+		</KeyboardAvoidingView>
+	</ImageBackground> ))
 
 const styles = StyleSheet.create({
 	container: {
@@ -50,3 +54,5 @@ const styles = StyleSheet.create({
 	},
 
 })
+
+export default Signup
