@@ -1,24 +1,31 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, View, TouchableWithoutFeedback, ImageBackground,  KeyboardAvoidingView, TouchableOpacity } from 'react-native';
+import {S, equals, mark, gentle_calmm} from 'camarche'
+
+import {login, logged_in} from '../api'
+
 import { Images } from '../assets/assets'
 import LoginForm from './LoginForm';
 import DialogInput from 'react-native-dialog-input';
 
-export default class Login extends Component {
-	constructor(props){
-    super(props);
-    this.state = {
-      isDialogVisible: false,
-    }
-  }
-  showDialog(isShow){
-    this.setState({isDialogVisible: isShow});
-  }
-  sendInput(inputText){
-    console.log("sendInput (DialogInput#1): "+inputText);
-  }
+var sendInput = inputText => {
+	console.log("sendInput (DialogInput#1): "+inputText);
+}
 
-	render() {
+export default gentle_calmm (class Login extends Component {
+	state = {
+		isDialogVisible: false
+	}
+	showDialog (isShow) {
+		this.setState({isDialogVisible: isShow});
+	}
+
+	render () {
+		var $__log_in_transition = S (_ => {
+			if (mark (logged_in)) {
+				nav_screen ('Entry') } })
+
+
 		var nav_screen = this.props.go
 		return <ImageBackground source={Images['background']} style={styles.container}>
 			<KeyboardAvoidingView behavior="padding" style={styles.wrapper}>
@@ -45,7 +52,7 @@ export default class Login extends Component {
 									 title={"Forgot your password?"}
 									 message={"Enter your registered email."}
 									 hintInput ={"Email"}
-									 submitInput={ (inputText) => {this.sendInput(inputText)} }
+									 submitInput={ sendInput }
 									 closeDialog={ () => {this.showDialog(false)}}>
 			 		</DialogInput>
 
@@ -53,7 +60,7 @@ export default class Login extends Component {
 			</KeyboardAvoidingView>
 		</ImageBackground>
 	}
-}
+})
 
 const styles = StyleSheet.create({
 	container: {
