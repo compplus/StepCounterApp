@@ -53,6 +53,7 @@ export default gentle_calmm (class Entry extends Component{
 		var screenName = this.state.screen
 		var ActiveScreen = screens[screenName]
 		let screenIsIn = screenName=='In'
+		let isSettingSon = /Setting.+/.test(screenName) //assumed all setting pages are named as 'Setting.+'
 		return (
 		<SideMenu 
 		menu={<Menu screenTitle={screenTitle} selected={screenName} onItemSelected={this.onMenuItemSelected}/>}
@@ -63,7 +64,15 @@ export default gentle_calmm (class Entry extends Component{
 				 <Header
 					containerStyle={styles.header}
 					backgroundColor='black'
-					leftComponent={{ icon: 'menu', color: '#fff' ,onPress:()=>this.updateMenuState(!this.state.isOpen)}}
+					leftComponent={{ icon: isSettingSon?'arrowleft':'menu',type:isSettingSon?'antdesign':'material', color: '#fff' ,
+					onPress:()=>{
+						if(isSettingSon){
+							this.go('Setting')
+						}else{
+							this.updateMenuState(!this.state.isOpen)
+						}
+					}
+					}}
 					centerComponent={{ text: screenTitle[screenName], style: { color: '#fff',fontWeight:'bold' } }}
 					rightComponent={{ icon: screenIsIn?'logout':'home',type:screenIsIn?'antdesign':'material', color: '#fff' ,onPress:this.back}}
 					/>
