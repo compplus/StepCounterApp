@@ -7,6 +7,7 @@
     "test": "jest"
   },
   "dependencies": {
+    "@asserdata/react-native-universal-pedometer": "^1.0.3",
     "camarche": "0.0.19",
     "i": "^0.3.6",
     "npm": "^6.7.0",
@@ -22,6 +23,7 @@
     "react-native-maps": "^0.22.1",
     "react-native-material-dropdown": "^0.11.1",
     "react-native-material-textfield": "^0.12.0",
+    "react-native-pedometer": "0.0.7",
     "react-native-popup": "^0.6.1",
     "react-native-pure-chart": "^0.0.24",
     "react-native-router-flux": "^4.0.6",
