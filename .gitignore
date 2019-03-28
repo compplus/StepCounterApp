@@ -58,3 +58,6 @@ buck-out/
 # build folders
 android/
 ios/
+
+# expo
+.expo
