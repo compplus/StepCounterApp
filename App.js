@@ -7,7 +7,7 @@ import {AppLoading, SplashScreen} from 'expo'
 
 import * as screens from './screens'
 
-
+console.disableYellowBox = true;
 
 var load = _ => Font .loadAsync (
 	{ 'Material Icons': require ('@expo/vector-icons/fonts/MaterialIcons.ttf')
@@ -51,18 +51,18 @@ export default class App extends Component{
 		}else{
 			console.warn("screen \""+screen+"\" do not exist")
 		}
-	} 
+	}
 
-		 
+
 	render() {
 		var self = this
 		return !! self .loaded
 		?
-			suppose ( 
+			suppose (
 			( screen_name = this.state.screen
 			, ActiveScreen = screens [screen_name]
 			) =>
-			<SafeAreaView style={styles.container}>	
+			<SafeAreaView style={styles.container}>
 				<ActiveScreen
 					EntryScreen={this.state.EntryScreen}//for Entry
 					go={this.go}

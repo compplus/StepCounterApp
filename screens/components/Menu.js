@@ -40,7 +40,7 @@ export default class Menu extends Component{
   }
 
   render(){
-    const userName="User Name"
+    const userName="username"
     return (
       <View style={styles.container}>
         <ImageBackground style={styles.HeadImage} source={Images['header_image']} resizeMode='cover'>
@@ -64,23 +64,28 @@ const screensOnMenu=[{screen:"In",title:'Home',icon:{name:'home'}},
 {screen:"Setting",title:'Setting',icon:{name:'settings'}}]
 
 const styles = StyleSheet.create({
-  contaier: {
+  container: {
     flex: 1,
     backgroundColor: 'white'
   },
   button: {
     backgroundColor:"transparent",
     justifyContent:'flex-start',
-    marginVertical:5,
-    padding:15
+    marginVertical:10,
+    paddingTop: 15,
+    paddingBottom: 15,
+    paddingLeft: 20,
+    paddingRight: 20
   },
   HeadImage:{
     height:150
   },
   userName:{
+    fontSize: 25,
+    fontFamily: 'Gill Sans',
+    fontWeight: '500',
     position:'absolute',
-    bottom:'5%',
-    left:'5%',
-    fontWeight:'bold'
+    bottom:'10%',
+    left:'10%'
   }
 });

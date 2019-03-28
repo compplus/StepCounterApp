@@ -76,7 +76,7 @@ export default class Setting extends Component{
           <SettingsList.Item
             title='About'
             hasNavArrow={false}
-            //onPress={() => }
+            onPress={() => nav_screen('SettingAbout')}
           />
           <SettingsList.Header headerStyle={{marginTop:15}}/>
           <SettingsList.Item

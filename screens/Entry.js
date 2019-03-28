@@ -14,8 +14,9 @@ import SettingSync from './SettingSync'
 import SettingGoal from './SettingGoal'
 import SettingUnits from './SettingUnits'
 import SettingTheme from './SettingTheme'
+import SettingAbout from './SettingAbout'
 
-const screens={Info,Setting,In,SettingSync,SettingGoal,SettingUnits,SettingTheme} //after login
+const screens={Info,Setting,In,SettingSync,SettingGoal,SettingUnits,SettingTheme,SettingAbout} //after login
 const screenTitle={In:'Home',Info:'Info',Setting:'Setting'}
 
 export default gentle_calmm (class Entry extends Component{
@@ -54,7 +55,7 @@ export default gentle_calmm (class Entry extends Component{
 		let screenIsIn = screenName=='In'
 		let isSettingSon = /Setting.+/.test(screenName) //assumed all setting pages are named as 'Setting.+'
 		return (
-		<SideMenu 
+		<SideMenu
 		menu={<Menu screenTitle={screenTitle} selected={screenName} onItemSelected={this.onMenuItemSelected}/>}
 		isOpen={this.state.isOpen}
 		onChange={isOpen => this.updateMenuState(isOpen)}

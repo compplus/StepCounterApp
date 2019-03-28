@@ -68,6 +68,8 @@ export default class Info extends Component {
                               value: 'Female',
                             }, {
                               value: 'Male',
+                            }, {
+                              value: 'Other',
                             }]}
 
                         onChangeText = {(data)=>this.setState({gender: data})}
@@ -104,7 +106,7 @@ export default class Info extends Component {
                     </TouchableOpacity>
 
                     <TouchableOpacity onPress={()=>nav_screen('In')} style={styles.buttonContainer}>
-                        <Text style={styles.buttonText}>GET STARTED</Text>
+                        <Text style={styles.buttonText}>SAVE</Text>
                     </TouchableOpacity>
                 </View>
             </ScrollView>
@@ -145,7 +147,7 @@ const styles = StyleSheet.create({
 
     titleText: {
         textAlign: 'left' ,
-        color: '#55DAEE',
+        color: 'rgba(0,51,51,1)',
         fontSize: 25,
         fontWeight: '400',
         fontFamily: 'Gill Sans'
