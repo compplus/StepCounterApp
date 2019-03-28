@@ -15,7 +15,7 @@ export default class BigChart extends Component{
 		return(
 			<View style={{...styles.container}}>
 				<Text style={styles.title}>{this.props.title}</Text>
-					<View style={{flex:1}} onLayout={(event)=>{this.setState({chartheight:event.nativeEvent.layout.height*0.8})}}>
+				<View style={{flex:1}} onLayout={(event)=>{this.setState({chartheight:event.nativeEvent.layout.height*0.8})}}>
 					{this.state.chartheight?
 					<PureChart
 						type='line'
@@ -27,13 +27,13 @@ export default class BigChart extends Component{
 						data={this.props.data}
 						backgroundColor='#404040'
 					/>:null}
-					</View>
+				</View>
 			</View>
 		)
 	}
 }
 
-const styles=StyleSheet.create({
+const styles={
 	container:{
 		justifyContent:'center',
 		backgroundColor:'#404040',
@@ -42,7 +42,6 @@ const styles=StyleSheet.create({
 	title:{
 		textAlign:'center',
 		fontWeight:'bold',
-		color:'white',
-		margin:'3%'
+		color:'white'
 	}
-})
+}

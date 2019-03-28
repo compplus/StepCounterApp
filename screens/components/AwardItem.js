@@ -31,13 +31,10 @@ export default class AwardItem extends Component{
 	}
 }
 
-const styles = StyleSheet.create({
+const styles = {
 	container:{
 		flex :1,
-		alignItems: 'center',
-		marginBottom: '6%',
-		marginTop: '6%'
-
+		alignItems: 'center'
 	},
 
 	image:{
@@ -49,8 +46,7 @@ const styles = StyleSheet.create({
 		fontSize: scale(13),
 		textAlign: 'center',
 		color: 'white',
-		fontWeight: "600",
-		margin:'3%'
+		fontWeight: "600"
 	},
 
-})
+}

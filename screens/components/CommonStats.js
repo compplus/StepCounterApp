@@ -32,7 +32,7 @@ export default class CommonStats extends Component{
 	}
 }
 
-const styles = StyleSheet.create({
+const styles = {
 	container:{
 		backgroundColor:'white',
 		elevation: 2, //android shadow
@@ -59,4 +59,4 @@ const styles = StyleSheet.create({
 		textAlign:'center',
 		fontWeight:'bold'
 	}
-})
+}

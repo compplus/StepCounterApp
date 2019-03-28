@@ -14,7 +14,7 @@ export default class ChartBar extends Component{
 		)
 	}
 }
-const styles=StyleSheet.create({
+const styles={
 	container:{
 		backgroundColor:'rgba(0,0,0,0.1)'
 	},
@@ -24,4 +24,4 @@ const styles=StyleSheet.create({
 		bottom:0,
 		width:'100%'
 	}
-})
+}

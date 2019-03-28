@@ -20,7 +20,7 @@ export default class Dots extends Component{
 	}
 }
 
-const styles = StyleSheet.create({
+const styles = {
 	container:{
 		alignItems:'center',
 		justifyContent:'center',
@@ -35,4 +35,4 @@ const styles = StyleSheet.create({
 		borderRadius:7.5,
 		margin:5
 	}
-})
+}

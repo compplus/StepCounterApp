@@ -1,6 +1,21 @@
 import React, {Component} from 'react'
 import {StyleSheet, Text, View, SafeAreaView, BackHandler,Platform} from 'react-native'
+import {suppose} from 'camarche'
+import {Font} from 'expo'
+
+import {AppLoading, SplashScreen} from 'expo'
+
 import * as screens from './screens'
+
+
+
+var load = _ => Font .loadAsync (
+	{ 'Material Icons': require ('@expo/vector-icons/fonts/MaterialIcons.ttf')
+	, 'FontAwesome': require ('@expo/vector-icons/fonts/FontAwesome.ttf')
+	, 'Ionicons': require ('@expo/vector-icons/fonts/Ionicons.ttf')
+	, 'anticon': require ('./assets/fonts/anticon.ttf')
+	})
+
 
 export default class App extends Component{
 	state = {screen: 'Login',EntryScreen:''}
@@ -40,15 +55,25 @@ export default class App extends Component{
 
 		 
 	render() {
-		var screen_name = this.state.screen
-		var ActiveScreen = screens [screen_name]
-		return(
-		<SafeAreaView style={styles.container}>	
-			<ActiveScreen
-				EntryScreen={this.state.EntryScreen}//for Entry
-				go={this.go}
-			/>
-		</SafeAreaView>)}
+		var self = this
+		return !! self .loaded
+		?
+			suppose ( 
+			( screen_name = this.state.screen
+			, ActiveScreen = screens [screen_name]
+			) =>
+			<SafeAreaView style={styles.container}>	
+				<ActiveScreen
+					EntryScreen={this.state.EntryScreen}//for Entry
+					go={this.go}
+				/>
+			</SafeAreaView> )
+		:
+			<AppLoading
+				startAsync={ load }
+				onFinish={ _ => (self .loaded = true, SplashScreen .hide (), self .forceUpdate ()) }
+				onError={ _ => console .error (err) } />
+	}
 }
 
 const styles = StyleSheet.create({

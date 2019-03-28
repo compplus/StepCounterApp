@@ -41,11 +41,13 @@ const styles={
 	container:{
 		justifyContent:'center',
 		flex:1,
-		alignItems:'center'
+		alignItems:'center',
+		width:'100%'
 	},
 	title:{
 		textAlign:'left',
-		color:'#404040'
+		color:'#404040',
+		margin:'2%'
 	},
 	barContainer:{
 		flexDirection:'row',
@@ -53,7 +55,8 @@ const styles={
 		alignItems:'center'
 	},
 	barchart:{
-		justifyContent:'center'
+		justifyContent:'center',
+		margin:'5%'
 	},
 	textBox:{
 		flex:3,
@@ -61,6 +64,7 @@ const styles={
 	},
 	value:{
 		fontSize:22,
+		margin:'2%',
 		fontWeight:'bold',
 		textAlign:'center'
 	},

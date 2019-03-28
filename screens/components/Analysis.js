@@ -24,7 +24,7 @@ export default class Analysis extends Component{
 
 const {width,height} = Dimensions.get('window')
 
-const styles = StyleSheet.create({
+const styles = {
 	container:{
 		flex:1,
 		backgroundColor:'white',
@@ -38,4 +38,4 @@ const styles = StyleSheet.create({
 	smallchartBox:{
 		flex:1
 	}
-})
+}

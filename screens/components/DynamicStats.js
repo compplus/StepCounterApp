@@ -4,16 +4,11 @@ import Analysis from './Analysis'
 import Activity from './Activity'
 import Dots from './Dots'
 import GoBack from './GoBack'
-
-let Map=null
+import Map from './Map'
 
 export default class DynamicStats extends Component{
 	state={currentPage:0,width:width*0.95}
 	
-	componentDidMount(){
-		Map=require('./Map').default;
-	}
-
 	setCurrentPage(currentPage){
 		this.setState({currentPage})
 	}
@@ -27,10 +22,11 @@ export default class DynamicStats extends Component{
 				pagingEnabled
 				onScroll={(event)=>{ let page=Math.round(event.nativeEvent.contentOffset.x/(width));if(page!=currentPage)this.setCurrentPage(page)}}
 				onContentSizeChange={()=>{this.scrollview.scrollTo({x:currentPage*width,y:0,animated:true})}}
-				ref={(scrollview)=>{this.scrollview=scrollview}}>
+				ref={(scrollview)=>{this.scrollview=scrollview}}
+			>
 				<Activity width={width} portrait={this.props.portrait}/>
 				<Analysis width={width} portrait={this.props.portrait}/>
-				{Map?<Map width={width}/>:null}
+				<Map width={width}/>
 			</ScrollView>
 			<GoBack visible={currentPage==2} goback={()=>{this.scrollview.scrollTo({x:width,y:0,animated:true})}}/>
 			<Dots numofpage={3} currentPage={currentPage}/>
@@ -40,7 +36,7 @@ export default class DynamicStats extends Component{
 
 const {width, height} = Dimensions.get('window')
 
-const styles = StyleSheet.create({
+const styles = {
 	container:{
 		backgroundColor:'white',
 		flex:1,
@@ -50,4 +46,4 @@ const styles = StyleSheet.create({
 		shadowOpacity: 0.8,
 		shadowRadius: 2,
 	}
-})
+}

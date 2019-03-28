@@ -76,7 +76,7 @@ export default class Activity extends Component{
 
 const {width,height} = Dimensions.get('window')
 
-const styles = StyleSheet.create({
+const styles = {
 	container:{
 		flex:1,
 		backgroundColor:'#171D33',
@@ -113,4 +113,4 @@ const styles = StyleSheet.create({
         fontFamily: 'Gill Sans',
         fontSize: 20
     }
-})
+}

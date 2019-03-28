@@ -44,11 +44,10 @@ export default gentle_calmm (class Entry extends Component{
 	}
 
 	render() {
-		const self = this
+		var self = this
 		var $__log_out_transition = S (_ => {
 			if (not (mark (logged_in))) {
-				self .go ('Login') }
-		})
+				self .go ('Login') } })
 
 		var screenName = this.state.screen
 		var ActiveScreen = screens[screenName]

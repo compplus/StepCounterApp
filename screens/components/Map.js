@@ -70,7 +70,7 @@ export default class Map extends Component{
 
 const {width,height} = Dimensions.get('window')
 
-const styles = StyleSheet.create({
+const styles = {
 	container:{
 		flex:1,
 		alignItems:'center',
@@ -80,4 +80,4 @@ const styles = StyleSheet.create({
 		height:'100%',
 		width:'100%'
 	}
-})
+}

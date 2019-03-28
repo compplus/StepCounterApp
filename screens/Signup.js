@@ -26,7 +26,7 @@ const Signup = gentle_calmm (({ go }) =>
 
 			</View>
 		</KeyboardAvoidingView>
-	</ImageBackground> ))
+	</ImageBackground> ) )
 
 const styles = StyleSheet.create({
 	container: {

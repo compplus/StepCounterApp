@@ -21,12 +21,11 @@ export default gentle_calmm (class Login extends Component {
 	}
 
 	render () {
+		var nav_screen = this.props.go
 		var $__log_in_transition = S (_ => {
 			if (mark (logged_in)) {
 				nav_screen ('Entry') } })
 
-
-		var nav_screen = this.props.go
 		return <ImageBackground source={Images['background']} style={styles.container}>
 			<KeyboardAvoidingView behavior="padding" style={styles.wrapper}>
 				<View style={styles.loginWrapper}>
@@ -54,7 +53,7 @@ export default gentle_calmm (class Login extends Component {
 									 hintInput ={"Email"}
 									 submitInput={ sendInput }
 									 closeDialog={ () => {this.showDialog(false)}}>
-			 		</DialogInput>
+					</DialogInput>
 
 				</View>
 			</KeyboardAvoidingView>
