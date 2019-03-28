@@ -12,6 +12,7 @@ import {
 
 import { AnimatedCircularProgress } from 'react-native-circular-progress';
 import Icon from 'react-native-vector-icons/Ionicons';
+import { Pedometer } from "expo"
 
 const tintColor = "#44C591";
 const backgroundColor = "#717BA5";
@@ -29,17 +30,21 @@ export default class Activity extends Component{
 		super(props);
 
 		this.state={
-			steps: 2400,
-			fill: 2400/10000*100
+			steps: 0,
 		};
+	}
 
+  componentDidMount () {
+		Pedometer.watchStepCount(result => {
+			this.setState({steps: result.steps});
+		})
 	}
 
 	renderStepCounts() {
 		return <AnimatedCircularProgress
 			size={dayDim.size}
 			width={dayDim.width}
-			fill={this.state.fill}
+			fill={this.state.steps/100}
 			tintColor={tintColor}
 			backgroundColor={backgroundColor}
 			rotation={rotation}
@@ -54,7 +59,7 @@ export default class Activity extends Component{
 						</Text>
 
             <Text style={styles.goal}>
-              Goal: 10000
+              Goal: 1000
             </Text>
 					</View>
 				)
