@@ -22,6 +22,7 @@
     "react-native-maps": "^0.22.1",
     "react-native-material-dropdown": "^0.11.1",
     "react-native-material-textfield": "^0.12.0",
+    "react-native-oui-pedometer": "^1.2.2",
     "react-native-popup": "^0.6.1",
     "react-native-pure-chart": "^0.0.24",
     "react-native-router-flux": "^4.0.6",
