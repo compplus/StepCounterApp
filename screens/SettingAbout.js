@@ -15,11 +15,7 @@ export default class SettingAbout extends Component{
       <View style={styles.container}>
         <SettingsList borderColor='#c8c7cc' defaultItemSize={50}>
           <SettingsList.Header headerStyle={styles.headerStyle}/>
-          <SettingsList.Item
-            title='Contact Us'
-            hasNavArrow={false}
-            //onPress={() => }
-          />
+
           <SettingsList.Item
             title='Terms and Conditions'
             hasNavArrow={false}
@@ -66,7 +62,7 @@ const styles = StyleSheet.create({
     backgroundColor:'#EFEFF4'
   },
   bottomBox: {
-    paddingBottom: 500,
+    paddingBottom: 600,
   },
   versionStyle: {
     color: 'gray',
