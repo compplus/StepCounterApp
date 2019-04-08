@@ -1,83 +1,49 @@
-import React, {Component} from 'react'
-import {View,StyleSheet,Text,Dimensions} from 'react-native'
-import { PermissionsAndroid } from 'react-native';
-import MapView,{Polyline} from 'react-native-maps'
-import Geolocation from 'react-native-geolocation-service';
+import React, { Component } from 'react';
+import { MapView, Location, Permissions  } from 'expo';
 
-export default class Map extends Component{
-	state={region:null,lineCoords:[],watchId:null}
-	async requestLocationPermission(){
-		try {
-		const granted = await PermissionsAndroid.request(
-		  PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION,
-		  {
-			'title': 'Location permission',
-			'message': 'Let us gain access to your location '
-		  }
-		)
-		if (granted === PermissionsAndroid.RESULTS.GRANTED) {
-			this.getCurrentLocation()
-		} else {
-		  alert("Location permission denied");
-		}
-		} catch (err) {
-		console.warn(err)
-		}
-	}
-	async componentWillMount() {
-		await this.requestLocationPermission()
+const GEOLOCATION_OPTIONS = { enableHighAccuracy: true, timeout: 20000, maximumAge: 1000 };
+
+export default class Map extends Component {
+  state = {};
+  
+  componentWillMount() {
+    Location.watchPositionAsync(GEOLOCATION_OPTIONS, this.locationChanged);
+  }
+  
+  componentDidMount() {
+    this._getLocationAsync();
+  }
+
+  _getLocationAsync = async () => {
+   let { status } = await Permissions.askAsync(Permissions.LOCATION);
+   if (status !== 'granted') {
+     this.setState({
+       locationResult: 'Permission to access location was denied',
+     });
+   }
+
+   let location = await Location.getCurrentPositionAsync({});
+   this.setState({ locationResult: JSON.stringify(location) });
+ };
+
+  locationChanged = (location) => {
+    let region = {
+      latitude: location.coords.latitude,
+      longitude: location.coords.longitude,
+      latitudeDelta: 0.01,
+      longitudeDelta: 0.005,
     }
-	componentDidMount(){
-		this.watchLoc()
-	}
-	componentWillUnmount(){
-		Geolocation.clearWatch(this.state.watchId)
-	}
-	getCurrentLocation(){
-		let success=({coords})=>{
-			this.state.lineCoords=[{latitude:coords.latitude,longitude:coords.longitude}]
-			this.setState({region:{latitude:coords.latitude,longitude:coords.longitude,latitudeDelta: 0.03,longitudeDelta: 0.03}})}
-			let err=({message})=>{alert('GPS error')}
-			Geolocation.getCurrentPosition(success,err,{enableHighAccuracy:true,timeout:10000})
-	}
-	watchLoc(){
-		let success=({coords})=>{
-			this.state.lineCoords=[...this.state.lineCoords,{latitude:coords.latitude,longitude:coords.longitude}]
-			this.setState({})
-		}
-		let err=({message})=>{alert('GPS error')}
-		let watchId=Geolocation.watchPosition(success,err,{interval:7000,fastestInterval:3000,distanceFilter:10})
-		this.setState({watchId})
-	}
-	render(){
-		return(
-			<View style={{...styles.container,width:this.props.width}}>
-			<MapView
-				showsUserLocation={true}
-				initialRegion={this.state.region}
-				style={styles.map}
-			>
-				<Polyline
-					coordinates={this.state.lineCoords}
-					strokeColor="#000" 
-					strokeWidth={6}
+    this.setState({location, region})
+  }
+  
+  render() {
+    return (
+				<MapView
+						style={{ flex: 1,width:this.props.width }}
+						showsUserLocation={true}
+						followUserLocation={true}
+						region={this.state.region}
 				/>
-			</MapView>
-			</View>
-		)
-	}
-}
-
-const {width,height} = Dimensions.get('window')
-
-const styles = {
-	container:{
-		flex:1,
-		alignItems:'center',
-		justifyContent:'center'
-	},
-	map:{
-		height:'100%',
-		width:'100%'
-	}
+    );
+  }
 }

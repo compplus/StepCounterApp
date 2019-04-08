@@ -4,7 +4,7 @@ import Analysis from './Analysis'
 import Activity from './Activity'
 import Dots from './Dots'
 import GoBack from './GoBack'
-//import Map from './Map'
+import Map from './Map'
 
 export default class DynamicStats extends Component{
 	state={currentPage:0,width:width*0.95}
@@ -23,12 +23,14 @@ export default class DynamicStats extends Component{
 				onScroll={(event)=>{ let page=Math.round(event.nativeEvent.contentOffset.x/(width));if(page!=currentPage)this.setCurrentPage(page)}}
 				onContentSizeChange={()=>{this.scrollview.scrollTo({x:currentPage*width,y:0,animated:true})}}
 				ref={(scrollview)=>{this.scrollview=scrollview}}
+				scrollEnabled={currentPage!=1}
 			>
 				<Activity width={width} portrait={this.props.portrait}/>
-				<Analysis width={width} portrait={this.props.portrait}/>
-					{/*<Map width={width}/>*/}
+				<Analysis width={width} portrait={this.props.portrait} parentshouldScroll={sE=>this.setState({scrollEnabled:sE})}/>
+				<Map width={width}/>
 			</ScrollView>
-			<GoBack visible={currentPage==2} goback={()=>{this.scrollview.scrollTo({x:width,y:0,animated:true})}}/>
+			<GoBack visible={currentPage==2||currentPage==1} direction={'left'} goto={(direction)=>{this.scrollview.scrollTo({x:(currentPage+direction)*width,y:0,animated:true})}}/>
+			<GoBack visible={currentPage==1} direction={'right'} goto={(direction)=>{this.scrollview.scrollTo({x:(currentPage+direction)*width,y:0,animated:true})}}/>
 			<Dots numofpage={3} currentPage={currentPage}/>
 		</View>
 	}

@@ -1,19 +1,19 @@
 import React,{Component} from 'react'
-import {StyleSheet} from 'react-native'
 import {Button} from 'react-native-elements'
 import Icon from 'react-native-vector-icons/FontAwesome';
 
 export default class GoBack extends Component{
     render(){
-        let {visible,goback}=this.props
+        let {visible,goto,direction}=this.props
         if(!visible)return null
         return(
             <Button
-                containerStyle={styles.container}
-                onPress={goback}
+                buttonStyle={{backgroundColor: 'transparent'}}
+                containerStyle={{position:'absolute',top:'50%',[direction]:0}}
+                onPress={()=>goto(direction=='left'?-1:1)}
                 icon={
                     <Icon
-                      name="arrow-left"
+                      name={"arrow-"+direction}
                       size={25}
                       color="rgba(0,0,0,0.5)"
                     />
@@ -22,11 +22,3 @@ export default class GoBack extends Component{
         )
     }
 }
-
-const styles=StyleSheet.create({
-    container:{
-        position:'absolute',
-        left:0,
-        top:'50%'
-    }
-})

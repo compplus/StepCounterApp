@@ -1,12 +1,12 @@
 import React,{Component} from 'react'
 import {View,StyleSheet,ActivityIndicator} from 'react-native'
-import PureChart from 'react-native-pure-chart'
+import PureChart from "./react-native-pure-chart/examples/pure-chart"
 import {ButtonGroup} from 'react-native-elements'
 
 const TimeUnits=['hours','days','months']
 const data=['calories','steps']
 export default class Analysis extends Component{
-    state={SelectedTimeUnit:'hours',SelectedData:'steps',AllData:{},loading:true,ChartHeight:100}
+    state={SelectedTimeUnit:'hours',SelectedData:'steps',AllData:{},loading:true,ChartHeight:200}
     componentDidMount(){
         this.getAllData()
     }
@@ -77,11 +77,11 @@ export default class Analysis extends Component{
                 {loading?
                 <ActivityIndicator/>:
 				<View
-				style={{flex:1,justifyContent:'center'}}
+                style={{flex:1,justifyContent:'center'}}
 				onLayout={(event)=>{
 					this.setState({ChartHeight:event.nativeEvent.layout.height})}}>
                 <PureChart
-				height={ChartHeight*0.8}
+                height={ChartHeight*0.7}
                 xAxisGridLineColor='transparent'
                 data={AllData[SelectedData][SelectedTimeUnit]}
                 type='line' 
