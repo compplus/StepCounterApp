@@ -4,7 +4,7 @@ import Analysis from './Analysis'
 import Activity from './Activity'
 import Dots from './Dots'
 import GoBack from './GoBack'
-import Map from './Map'
+//import Map from './Map'
 
 export default class DynamicStats extends Component{
 	state={currentPage:0,width:width*0.95}
@@ -26,7 +26,7 @@ export default class DynamicStats extends Component{
 			>
 				<Activity width={width} portrait={this.props.portrait}/>
 				<Analysis width={width} portrait={this.props.portrait}/>
-				<Map width={width}/>
+					{/*<Map width={width}/>*/}
 			</ScrollView>
 			<GoBack visible={currentPage==2} goback={()=>{this.scrollview.scrollTo({x:width,y:0,animated:true})}}/>
 			<Dots numofpage={3} currentPage={currentPage}/>

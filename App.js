@@ -14,6 +14,9 @@ var load = _ => Font .loadAsync (
 	, 'FontAwesome': require ('@expo/vector-icons/fonts/FontAwesome.ttf')
 	, 'Ionicons': require ('@expo/vector-icons/fonts/Ionicons.ttf')
 	, 'anticon': require ('./assets/fonts/anticon.ttf')
+	,'Gill Sans': require('./assets/fonts/Gillsans.ttf')
+	,'MaterialIcons': require ('@expo/vector-icons/fonts/MaterialIcons.ttf')
+	, 'AntDesign': require ('./assets/fonts/anticon.ttf')
 	})
 
 

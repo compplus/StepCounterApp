@@ -1,41 +1,104 @@
-import React, {Component} from 'react'
-import {View,StyleSheet,Text,Dimensions} from 'react-native'
-import BigChart from './BigChart'
-import SmallChart from './SmallChart'
+import React,{Component} from 'react'
+import {View,StyleSheet,ActivityIndicator} from 'react-native'
+import PureChart from 'react-native-pure-chart'
+import {ButtonGroup} from 'react-native-elements'
 
+const TimeUnits=['hours','days','months']
+const data=['calories','steps']
 export default class Analysis extends Component{
-	state={width:this.props.width,smallwidth:null}
-	
-	render(){
-		let sampleData = [{seriesName: 'series1', data: [0, 4, 6, 5, 10], color: 'white'},{seriesName: 'series2', data: [0, 3, 3, 6, 7], color: 'grey'}]
-		let smallChartData=[1,2,3,4,5,6,7,8,9,10,11,12]
-		return(
-			<View style={{...styles.container,width:this.props.width,flexDirection:this.props.portrait?'column':'row'}} onLayout={()=>{this.setState({})}}>
-			<View style={{...styles.bigchartBox,width:this.props.portrait?'100%':undefined}}  onLayout={(e)=>{this.setState({width:e.nativeEvent.layout.width})}}>
-				<BigChart portrait={this.props.portrait} width={this.state.width} data={sampleData} title='Pace Analysis'/>
-			</View>
-			<View style={{...styles.smallchartBox,width:this.props.portrait?'100%':undefined,height:(this.props.portrait?undefined:'100%')}}  onLayout={(e)=>{this.setState({smallwidth:e.nativeEvent.layout.width})}}>
-				<SmallChart portrait={this.props.portrait} title={'Splits'} data={smallChartData} width={this.state.smallwidth}/>
-			</View>
-			</View>
-		)
-	}
+    state={SelectedTimeUnit:'hours',SelectedData:'steps',AllData:{},loading:true,ChartHeight:100}
+    componentDidMount(){
+        this.getAllData()
+    }
+    getAllData=()=>{
+        let AllData={
+            steps:{
+                hours:[
+                    {x:'00:00',y:10},
+                    {x:'01:00',y:12},
+                    {x:'02:00',y:0},
+                    {x:'03:00',y:0},
+                    {x:'04:00',y:13},
+                    {x:'05:00',y:0},
+                    {x:'06:00',y:20},
+                    {x:'07:00',y:140},//...steps per hour in the current day
+                 ],
+                 days:[
+                    {x:'1',y:5000},
+                    {x:'2',y:1200},
+                    {x:'3',y:4240},
+                    {x:'4',y:2330},
+                    {x:'5',y:1300},
+                    {x:'6',y:0},
+                    {x:'7',y:2000},
+                    {x:'8',y:1400}//...steps per day in the current month
+                 ],
+                 months:[
+                    {x:'Jan',y:52000},
+                    {x:'Feb',y:12400},
+                    {x:'Mar',y:42540},
+                    {x:'Apr',y:12330},
+                    {x:'May',y:41300},
+                    {x:'Jun',y:30020},
+                    {x:'Jul',y:23000},
+                    {x:'Aug',y:14500}//...steps per Month in the current year
+                 ]
+            },
+            calories:{
+
+            }
+        }
+        let timeUnitsWithData=Object.keys(AllData.steps)
+        for(let i=0;i<timeUnitsWithData.length;i++){
+            let k=timeUnitsWithData[i]
+            AllData.calories[k]=AllData.steps[k].map(d=>{
+                return {x:d.x,y:this.caloriesCalculator(d.y)}
+            })
+        }
+        
+        this.setState({AllData,loading:false})
+    }
+    caloriesCalculator=(steps,weight=65/*kg*/)=>{
+        const stepsPerMile=2105
+        weight=weight*2.205//kg to pounds
+        const calPerMile=0.57*weight
+        return parseFloat((calPerMile*(steps/stepsPerMile)).toPrecision(3))
+    }
+    render(){
+        const {SelectedTimeUnit,SelectedData,AllData,loading,ChartHeight} = this.state
+		const {width} = this.props
+        return(
+            <View style={{width:width,flex:1,justifyContent:'center'}}>
+                <ButtonGroup
+                    onPress={(i)=>{this.setState({SelectedTimeUnit: TimeUnits[i]})}}
+                    selectedIndex={TimeUnits.indexOf(SelectedTimeUnit)}
+                    buttons={TimeUnits}
+                />
+                {loading?
+                <ActivityIndicator/>:
+				<View
+				style={{flex:1,justifyContent:'center'}}
+				onLayout={(event)=>{
+					this.setState({ChartHeight:event.nativeEvent.layout.height})}}>
+                <PureChart
+				height={ChartHeight*0.8}
+                xAxisGridLineColor='transparent'
+                data={AllData[SelectedData][SelectedTimeUnit]}
+                type='line' 
+                /></View>}
+                <ButtonGroup
+                    onPress={(i)=>{this.setState({SelectedData: data[i]})}}
+                    selectedIndex={data.indexOf(SelectedData)}
+                    buttons={data}
+                />
+            </View>
+        )
+    }
 }
 
-const {width,height} = Dimensions.get('window')
+const styles=StyleSheet.create({
+    container:{
 
-const styles = {
-	container:{
-		flex:1,
-		backgroundColor:'white',
-		alignItems:'center',
-		justifyContent:'center'
-	},
-	bigchartBox:{
-		backgroundColor:'#404040',
-		flex:2
-	},
-	smallchartBox:{
-		flex:1
-	}
-}
+    },
+
+})
