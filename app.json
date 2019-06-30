@@ -3,7 +3,7 @@
         "name": "StepCounter",
         "version": "0.0.1",
         "description": "",
-        "sdkVersion": "29.0.0",
+        "sdkVersion": "32.0.0",
         "orientation": "portrait",
         "privacy": "public",
         "icon": "./assets/app_icon/1024x1024.png",
