@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, View, TouchableWithoutFeedback, ImageBackground, KeyboardAvoidingView, TouchableOpacity } from 'react-native';
 import { Images } from '../assets/assets'
-import SignupForm from './SignupForm'
+import SignupForm from '../components/SignUp/SignupForm'
 import { suppose, mark, gentle_calmm, S, equals } from 'camarche'
 
 import { logged_in } from '../api'
@@ -16,7 +16,7 @@ const Signup = gentle_calmm (({ go }) =>
 		<KeyboardAvoidingView behavior="padding" style={styles.wrapper}>
 			<View style={styles.signupWrapper}>
 
-				<TouchableWithoutFeedback onPress={() => go ('Entry')}>
+				<TouchableWithoutFeedback>
 					<Text style={styles.title}>Sign Up Here</Text>
 				</TouchableWithoutFeedback>
 

@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
 import {StyleSheet, Text, View, TouchableWithoutFeedback,Dimensions} from 'react-native';
 import {ButtonGroup} from 'react-native-elements';
-import Main from './Main'
-import Awards from './Awards'
+import Main from '../../screens/Main'
+import Awards from '../../screens/Awards'
 
 var tabs = [ {Main}, {Awards}]
 export default class In extends Component{
@@ -12,7 +12,7 @@ export default class In extends Component{
 		var tab_name = this.state.tab_name
 		var ActiveTab = tab_of (tab_name)
 		return (
-		
+
 		<View style={styles.container}>
 			<ActiveTab />
 			<ButtonGroup

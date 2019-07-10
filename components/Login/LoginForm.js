@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, View, TouchableWithoutFeedback, TextInput, TouchableOpacity, TouchableHighlight } from 'react-native';
-import { Images } from '../assets/assets'
-import { login } from '../api'
+import { Images } from '../../assets/assets'
+import { login } from '../../api'
 
 export default class LoginForm extends Component {
 	render() {
@@ -14,7 +14,7 @@ export default class LoginForm extends Component {
 				alert (err) }) }
 		return (
 			<View style={styles.container}>
-				<TextInput 
+				<TextInput
 					placeholder="Username or email"
 					placeholderTextColor="rgba(64,64,64,0.5)"
 					returnKeyType="next"
@@ -25,7 +25,7 @@ export default class LoginForm extends Component {
 					style={styles.input}
 					ref={(input) => input && (this.emailInput = input)} />
 
-				<TextInput 
+				<TextInput
 					placeholder="Password"
 					placeholderTextColor="rgba(64,64,64,0.5)"
 					returnKeyType="go"

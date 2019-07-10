@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {StyleSheet, Text, View, TouchableWithoutFeedback,FlatList, Image} from 'react-native';
-import AwardItem from './components/AwardItem';
+import AwardItem from '../components/AwardItem';
 
 let json=[
 

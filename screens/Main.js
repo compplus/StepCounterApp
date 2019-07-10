@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {StyleSheet, Text, View, TouchableWithoutFeedback,Dimensions} from 'react-native';
-import CommonStats from './components/CommonStats'
-import DynamicStats from './components/DynamicStats'
+import CommonStats from '../components/CommonStats'
+import DynamicStats from '../components/DynamicStats'
 
 export default class Main extends Component{
 	state={portrait:this.isPortrait()}
