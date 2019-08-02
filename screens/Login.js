@@ -5,8 +5,9 @@ import {S, equals, mark, gentle_calmm} from 'camarche'
 import {login, logged_in} from '../api'
 
 import { Images } from '../assets/assets'
-import LoginForm from './LoginForm';
+import LoginForm from '../components/Login/LoginForm';
 import DialogInput from 'react-native-dialog-input';
+import {DismissKeyboard} from '../components/GeneralUserInput/DismissKeyboard';
 
 var sendInput = inputText => {
 	console.log("sendInput (DialogInput#1): "+inputText);
@@ -21,31 +22,32 @@ export default gentle_calmm (class Login extends Component {
 	}
 
 	render () {
-		var nav_screen = this.props.go
+		var go = this.props.go
 		var $__log_in_transition = S (_ => {
 			if (mark (logged_in)) {
-				nav_screen ('Entry') } })
+				;console.log('hi')
+				go ('Entry') } })
 
 		return <ImageBackground source={Images['background']} style={styles.container}>
 			<KeyboardAvoidingView behavior="padding" style={styles.wrapper}>
+			<DismissKeyboard>
 				<View style={styles.loginWrapper}>
+				  <Text style={styles.title}>Log in to your account</Text>
 
-					<TouchableWithoutFeedback onPress={()=>nav_screen('Entry')}>
-						<Text style={styles.title}>Log in to your account</Text>
-					</TouchableWithoutFeedback>
-
-					<LoginForm />
+					<LoginForm go={go} />
 
 					<View style={styles.signupWrapper}>
 						<Text style={styles.bottomText}>Don't have an account?</Text>
-							<TouchableOpacity onPress={()=>nav_screen('Signup')}>
+							<TouchableOpacity onPress={()=>go('Signup')}>
 						<Text style={styles.signupText}> Sign up.</Text>
 						</TouchableOpacity>
 					</View>
 
-					<TouchableOpacity onPress={()=>{this.showDialog(true)}} style={{padding:10}}>
-						<Text style={styles.forgotpwText}>Forgot password?</Text>
-					</TouchableOpacity>
+					<View style={styles.forgotpwWrapper}>
+						<TouchableOpacity onPress={()=>{this.showDialog(true)}} style={{padding:10}}>
+							<Text style={styles.forgotpwText}>Forgot password?</Text>
+						</TouchableOpacity>
+					</View>
 
 					<DialogInput isDialogVisible={this.state.isDialogVisible}
 									 title={"Forgot your password?"}
@@ -56,6 +58,7 @@ export default gentle_calmm (class Login extends Component {
 					</DialogInput>
 
 				</View>
+				</DismissKeyboard>
 			</KeyboardAvoidingView>
 		</ImageBackground>
 	}
@@ -87,6 +90,11 @@ const styles = StyleSheet.create({
 	},
 
 	signupWrapper: {
+		justifyContent: 'center',
+		flexDirection: "row"
+	},
+
+	forgotpwWrapper: {
 		justifyContent: 'center',
 		flexDirection: "row"
 	},

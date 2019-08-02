@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, View, TextInput, TouchableOpacity } from 'react-native';
-import { Images } from '../assets/assets'
-import { sign_up } from '../api'
-import Input from "react-native-input-validation"
+import { Images } from '../../assets/assets';
+import { sign_up } from '../../api';
+import Input from "react-native-input-validation";
+import {DismissKeyboard} from '../GeneralUserInput/DismissKeyboard';
 
 export default class SignupForm extends Component {
     constructor(props){
@@ -31,6 +32,7 @@ export default class SignupForm extends Component {
 				alert (err) }) }
 
 		return (
+      <DismissKeyboard>
 			<View style={styles.container}>
 				<Input
 					placeholder="Email"
@@ -69,7 +71,7 @@ export default class SignupForm extends Component {
 					errorMessageStyle={styles.errorMessageStyle}
 					errorInputContainerStyle={{ }} />
 
-				<Input 
+				<Input
 					placeholder="Confirm Password"
 					placeholderTextColor="rgba(64,64,64,0.5)"
 					returnKeyType="go"
@@ -91,6 +93,7 @@ export default class SignupForm extends Component {
 					<Text style={styles.buttonText}>SIGN UP</Text>
 				</TouchableOpacity>
 			</View>
+      </DismissKeyboard>
 		)
 	}
 }

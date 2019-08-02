@@ -10,7 +10,7 @@ import {
   ImageBackground
 } from 'react-native';
 import {Button,Icon} from 'react-native-elements'
-import {Images} from '../../assets/assets.js'
+import {Images} from '../assets/assets.js'
 
 const window = Dimensions.get('window');
 

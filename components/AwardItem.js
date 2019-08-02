@@ -18,7 +18,7 @@ export default class AwardItem extends Component{
 
 				<Image style={styles.image} source={this.props.status
 																											? this.props.imageuri
-																											: require('../../assets/award_page/question_mark.png')}/>
+																											: require('../assets/award_page/question_mark.png')}/>
 
 					<Text style={styles.text}>
 						{this.props.status

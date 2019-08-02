@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import {View, StyleSheet, Text,Image,Alert} from 'react-native'
 import SettingsList from 'react-native-settings-list';
-import { Images } from '../assets/assets'
+import { Images } from '../../assets/assets'
 
 export default class Setting extends Component{
   constructor(){
