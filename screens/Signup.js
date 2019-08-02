@@ -5,6 +5,7 @@ import SignupForm from '../components/SignUp/SignupForm'
 import { suppose, mark, gentle_calmm, S, equals } from 'camarche'
 
 import { logged_in } from '../api'
+import { DismissKeyboard } from '../components/GeneralUserInput/DismissKeyboard';
 
 const Signup = gentle_calmm (({ go }) =>
 	suppose (
@@ -12,6 +13,7 @@ const Signup = gentle_calmm (({ go }) =>
 		if (equals (mark (logged_in)) (true)) {
 			go ('Entry')  } })
 	) =>
+	<DismissKeyboard>		
 	<ImageBackground source={Images['background']} style={styles.container}>
 		<KeyboardAvoidingView behavior="padding" style={styles.wrapper}>
 			<View style={styles.signupWrapper}>
@@ -24,9 +26,17 @@ const Signup = gentle_calmm (({ go }) =>
 					<SignupForm />
 				</View>
 
+				<View style={styles.loginWrapper}>
+						<Text style={styles.bottomText}>Already have an account?</Text>
+							<TouchableOpacity onPress={()=>go('Login')}>
+						<Text style={styles.loginText}> Login.</Text>
+						</TouchableOpacity>
+				</View>
+
 			</View>
 		</KeyboardAvoidingView>
-	</ImageBackground> ) )
+	</ImageBackground> 
+	</DismissKeyboard>) )
 
 const styles = StyleSheet.create({
 	container: {
@@ -42,6 +52,26 @@ const styles = StyleSheet.create({
 	signupWrapper: {
 		flexGrow: 1,
 		justifyContent: 'center'
+	},
+
+	loginWrapper: {
+		justifyContent: 'center',
+		flexDirection: "row"
+	},
+
+	bottomText: {
+		fontSize: 13,
+		textAlign: 'center',
+		color: 'white',
+		fontFamily: 'Gill Sans'
+	},
+
+	loginText: {
+		fontSize: 13,
+		textAlign: 'center',
+		color: 'white',
+		fontFamily: 'Gill Sans',
+		fontWeight: '600'
 	},
 
 	title: {

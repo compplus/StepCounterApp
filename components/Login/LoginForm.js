@@ -5,13 +5,15 @@ import { login } from '../../api'
 
 export default class LoginForm extends Component {
 	render() {
+		var go=this.props.go
 		const self = this
 		const submit = _ => {
-			login (
+			go('Entry')
+			/*login (
 				{ email: this .emailInput ._lastNativeText
 				, password: this .passwordInput ._lastNativeText })
 			.catch (err => {
-				alert (err) }) }
+			alert (err) }) */}
 		return (
 			<View style={styles.container}>
 				<TextInput
