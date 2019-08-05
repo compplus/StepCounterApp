@@ -1,11 +1,14 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, View, TouchableWithoutFeedback, FlatList, Image } from 'react-native';
 
-export default class ContestMain extends Component {
+export default class IndiRank extends Component {
     render() {
         return (
             <View style={styles.container}>
-                <View style={styles.individualRank} />
+                <View style={styles.individualRank}>
+                    <View style={styles.yourRank}/>
+                    <View style={styles.totalSteps}/>
+                </View>
                 <View style={styles.teamRank} />
                 <View style={styles.teamFormation} />
             </View>
@@ -23,17 +26,31 @@ const styles = StyleSheet.create({
     },
 
     individualRank: {
+        flex: 1.5,
+        flexDirection: 'row',
+        backgroundColor: 'yellow',
+        alignItems: "stretch"
+    },
+
+    yourRank:{
         flex: 1,
-        backgroundColor: 'yellow'
+        flexDirection:'column',
+        backgroundColor:'green',
+    },
+
+    totalSteps:{
+        flex: 1,
+        flexDirection:'column',
+        backgroundColor:'purple',
     },
 
     teamRank: {
-        flex: 1,
+        flex: 0.5,
         backgroundColor: 'red'
     },
 
     teamFormation: {
-        flex: 1,
+        flex: 8,
         backgroundColor: 'skyblue'
     },
 

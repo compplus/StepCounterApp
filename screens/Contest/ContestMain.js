@@ -5,7 +5,10 @@ export default class ContestMain extends Component {
     render() {
         return (
             <View style={styles.container}>
-                <View style={styles.individualRank} />
+                <View style={styles.individualRank}>
+                    <View style={styles.yourRank}/>
+                    <View style={styles.totalSteps}/>
+                </View>
                 <View style={styles.teamRank} />
                 <View style={styles.teamFormation} />
             </View>
@@ -24,7 +27,7 @@ const styles = StyleSheet.create({
 
     individualRank: {
         flex: 1,
-        backgroundColor: 'yellow'
+        backgroundColor: 'yellow',
     },
 
     teamRank: {
