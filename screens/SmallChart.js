@@ -36,7 +36,7 @@ export default class SmallChart extends Component{
 		)
 	}
 }
-
+f
 const styles={
 	container:{
 		justifyContent:'center',

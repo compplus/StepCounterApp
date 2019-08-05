@@ -77,6 +77,7 @@ export default class Awards extends Component{
 }
 
 const styles = StyleSheet.create({
+ 
   container: {
     flex: 1,
     backgroundColor: '#171D33',

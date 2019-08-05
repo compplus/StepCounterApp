@@ -75,7 +75,7 @@ export default gentle_calmm (class Entry extends Component{
 					}}
 					centerComponent={{ text: screenTitle[screenName], style: { color: '#fff',fontWeight:'bold' } }}
 					rightComponent={{ icon: screenIsIn?'logout':'home',type:screenIsIn?'antdesign':'material', color: '#fff' ,onPress:this.back}}
-					/>
+				 />
 				<ActiveScreen go={this.go}/>
 			</View>
 		</SideMenu>
