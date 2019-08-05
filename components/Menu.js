@@ -4,9 +4,7 @@ import {
   StyleSheet,
   FlatList,
   View,
-  Image,
   Text,
-  TouchableWithoutFeedback,
   ImageBackground
 } from 'react-native';
 import { Button, Icon } from 'react-native-elements'
@@ -61,7 +59,7 @@ export default class Menu extends Component {
 
 const screensOnMenu = [{ screen: "In", title: 'Home', icon: { name: 'home' } },
 { screen: "Info", title: 'Profile', icon: { name: 'heartbeat', type: 'font-awesome' } },
-{ screen: "Awards", title: 'Awards', icon: { name: 'settings' } },
+{ screen: "Awards", title: 'Awards', icon: { name: 'trophy', type: 'font-awesome'} },
 { screen: "Setting", title: 'Setting', icon: { name: 'settings' } }]
 
 const styles = StyleSheet.create({
