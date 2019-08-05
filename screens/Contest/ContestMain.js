@@ -4,11 +4,11 @@ import { StyleSheet, Text, View, TouchableWithoutFeedback, FlatList, Image } fro
 export default class ContestMain extends Component {
     render() {
         return (
-            <ParentView style={styles.container}>
-                <IndiRankView style={styles.individualRank} />
-                <TeamRankView style={styles.teamRank} />
-                <TeamFormView style={styles.teamFormation} />
-            </ParentView>
+            <View style={styles.container}>
+                <View style={styles.individualRank} />
+                <View style={styles.teamRank} />
+                <View style={styles.teamFormation} />
+            </View>
         )
     }
 }
@@ -18,7 +18,8 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: '#171D33',
-        alignItems: 'center'
+        alignItems: 'stretch',
+        flexDirection: 'column',
     },
 
     individualRank: {
