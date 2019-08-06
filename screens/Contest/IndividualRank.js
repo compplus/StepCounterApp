@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, TouchableWithoutFeedback, FlatList, Image } from 'react-native';
+import { StyleSheet, Text, View, TouchableWithoutFeedback, FlatList, Image, } from 'react-native';
 
 export default class IndiRank extends Component {
     render() {
@@ -9,8 +9,8 @@ export default class IndiRank extends Component {
                     <View style={styles.yourRank}/>
                     <View style={styles.totalSteps}/>
                 </View>
-                <View style={styles.teamRank} />
-                <View style={styles.teamFormation} />
+                <View style={styles.title} />
+                <View style={styles.rankList} />
             </View>
         )
     }
@@ -44,12 +44,12 @@ const styles = StyleSheet.create({
         backgroundColor:'purple',
     },
 
-    teamRank: {
+    title: {
         flex: 0.5,
         backgroundColor: 'red'
     },
 
-    teamFormation: {
+    rankList: {
         flex: 8,
         backgroundColor: 'skyblue'
     },
