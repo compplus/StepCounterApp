@@ -19,19 +19,19 @@ export default class ContestMain extends Component {
             <View style={styles.container}>
                 <View style={styles.individualRank}>
                     <TouchableOpacity activeOpacity = { .5 } onPress={this.indRank}>
-                        <Image source={require('./../../assets/contest_page/individual_rank.jpg')} style={styles.imageClass}></Image>
+                        <Image source={require('./../../assets/contest_page/individual_rank_edit.jpg')} style={styles.imageClass}></Image>
                     </TouchableOpacity>
                 </View>
 
                 <View style={styles.teamRank}>
                     <TouchableOpacity activeOpacity = { .5 } onPress={this.teamRank}>
-                        <Image source={require('./../../assets/contest_page/team_rank.jpg')} style={styles.imageClass}></Image>
+                        <Image source={require('./../../assets/contest_page/team_rank_edit.jpg')} style={styles.imageClass}></Image>
                     </TouchableOpacity>
                 </View>
 
                 <View style={styles.teamFormation}>
                     <TouchableOpacity activeOpacity = { .5 } onPress={this.teamForm}>
-                        <Image source={require('./../../assets/contest_page/team_formation.jpg')} style={styles.imageClass}></Image>
+                        <Image source={require('./../../assets/contest_page/team_formation_edit.jpg')} style={styles.imageClass}></Image>
                     </TouchableOpacity>
                 </View>
             </View>
