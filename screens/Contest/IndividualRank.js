@@ -1,7 +1,12 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, View, TouchableWithoutFeedback, FlatList, Image, } from 'react-native';
+import RankList from "../../components/Contest/IndividualRank/rankList"
 
 export default class IndiRank extends Component {
+    state = {
+        
+    }
+    
     render() {
         return (
             <View style={styles.container}>
@@ -10,7 +15,10 @@ export default class IndiRank extends Component {
                     <View style={styles.totalSteps}/>
                 </View>
                 <View style={styles.title} />
-                <View style={styles.rankList} />
+                <View style={styles.rankList}> 
+                    <RankList/>
+                        
+                </View>
             </View>
         )
     }
