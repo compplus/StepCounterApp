@@ -3,7 +3,7 @@ import { StyleSheet, Text, View, TouchableWithoutFeedback, Dimensions } from 're
 import { ButtonGroup } from 'react-native-elements';
 import Main from '../../screens/Main';
 import Contest from '../../screens/Contest/ContestMain';
-import IndiRank from '../../screens/Contest/IndividualRank';
+import IndiRank from '../../components/Contest/rankList';
 
 var tabs = [{ Main }, { Contest }, {IndiRank}]
 export default class In extends Component {
