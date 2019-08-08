@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, TouchableOpacity, FlatList, Image } from 'react-native';
+import { StyleSheet, View, TouchableOpacity, Image } from 'react-native';
+import {gentle_calmm} from 'camarche'
 
 export default class ContestMain extends Component {
     indRank = () => {
@@ -15,11 +16,15 @@ export default class ContestMain extends Component {
     }
 
     render() {
+ 
         return (
             <View style={styles.container}>
                 <View style={styles.individualRank}>
-                    <TouchableOpacity activeOpacity = { .5 } onPress={this.indRank}>
-                        <Image source={require('./../../assets/contest_page/individual_rank_edit.jpg')} style={styles.imageClass}></Image>
+                    <TouchableOpacity activeOpacity = { .5 } onPress={this.individualRank}>
+                        <Image 
+                               source={require('./../../assets/contest_page/individual_rank_edit.jpg')} 
+                               style={styles.imageClass}>
+                        </Image>
                     </TouchableOpacity>
                 </View>
 
@@ -38,6 +43,7 @@ export default class ContestMain extends Component {
             )
     }
 }
+
 
 const styles = StyleSheet.create({
 
