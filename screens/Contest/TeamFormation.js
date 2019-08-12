@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, View, TouchableOpacity, Image, Text } from 'react-native';
+import { StyleSheet, View, TextInput, Image, Text, Button } from 'react-native';
 import MemberList from '../../components/Contest/TeamFormation/Member';
 
 export default class TeamFormation extends Component {
@@ -12,6 +12,19 @@ export default class TeamFormation extends Component {
             }
         ]
     }*/
+    
+    userNameChangedHandler = val => {
+        this.setState({
+          placeName: val
+        });
+      };
+
+    nameSubmitHandler = () => {
+        if (this.state.placeName.trim() === "") {
+          return;
+        }
+    }
+
     render() {
  
         return (
@@ -20,6 +33,25 @@ export default class TeamFormation extends Component {
                     <Text style={styles.titleText}>
                         Team Formation
                     </Text>
+                </View>
+
+                <View style={styles.userInput}>
+                    
+                    <TextInput
+                     style={{width:300, 
+                            borderColor:'black',
+                            backgroundColor:'white', 
+                            borderWidth:1}}
+                     placeholder="Enter new member's email"
+                     onChangeText={this.userNameChangedHandler}
+                    />
+
+                    <Button
+                            title="Add"
+                            style={styles.addButton}
+                            onPress={this.placeSubmitHandler}
+                    />
+
                 </View>
 
                 <View style={styles.memberList}>
@@ -45,6 +77,12 @@ const styles = StyleSheet.create({
         flexDirection: 'column-reverse'
     },
 
+    userInput:{
+        flex:0.4,
+        alignSelf: 'center',
+        marginTop: 20
+    },
+
     memberList: {
         flex: 6,
     },
@@ -57,6 +95,10 @@ const styles = StyleSheet.create({
         fontWeight:'500',
         marginBottom:10,
         marginLeft:10
-    }
+    },
+
+    addButton: {
+        width: "30%"
+      }
 
 });

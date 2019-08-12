@@ -16,38 +16,10 @@ export default class MemberList extends Component {
             },
             
             {
-                name: 'Type new member',
+                name: '',
                 avatar_url: 'https://s3.amazonaws.com/uifaces/faces/twitter/adhamdannaway/128.jpg',
                 subtitle: 'teammate',
                 status:"Not invited"
-            },
-        
-            {
-                name: 'Type new member',
-                avatar_url: 'https://s3.amazonaws.com/uifaces/faces/twitter/adhamdannaway/128.jpg',
-                subtitle: 'teammate',
-                status: "Not invited"
-            },
-        
-            {
-                name: 'Type new member',
-                avatar_url: 'https://s3.amazonaws.com/uifaces/faces/twitter/adhamdannaway/128.jpg',
-                subtitle: 'teammate',
-                status: "Not invited"
-            },
-        
-            {
-                name: 'Type new member',
-                avatar_url: 'https://s3.amazonaws.com/uifaces/faces/twitter/adhamdannaway/128.jpg',
-                subtitle: 'teammate',
-                status: "Not invited"
-            },
-        
-            {
-                name: 'Type new member',
-                avatar_url: 'https://s3.amazonaws.com/uifaces/faces/twitter/adhamdannaway/128.jpg',
-                subtitle: 'teammate',
-                status: "Not invited"
             },
         
         ]
@@ -64,16 +36,18 @@ export default class MemberList extends Component {
             return null;
     }
 
+    renderUsernameInput(status){
+        if (status=="Not invited")
+            return <input type="text"/>
+    }
+
     ListItem = ({item}) => (
     <ListItem
         containerStyle={styles.listItem}
         title={item.name}
-        rightIcon = {this.renderIcon(item.subtitle)}
         leftAvatar={{
         source: item.avatar_url && { uri: item.avatar_url },
         }}
-        textInput={true}
-        textInputPlaceholder="Type new member's email"
     />
 )
 

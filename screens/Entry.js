@@ -56,11 +56,14 @@ export default gentle_calmm(class Entry extends Component {
 		var screenName = this.state.screen
 		var ActiveScreen = screens[screenName]
 		let screenIsIn = screenName == 'In' 
-		let isSettingSon = /Setting.+/.test(screenName)
 
 		var tab_name = this.state.tab_name
 		var go = this.props.go
 		var ActiveTab = tab_of(tab_name)
+
+		let isSettingSon = /Setting.+/.test(screenName)
+		let isContestSon = (screenName == 'IndiRank') || (screenName == 'TeamRank') || (screenName == 'TeamForm')
+		let isMainSon = (screenName == 'Info') || (screenName == 'Awards') || (screenName == 'Map') || (screenName == 'Analysis')
 
 		return (
 			<SideMenu
@@ -73,11 +76,19 @@ export default gentle_calmm(class Entry extends Component {
 						containerStyle={styles.header}
 						backgroundColor='black'
 						leftComponent={{
-							icon: isSettingSon ? 'arrowleft' : 'menu', type: isSettingSon ? 'antdesign' : 'material', color: '#fff',
+							icon: (isSettingSon || isContestSon) ? 'arrowleft' : 'menu', type: (isSettingSon || isContestSon) ? 'antdesign' : 'material', 
+							color: '#fff',
 							onPress: () => {
 								if (isSettingSon) {
 									this.go('Setting')
-								} else {
+								} 
+								else if (isContestSon) {
+									this.go('Contest')
+								}
+								else if (isMainSon) {
+									this.go('Main')
+								}
+								else {
 									this.updateMenuState(!this.state.isOpen)
 								}
 							}
