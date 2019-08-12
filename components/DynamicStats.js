@@ -15,7 +15,7 @@ export default class DynamicStats extends Component{
 	
 	render() {
 		const {currentPage,width}=this.state
-		return <View style={{...styles.container,width:this.props.portrait?'95%':undefined,height:this.props.portrait?undefined:'95%'}} onLayout={(event)=>{this.setState({width:event.nativeEvent.layout.width})}}>
+		return <View style={{...styles.container,width:this.props.portrait?'100%':undefined,height:this.props.portrait?undefined:'95%'}} onLayout={(event)=>{this.setState({width:event.nativeEvent.layout.width})}}>
 			<ScrollView style={{flex:1}} 
 				horizontal 
 				showsHorizontalScrollIndicator={false} 
@@ -43,9 +43,9 @@ const styles = {
 		backgroundColor:'white',
 		flex:1,
 		elevation: 2, //android shadow
-		shadowColor: '#000',
-		shadowOffset: { width: 0, height: 2 },
-		shadowOpacity: 0.8,
+		/*shadowColor: '#000',*/
+		/*shadowOffset: { width: 0, height: 2 },*/
+		/*shadowOpacity: 0.8,*/
 		shadowRadius: 2,
 	}
 }

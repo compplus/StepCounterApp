@@ -16,11 +16,12 @@ export default class ContestMain extends Component {
     }
 
     render() {
+        var go = this.props.go
  
         return (
             <View style={styles.container}>
                 <View style={styles.individualRank}>
-                    <TouchableOpacity activeOpacity = { .5 } onPress={this.individualRank}>
+                    <TouchableOpacity activeOpacity = { .5 } onPress={() => go('IndiRank')}>
                         <Image 
                                source={require('./../../assets/contest_page/individual_rank_edit.jpg')} 
                                style={styles.imageClass}>
@@ -29,13 +30,13 @@ export default class ContestMain extends Component {
                 </View>
 
                 <View style={styles.teamRank}>
-                    <TouchableOpacity activeOpacity = { .5 } onPress={this.teamRank}>
+                    <TouchableOpacity activeOpacity = { .5 } onPress={() => go('TeamRank')}>
                         <Image source={require('./../../assets/contest_page/team_rank_edit.jpg')} style={styles.imageClass}></Image>
                     </TouchableOpacity>
                 </View>
 
                 <View style={styles.teamFormation}>
-                    <TouchableOpacity activeOpacity = { .5 } onPress={this.teamForm}>
+                    <TouchableOpacity activeOpacity = { .5 } onPress={() => go('TeamForm')}>
                         <Image source={require('./../../assets/contest_page/team_formation_edit.jpg')} style={styles.imageClass}></Image>
                     </TouchableOpacity>
                 </View>

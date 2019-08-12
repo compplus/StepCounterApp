@@ -24,7 +24,7 @@ export default class CommonStats extends Component{
 	}
 	render(){
 		return(
-			<View style={{...styles.container,flexDirection:this.props.portrait?'row':'column',width:this.props.portrait?'95%':undefined,height:this.props.portrait?undefined:'95%'}}>
+			<View style={{...styles.container,flexDirection:this.props.portrait?'row':'column',width:this.props.portrait?'100%':undefined,height:this.props.portrait?undefined:'95%'}}>
 				{this.textBox('Accum Kcal',this.state.data.kcal)}
 				{this.textBox('Daily Avg. Steps',this.state.data.step)}
 			</View>
@@ -35,13 +35,14 @@ export default class CommonStats extends Component{
 const styles = {
 	container:{
 		backgroundColor:'white',
-		elevation: 2, //android shadow
-		shadowColor: '#000',
-		shadowOffset: { width: 0, height: 2 },
-		shadowOpacity: 0.8,
-		shadowRadius: 2,
+		//elevation: 2, //android shadow
+		//shadowColor: '#000',
+		/*shadowOffset: { width: 0, height: 2 },
+		shadowOpacity: 0.8,*/
+		//shadowRadius: 2,
 		alignItems:'center',
-		justifyContent:'center'
+		justifyContent:'center',
+		width: '100%'
 	},
 	TextBox:{
 		flex:1,
