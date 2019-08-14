@@ -3,24 +3,19 @@ import { StyleSheet, Text, View, TouchableWithoutFeedback, Dimensions } from 're
 import { ButtonGroup } from 'react-native-elements';
 import Main from '../../screens/Main';
 import Contest from '../../screens/Contest/ContestMain';
-import IndiRank from '../../screens/Contest/IndividualRank';
 
-var tabs = [{ Main }, { Contest }, {IndiRank}]
+var tabs = [{ Main }, { Contest }]
 export default class In extends Component {
 	state = { tab_name: 'Main' }
 
 	render() {
 		var tab_name = this.state.tab_name
+		var go = this.props.go
 		var ActiveTab = tab_of(tab_name)
 		return (
 
 			<View style={styles.container}>
-				<ActiveTab />
-				<ButtonGroup
-					onPress={(i) => { this.setState({ tab_name: tab_names[i] }) }}
-					selectedIndex={tab_name_index(tab_name)}
-					buttons={tab_names}
-					containerStyle={{}} />
+				<ActiveTab go={this.props.go}/>
 			</View>)
 	}
 }

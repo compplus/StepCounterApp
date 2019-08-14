@@ -1,22 +1,22 @@
-import React, {Component} from 'react'
-import {View, StyleSheet, Text,Image,Alert} from 'react-native'
+import React, { Component } from 'react'
+import { View, StyleSheet, Text, Image, Alert } from 'react-native'
 import SettingsList from 'react-native-settings-list';
 import { Images } from '../../assets/assets'
 
-export default class Setting extends Component{
-  constructor(){
+export default class Setting extends Component {
+  constructor() {
     super();
     this.onValueChange = this.onValueChange.bind(this);
-    this.state = {switchValue: false};
+    this.state = { switchValue: false };
   }
-	render(){
-		var bgColor = '#DCE3F4';
+  render() {
+    var bgColor = '#DCE3F4';
     var nav_screen = this.props.go
 
-  	return(
+    return (
       <View style={styles.container}>
         <SettingsList borderColor='#c8c7cc' defaultItemSize={50}>
-          <SettingsList.Header headerText='PREFERENCES' headerStyle={styles.headerStyle}/>
+          {/*<SettingsList.Header headerText='PREFERENCES' headerStyle={styles.headerStyle} />
           <SettingsList.Item
             //icon={<Image style={styles.imageStyle} source={Images['settings']}/>}
             title='Syncronization'
@@ -44,70 +44,60 @@ export default class Setting extends Component{
             titleInfo='Light'
             titleInfoStyle={styles.titleInfoStyle}
             onPress={() => nav_screen('SettingTheme')}
-          />
-          <SettingsList.Header headerText='ACCOUNT' headerStyle={styles.headerStyle}/>
-          <SettingsList.Item
-            title='Change Personal Information'
-            hasNavArrow={false}
-            //onPress={() => }
-          />
+          />*/}
+          
+          <SettingsList.Header headerText='ACCOUNT' headerStyle={styles.headerStyle} />
           <SettingsList.Item
             title='Change Password'
             hasNavArrow={false}
-            //onPress={() => }
+          //onPress={() => }
           />
           <SettingsList.Item
             title='Submission History'
             hasNavArrow={false}
-            //onPress={() => }
+          //onPress={() => }
           />
-          <SettingsList.Header headerText='SUPPORT' headerStyle={styles.headerStyle}/>
+          <SettingsList.Header headerText='SUPPORT' headerStyle={styles.headerStyle} />
           <SettingsList.Item
             title='Help'
             hasNavArrow={false}
-            //onPress={() => }
+          //onPress={() => }
           />
           <SettingsList.Item
             title='Contact Us'
             hasNavArrow={false}
-            //onPress={() => }
+          //onPress={() => }
           />
-          <SettingsList.Header headerStyle={{marginTop:15}}/>
+          <SettingsList.Header headerStyle={{ marginTop: 15 }} />
           <SettingsList.Item
             title='About'
             hasNavArrow={false}
             onPress={() => nav_screen('SettingAbout')}
           />
-          <SettingsList.Header headerStyle={{marginTop:15}}/>
-          <SettingsList.Item
-            title='Log Out'
-            hasNavArrow={false}
-            //onPress={() => }
-          />
         </SettingsList>
       </View>
-		)
-	}
-  onValueChange(value){
-    this.setState({switchValue: value});
+    )
+  }
+  onValueChange(value) {
+    this.setState({ switchValue: value });
   }
 }
 
 const styles = StyleSheet.create({
-	container: {
-		flex: 1,
-		backgroundColor:'#EFEFF4'
+  container: {
+    flex: 1,
+    backgroundColor: '#EFEFF4'
   },
   headerStyle: {
-    marginTop:15,
-    marginLeft:15,
-    color:'gray'
+    marginTop: 15,
+    marginLeft: 15,
+    color: 'gray'
   },
-  imageStyle:{
-    alignSelf:'center',
-    marginLeft:15,
-    height:40,
-    width:40
+  imageStyle: {
+    alignSelf: 'center',
+    marginLeft: 15,
+    height: 40,
+    width: 40
   },
-  titleInfoStyle:{}
+  titleInfoStyle: {}
 })

@@ -21,11 +21,6 @@ export default class SettingAbout extends Component{
             hasNavArrow={false}
             //onPress={() => }
           />
-          <SettingsList.Item
-            title='Privacy Policy'
-            hasNavArrow={false}
-            //onPress={() => }
-          />
         </SettingsList>
 
         <View style={styles.bottomBox}>
@@ -62,7 +57,7 @@ const styles = StyleSheet.create({
     backgroundColor:'#EFEFF4'
   },
   bottomBox: {
-    paddingBottom: 600,
+    paddingBottom: 610,
   },
   versionStyle: {
     color: 'gray',

@@ -65,7 +65,7 @@ const styles = StyleSheet.create({
     indiItemWrapper:{
         flex: 1,
         flexDirection:'column',
-        backgroundColor:'#171D33',
+        backgroundColor: '#212121',
         alignItems:'center',
         justifyContent: 'center'
     },

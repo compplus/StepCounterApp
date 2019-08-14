@@ -60,14 +60,14 @@ const styles = StyleSheet.create({
 	},
 
 	bottomText: {
-		fontSize: 13,
+		fontSize: 17,
 		textAlign: 'center',
 		color: 'white',
 		fontFamily: 'Gill Sans'
 	},
 
 	loginText: {
-		fontSize: 13,
+		fontSize: 17,
 		textAlign: 'center',
 		color: 'white',
 		fontFamily: 'Gill Sans',

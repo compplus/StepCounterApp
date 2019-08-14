@@ -3,10 +3,6 @@ import { StyleSheet, View, TouchableOpacity, Image } from 'react-native';
 import {gentle_calmm} from 'camarche'
 
 export default class ContestMain extends Component {
-    indRank = () => {
-        alert("Individual Rank!");
-    }
-
     teamRank = () => {
         alert("Team Rank!");
     }
@@ -16,11 +12,12 @@ export default class ContestMain extends Component {
     }
 
     render() {
+        var go = this.props.go
  
         return (
             <View style={styles.container}>
                 <View style={styles.individualRank}>
-                    <TouchableOpacity activeOpacity = { .5 } onPress={this.individualRank}>
+                    <TouchableOpacity activeOpacity = { .5 } onPress={() => go('IndiRank')}>
                         <Image 
                                source={require('./../../assets/contest_page/individual_rank_edit.jpg')} 
                                style={styles.imageClass}>
@@ -29,13 +26,13 @@ export default class ContestMain extends Component {
                 </View>
 
                 <View style={styles.teamRank}>
-                    <TouchableOpacity activeOpacity = { .5 } onPress={this.teamRank}>
+                    <TouchableOpacity activeOpacity = { .5 } onPress={() => go('TeamRank')}>
                         <Image source={require('./../../assets/contest_page/team_rank_edit.jpg')} style={styles.imageClass}></Image>
                     </TouchableOpacity>
                 </View>
 
                 <View style={styles.teamFormation}>
-                    <TouchableOpacity activeOpacity = { .5 } onPress={this.teamForm}>
+                    <TouchableOpacity activeOpacity = { .5 } onPress={() => go('TeamForm')}>
                         <Image source={require('./../../assets/contest_page/team_formation_edit.jpg')} style={styles.imageClass}></Image>
                     </TouchableOpacity>
                 </View>
@@ -49,14 +46,14 @@ const styles = StyleSheet.create({
 
     container: {
         flex: 1,
-        backgroundColor: '#171D33',
+        backgroundColor: '#212121',
         justifyContent: 'center',
         alignItems: 'center',
     },
 
     individualRank: {
         flex: 1,
-        margin: 5,
+        margin: 12,
     },
 
     teamRank: {
