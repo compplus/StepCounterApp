@@ -53,7 +53,8 @@ const styles = StyleSheet.create({
 
     individualRank: {
         flex: 1,
-        margin: 12,
+        margin: 5,
+        marginTop: 10
     },
 
     teamRank: {

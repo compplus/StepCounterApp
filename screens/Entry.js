@@ -67,7 +67,6 @@ export default gentle_calmm(class Entry extends Component {
 		let isContestSon = (screenName == 'IndiRank') || (screenName == 'TeamForm') || (screenName == 'TeamRank')
 		let isMainSon = (screenName == 'Info') || (screenName == 'Awards') || (screenName == 'Map') || (screenName == 'Analysis') || (screenName == 'Setting')
 
-		console.log(isContestSon)
 		return (
 			<SideMenu
 				menu={<Menu screenTitle={screenTitle} selected={screenName} onItemSelected={this.onMenuItemSelected} />}
@@ -109,7 +108,7 @@ export default gentle_calmm(class Entry extends Component {
 							buttons={tab_names}
 							innerBorderStyle={{ color: '#212121' }}
 							selectedButtonStyle={{ backgroundColor: '#004D40' }}
-							containerStyle={{ borderRadius: '5', borderColor: '#212121', backgroundColor: '#CFD8DC' }}
+							containerStyle={{ borderRadius: 5, borderColor: '#212121', backgroundColor: '#CFD8DC' }}
 						/>
 					</View>
 

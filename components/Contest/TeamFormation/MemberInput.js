@@ -5,6 +5,7 @@ class MemberInput extends Component {
 
     state =
         {
+            memberID: 1,
             email: '',
             avatar_url: 'https://s3.amazonaws.com/uifaces/faces/twitter/adhamdannaway/128.jpg',
             subtitle: 'teammate'
@@ -14,8 +15,9 @@ class MemberInput extends Component {
 
     }
 
-    memberEmailChangedHandler = val => {
+    memberEmailChangedHandler = (val) => {
         this.setState({
+            memberID: this.state.memberID,
             email: val,
             avatar_url: 'https://s3.amazonaws.com/uifaces/faces/twitter/adhamdannaway/128.jpg',
             subtitle: 'teammate',
@@ -29,7 +31,13 @@ class MemberInput extends Component {
         }
 
         this.props.onMemberAdded(this.state);
+        this.state.memberID += 1;
+        console.log(this.state.memberID);
     };
+
+    disableAdd = () => { 
+        return this.props.disableAdd
+    }
 
     render() {
         return (
@@ -45,6 +53,8 @@ class MemberInput extends Component {
                     title="Add"
                     style={styles.addButton}
                     onPress={this.memberSubmitHandler}
+                    color='#81F7F3'
+                    disabled={this.disableAdd()}
                 />
 
             </View>
@@ -67,11 +77,13 @@ const styles = StyleSheet.create({
     memberInput: {
         backgroundColor: "white",
         width: "80%",
-        height: "80%"
+        height: "80%",
+        borderRadius: 10
     },
 
     addButton: {
-        width: "30%"
+        width: "30%",
+        color:"white"
     }
 
 })

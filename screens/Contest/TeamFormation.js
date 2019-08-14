@@ -2,18 +2,20 @@ import React, { Component } from 'react';
 import { StyleSheet, View, TextInput, Image, Text, Button } from 'react-native';
 import MemberList from '../../components/Contest/TeamFormation/MemberList';
 import MemberInput from '../../components/Contest/TeamFormation/MemberInput';
+import DialogInput from 'react-native-dialog-input';
 
 export default class TeamFormation extends Component {
 
     state={
         members:[
             {
+                memberID: 1,
                 email: 'Username',
                 avatar_url: 'https://s3.amazonaws.com/uifaces/faces/twitter/adhamdannaway/128.jpg',
-                subtitle: 'Captain'
+                status: 'Captain'
             },
         ]
-    };
+    }
 
     memberAddedHandler = member => {
         this.setState(prevState => {
@@ -26,7 +28,15 @@ export default class TeamFormation extends Component {
       };
     
     render() {
- 
+        
+        counter = this.state.members.length
+        
+        function disableAdd(counter) {
+            if(this.counter==5){
+                return true
+            }
+        }
+        
         return (
             <View style={styles.container}>
                 <View style={styles.pageTitle}>
@@ -35,7 +45,7 @@ export default class TeamFormation extends Component {
                     </Text>
                 </View>
 
-                <MemberInput onMemberAdded={this.memberAddedHandler}/>
+                <MemberInput style={styles.memberInput} onMemberAdded={this.memberAddedHandler} disableAdd={disableAdd()}/>
 
                 <View style={styles.memberList}>
                     <MemberList
@@ -62,8 +72,13 @@ const styles = StyleSheet.create({
         flexDirection: 'column-reverse'
     },
 
+    memberInput:{
+        flex:1,
+        marginTop: 10
+    },
     memberList: {
         flex: 6,
+        marginTop: 10
     },
 
     titleText:{
