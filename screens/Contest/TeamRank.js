@@ -65,7 +65,7 @@ const styles = StyleSheet.create({
     teamItemWrapper:{
         flex: 1,
         flexDirection:'column',
-        backgroundColor:'#171D33',
+        backgroundColor:'#212121',
         alignItems:'center',
         justifyContent: 'center'
     },
@@ -111,13 +111,13 @@ const styles = StyleSheet.create({
     rank:{
         fontFamily: 'Gill Sans',
         color: 'white',
-        fontSize: 22
+        fontSize: 18
     },
     
     steps:{
         fontFamily: 'Gill Sans',
         color: 'white',
-        fontSize: 22
+        fontSize: 18
     }
 
 });

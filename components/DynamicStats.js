@@ -16,7 +16,6 @@ export default class DynamicStats extends Component {
 	render() {
 		const { currentPage, width } = this.state
 		return <View style={{ ...styles.container, width: this.props.portrait ? '95%' : undefined, height: this.props.portrait ? undefined : '95%' }} onLayout={(event) => { this.setState({ width: event.nativeEvent.layout.width }) }}>
-			{/*<Activity width={width} portrait={this.props.portrait} />*/}
 			<Activity />
 		</View>
 	}

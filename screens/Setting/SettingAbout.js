@@ -1,68 +1,110 @@
-import React, {Component} from 'react'
-import {View, StyleSheet, Text} from 'react-native'
+import React, { Component } from 'react'
+import { Image, View, StyleSheet, Text, Dimensions } from 'react-native'
+import { scale, moderateScale, verticalScale } from '../../components/Scaling';
 import SettingsList from 'react-native-settings-list';
 
-export default class SettingAbout extends Component{
-  constructor(){
+const { width, height } = Dimensions.get('window');
+
+export default class SettingAbout extends Component {
+  constructor() {
     super();
     this.onValueChange = this.onValueChange.bind(this);
-    this.state = {switchValue: false};
+    this.state = { switchValue: false };
   }
-	render(){
-		var bgColor = '#DCE3F4';
+  render() {
+    var bgColor = '#DCE3F4';
 
-  	return(
+    return (
       <View style={styles.container}>
-        <SettingsList borderColor='#c8c7cc' defaultItemSize={50}>
-          <SettingsList.Header headerStyle={styles.headerStyle}/>
 
-          <SettingsList.Item
-            title='Terms and Conditions'
-            hasNavArrow={false}
-            //onPress={() => }
-          />
-        </SettingsList>
+      <View style={styles.aboutbox}>
+        <View style={styles.imagewrapper}>
+          <Image
+            style={styles.image}
+            source={require('../../assets/setting_page/CSE_logo.png')} />
+        </View>
 
-        <View style={styles.bottomBox}>
-          <SettingsList borderColor='transparent' defaultItemSize={50}>
-            <SettingsList.Item
-              title='Version 1.0.1'
-              hasNavArrow={false}
-              titleStyle={styles.versionStyle}
-              backgroundColor='transparent'
-              itemWidth={15}
-              //onPress={() => }
-            />
-            <SettingsList.Item
-              title='2019 HKU Centre for Sports and Exercise. All rights reserved.'
-              hasNavArrow={false}
-              titleStyle={styles.rightReserveStyle}
-              backgroundColor='transparent'
-              itemWidth={15}
-              //onPress={() => }
-            />
-          </SettingsList>
+        <View style={styles.parawrapper}>
+          <Text style={styles.paragraph}>To-do: paragraph</Text>
         </View>
       </View>
+
+      <View style={styles.bottomBox}>
+        <Text style={styles.versionStyle}>Version 1.0.1</Text>
+        <Text style={styles.rightReserveStyle}>2019 HKU Centre for Sports and Exercise. All rights reserved.</Text>
+      </View>
+
+      {/*<View style={styles.bottomBox}>
+        <SettingsList borderColor='transparent' defaultItemSize={50}>
+          <SettingsList.Item
+            title='Version 1.0.1'
+            hasNavArrow={false}
+            titleStyle={styles.versionStyle}
+            backgroundColor='transparent'
+            itemWidth={15}
+          //onPress={() => }
+          />
+          <SettingsList.Item
+            title='2019 HKU Centre for Sports and Exercise. All rights reserved.'
+            hasNavArrow={false}
+            titleStyle={styles.rightReserveStyle}
+            backgroundColor='transparent'
+            itemWidth={15}
+          //onPress={() => }
+          />
+        </SettingsList>
+        </View>*/}
+
+      </View >
 		)
-	}
-  onValueChange(value){
-    this.setState({switchValue: value});
+  }
+  onValueChange(value) {
+    this.setState({ switchValue: value });
   }
 }
 
 const styles = StyleSheet.create({
-	container: {
+  container: {
     flex: 1,
-    backgroundColor:'#EFEFF4'
+    backgroundColor: '#EFEFF4'
+  },
+  aboutbox: {
+    height: height * 0.5,
+    marginTop: 40,
+    marginBottom: 20,
+    backgroundColor: '#FFFFFF',
+    borderTopColor: '#CFD8DC',
+    borderTopWidth: 1.5,
+    borderBottomColor: '#CFD8DC',
+    borderBottomWidth: 1.5,
+    padding: 20,
+    paddingBottom: 30,
+  },
+  image: {
+    //flex: 1,
+    height: '20%',
+    width: '80%',
+    alignItems: 'center',
+  },  
+  imagewrapper: {
+    flex: 1, 
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  parawrapper: {
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  paragraph: {
+    color: '#424242',
   },
   bottomBox: {
-    paddingBottom: 610,
+    marginHorizontal: 30,
+    marginTop: 10,
   },
   versionStyle: {
     color: 'gray',
     fontSize: 11,
-    paddingTop: 5
   },
   rightReserveStyle: {
     color: 'gray',
