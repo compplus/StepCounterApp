@@ -1,30 +1,30 @@
 import React, { Component } from 'react';
 import { StyleSheet, View, TextInput, Image, Text, Button } from 'react-native';
-import MemberList from '../../components/Contest/TeamFormation/Member';
+import MemberList from '../../components/Contest/TeamFormation/MemberList';
+import MemberInput from '../../components/Contest/TeamFormation/MemberInput';
 
 export default class TeamFormation extends Component {
 
-    /*state = {
-        members=[
+    state={
+        members:[
             {
-                email: "Type new member's email",
-                status: 
-            }
+                email: 'Username',
+                avatar_url: 'https://s3.amazonaws.com/uifaces/faces/twitter/adhamdannaway/128.jpg',
+                subtitle: 'Captain'
+            },
         ]
-    }*/
-    
-    userNameChangedHandler = val => {
-        this.setState({
-          placeName: val
+    };
+
+    memberAddedHandler = member => {
+        this.setState(prevState => {
+          return {
+            members: prevState.members.concat(
+                member
+            )
+          };
         });
       };
-
-    nameSubmitHandler = () => {
-        if (this.state.placeName.trim() === "") {
-          return;
-        }
-    }
-
+    
     render() {
  
         return (
@@ -35,27 +35,12 @@ export default class TeamFormation extends Component {
                     </Text>
                 </View>
 
-                <View style={styles.userInput}>
-                    
-                    <TextInput
-                     style={{width:300, 
-                            borderColor:'black',
-                            backgroundColor:'white', 
-                            borderWidth:1}}
-                     placeholder="Enter new member's email"
-                     onChangeText={this.userNameChangedHandler}
-                    />
-
-                    <Button
-                            title="Add"
-                            style={styles.addButton}
-                            onPress={this.placeSubmitHandler}
-                    />
-
-                </View>
+                <MemberInput onMemberAdded={this.memberAddedHandler}/>
 
                 <View style={styles.memberList}>
-                    <MemberList/>
+                    <MemberList
+                        members={this.state.members}
+                    />
                 </View>
 
             </View>
@@ -77,12 +62,6 @@ const styles = StyleSheet.create({
         flexDirection: 'column-reverse'
     },
 
-    userInput:{
-        flex:0.4,
-        alignSelf: 'center',
-        marginTop: 20
-    },
-
     memberList: {
         flex: 6,
     },
@@ -96,9 +75,5 @@ const styles = StyleSheet.create({
         marginBottom:10,
         marginLeft:10
     },
-
-    addButton: {
-        width: "30%"
-      }
 
 });
