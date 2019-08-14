@@ -108,7 +108,7 @@ export default gentle_calmm(class Entry extends Component {
 							buttons={tab_names}
 							innerBorderStyle={{ color: '#212121' }}
 							selectedButtonStyle={{ backgroundColor: '#004D40' }}
-							containerStyle={{ borderRadius: 5, borderColor: '#212121', backgroundColor: '#CFD8DC' }}
+							containerStyle={{ height: 42, borderRadius: '5', borderColor: '#212121', backgroundColor: '#CFD8DC' }}
 						/>
 					</View>
 

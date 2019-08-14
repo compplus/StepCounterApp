@@ -9,7 +9,7 @@ export default class IndiRank extends Component {
             <View style={styles.container}>
                 <View style={styles.individual}>
                     <View style={styles.indiItemWrapper}>
-                        <Image 
+                        <Image
                             style={styles.indiIcon}
                             source={require('../../assets/contest_page/myrank.png')}
                         />
@@ -18,7 +18,7 @@ export default class IndiRank extends Component {
                         </Text>
                     </View>
                     <View style={styles.indiItemWrapper}>
-                        <Image 
+                        <Image
                             style={styles.indiIcon}
                             source={require('../../assets/contest_page/mysteps.png')}
                         />
@@ -28,17 +28,17 @@ export default class IndiRank extends Component {
                     </View>
                 </View>
                 <View style={styles.titleBox}>
-                    
+
                     <Text style={styles.Rank}>Rank</Text>
                     <Text style={styles.ID}>Username</Text>
                     <Text style={styles.Steps}>Steps</Text>
 
                 </View>
-                    
-                <View style={styles.rankList}> 
-                    
-                    <RankList/>      
-                
+
+                <View style={styles.rankList}>
+
+                    <RankList />
+
                 </View>
             </View>
         )
@@ -62,11 +62,11 @@ const styles = StyleSheet.create({
         alignItems: "stretch"
     },
 
-    indiItemWrapper:{
+    indiItemWrapper: {
         flex: 1,
-        flexDirection:'column',
+        flexDirection: 'column',
         backgroundColor: '#212121',
-        alignItems:'center',
+        alignItems: 'center',
         justifyContent: 'center'
     },
 
@@ -78,22 +78,22 @@ const styles = StyleSheet.create({
     },
 
     Rank: {
-        flex:1,
-        padding:15,
+        flex: 1,
+        padding: 15,
         textAlign: 'left',
-        fontFamily: 'Gill Sans'
-      },
-    
-    ID:{
-        flex:6,
-        textAlign: 'left',
-        padding:15,
         fontFamily: 'Gill Sans'
     },
-    
-    Steps:{
-        flex:1,
-        padding:15,
+
+    ID: {
+        flex: 6,
+        textAlign: 'left',
+        padding: 15,
+        fontFamily: 'Gill Sans'
+    },
+
+    Steps: {
+        flex: 1,
+        padding: 15,
         textAlign: 'right',
         fontFamily: 'Gill Sans'
     },
@@ -102,22 +102,22 @@ const styles = StyleSheet.create({
         flex: 6,
     },
 
-    indiIcon:{
+    indiIcon: {
         width: 65,
-        height:65,
+        height: 65,
         alignSelf: 'center',
     },
 
-    rank:{
+    rank: {
         fontFamily: 'Gill Sans',
         color: 'white',
-        fontSize: 22
+        fontSize: 18
     },
-    
-    steps:{
+
+    steps: {
         fontFamily: 'Gill Sans',
         color: 'white',
-        fontSize: 22
+        fontSize: 18
     }
 
 });

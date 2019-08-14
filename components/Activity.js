@@ -39,7 +39,6 @@ export default class Activity extends Component {
 
     renderStepCounts() {
         return <View style={styles.container}>
-            {/*<Icon name='ios-walk' size={dayDim.iconSize} color='#7ADAE9' />*/}
             <Image
 				source={require('./../assets/main_page/logo.png')}
 				style={styles.headerimage}>

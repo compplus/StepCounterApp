@@ -6,61 +6,87 @@ let json = [
 
   {
     title: 'Start Walking',
-    description: 'Walk 1 km',
-    imageuri: require('../assets/award_page/1km.png'),
+    description: 'Walked 10,000 steps',
+    imageuri: require('../assets/awards_page/steps.png'),
     status: true
   },
 
   {
     title: 'Rookie Walker',
-    description: 'Walk 20 km',
-    imageuri: require('../assets/award_page/20km.png'),
+    description: 'Walked 100,000 steps',
+    imageuri: require('../assets/awards_page/steps2.0.png'),
     status: true
   },
 
   {
     title: 'Awesome Walker',
-    description: 'Walk 100 km',
-    imageuri: require('../assets/award_page/100km.png'),
+    description: 'Walked 300,000 steps',
+    imageuri: require('../assets/awards_page/steps3.0.png'),
     status: true
   },
 
   {
-    title: 'Training Master',
-    description: 'Submit your record',
-    imageuri: require('../assets/award_page/weight.png'),
+    title: 'Movin\' On',
+    description: 'Walked 500,000 steps',
+    imageuri: require('../assets/awards_page/steps_bronze.png'),
     status: true
   },
 
   {
-    title: 'Burn Calories',
-    description: 'burn 1000 kcal',
-    imageuri: require('../assets/award_page/burning.png'),
+    title: 'Keep it Up',
+    description: 'Walked 750,000 steps',
+    imageuri: require('../assets/awards_page/steps_silver.png'),
     status: true
   },
 
   {
-    title: 'Morning Walker',
-    description: 'Walk before 8am',
-    imageuri: require('../assets/award_page/earlybird.png'),
-    status: false
+    title: 'You Made It!',
+    description: 'Walked 1,000,000 steps',
+    imageuri: require('../assets/awards_page/steps_gold.png'),
+    status: true
   },
 
   {
-    title: 'HKU Walker',
-    description: 'Walk in HKU',
-    imageuri: require('../assets/award_page/hku.png'),
-    status: false
+    title: 'Early Bird',
+    description: 'Accumulated steps during 05:00-08:00 > 100,000',
+    imageuri: require('../assets/awards_page/earlybird.png'),
+    status: true
   },
 
   {
-    status: false
+    title: 'Night Owl',
+    description: 'Accumulated steps during 20:00-00:00 > 100,000',
+    imageuri: require('../assets/awards_page/owl.png'),
+    status: true
   },
 
   {
-    status: false
+    title: 'Weekend Motivation',
+    description: 'Accumulated steps during SAT and SUN > 100,000',
+    imageuri: require('../assets/awards_page/weekend.png'),
+    status: true
   },
 
+  {
+    title: 'I\'m Burning',
+    description: '100,000 calories burnt',
+    imageuri: require('../assets/awards_page/burn.png'),
+    status: true
+  },
+
+  {
+    title: 'Shape Your Body',
+    description: '1,000,000 calories burnt',
+    imageuri: require('../assets/awards_page/burn2.0.png'),
+    status: true
+  },
+
+  {
+    title: 'We are on the Same Boat',
+    description: 'Successfully formed a team',
+    imageuri: require('../assets/awards_page/team.png'),
+    status: true
+  },
 ]
 
 export default class Awards extends Component {
@@ -76,7 +102,7 @@ export default class Awards extends Component {
             keyExtractor={(item, index) => index.toString()}
             showsVerticalScrollIndicator={false}
             renderItem={({ item }) =>
-              <View style={{ flex: 2, marginTop: 20, marginBottom: 20 }}>
+              <View style={{ flex: 2, marginTop: 8, marginBottom: 8 }}>
                 <AwardItem
                   title={item.title}
                   description={item.description}

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { StyleSheet, FlatList, Text, View, Image, TouchableWithoutFeedback, Dimensions, ScrollView, TouchableOpacity } from 'react-native';
 import CommonStats from '../components/CommonStats'
 import DynamicStats from '../components/DynamicStats'
-import Icon from 'react-native-vector-icons/Ionicons';
+import Icon from 'react-native-vector-icons/FontAwesome';
 
 const rows = 3;
 const cols = 2;
@@ -21,10 +21,10 @@ export default class Main extends Component {
 		super();
 		this.state = {
 			FlatListItems: [
-				{ id: '0', value: '' },
+
 				{ id: '1', value: 'Walking challenge' },
 				{ id: '2', value: 'Settings' },
-				{ id: '0', value: '' },
+
 			],
 		};
 	}
@@ -66,14 +66,14 @@ export default class Main extends Component {
 							style={styles.boxContainer}>
 						</Image>
 					</TouchableOpacity>
-					
+
 					<TouchableOpacity activeOpacity={.5} onPress={() => go('Map')}>
 						<Image
 							source={require('./../assets/main_page/main_map.jpg')}
 							style={styles.boxContainer}>
 						</Image>
 					</TouchableOpacity>
-					
+
 					<TouchableOpacity activeOpacity={.5} onPress={() => go('Awards')}>
 						<Image
 							source={require('./../assets/main_page/main_awards.jpg')}
@@ -82,22 +82,29 @@ export default class Main extends Component {
 					</TouchableOpacity>
 				</View>
 
+				<View
+					style={{ marginTop: 40, height: 0.5, width: '100%', backgroundColor: '#C8C8C8' }}
+				/>
 				<FlatList
 					data={this.state.FlatListItems}
 					ItemSeparatorComponent={this.FlatListItemSeparator}
 					renderItem={({ item }) => (
-						<View>
-							<Text style={styles.item} onPress={() => go('Setting')}>
+						<TouchableOpacity style={styles.itemWrapper} onPress={() => item.value === 'Settings' ? go('Setting') : alert('Page under construction')}>
+							<Text style={styles.itemText}>
 								{item.value}
 							</Text>
-						</View>
+							<View style={styles.arrowWrapper}>
+								<Icon style={styles.itemArrow} name="chevron-right" color="white" size='15' />
+							</View>
+						</TouchableOpacity>
 					)}
+				/>
+				<View
+					style={{ height: 0.5, width: '100%', backgroundColor: '#C8C8C8' }}
 				/>
 
 			</ScrollView>
 		</View>
-		{/*<DynamicStats portrait={this.state.portrait}/>*/ }
-		{/*<CommonStats portrait={this.state.portrait}/>*/ }
 	}
 }
 
@@ -145,16 +152,36 @@ const styles = {
 		height: height,
 		justifyContent: 'center',
 		alignItems: 'center',
-		backgroundColor: 'gold',
+		backgroundColor: '#424242',
 		borderRadius: 10,
 	},
-	item: {
+
+	itemWrapper: {
+		flexDirection: 'row',
+		justifyContent: 'space-between'
+	},
+
+	itemArrow: {
 		padding: 10,
 		margin: 5,
+		color: '#FFFFFF',
+		justifyContent: 'center',
+		alignItems: 'center',
+	},
+
+	arrowWrapper: {
+		flex: 1,
+		justifyContent: 'center',
+		alignItems: 'flex-end'
+	},
+
+	itemText: {
+		padding: 12,
+		margin: 5,
 		fontSize: 20,
-		height: 44,
 		color: '#FFFFFF', // dark
 		fontFamily: 'Gill Sans',
 		//color: 'black',
-	  },
+	},
+
 };
