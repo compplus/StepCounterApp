@@ -32,7 +32,7 @@ export default class TeamRank extends Component {
                 <View style={styles.titleBox}>
 
                     <Text style={styles.Rank}>Rank</Text>
-                    <Text style={styles.ID}>Username</Text>
+                    <Text style={styles.ID}>Team</Text>
                     <Text style={styles.Steps}>Steps</Text>
 
                 </View>

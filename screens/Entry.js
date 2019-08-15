@@ -26,7 +26,7 @@ import TeamRank from './Contest/TeamRank'
 
 
 const screens = { Main, Map, Analysis, Info, Awards, Contest, IndiRank, TeamRank, TeamForm, Setting, In, SettingSync, SettingGoal, SettingUnits, SettingTheme, SettingAbout}
-const screenTitle = { Main: 'Home', Contest: 'Contest', IndiRank: 'Individual rank', TeamRank: 'Team Rank', TeamForm: 'Team Formation',
+const screenTitle = { Main: 'Home', Contest: 'Contest', IndiRank: 'Individual rank', TeamRank: 'Team rank', TeamForm: 'Team formation',
 					Info: 'Profile', Awards: 'Awards', Map: 'Map', Analysis: 'Activity', Setting: 'Settings' }
 var tabs = [{ Main }, { Contest }]
 

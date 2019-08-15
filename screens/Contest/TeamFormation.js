@@ -48,7 +48,7 @@ export default class TeamFormation extends Component {
                     disableAdd={disableAdd()}
                     />
                     <Text style={styles.reminder}>
-                    *5 members is required to form a team*
+                    *5 members are required to form a team*
                     </Text>
                 </View>
 
