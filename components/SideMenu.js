@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+/*import React, {Component} from 'react';
 import {View,Animated,Easing} from 'react-native'
 import GestureRecognizer from 'react-native-swipe-gestures';
 
@@ -45,7 +45,7 @@ export default class SideMenu extends Component{
 		return (
 		<GestureRecognizer
 			onSwipeLeft={this.closeDrawer}
-			onSwipeRight={this.showDrawer}
+			onSwipeRight={this.closeDrawer}
 			config={{
 			velocityThreshold: 0.3,
 			directionalOffsetThreshold: 80
@@ -74,3 +74,4 @@ export default class SideMenu extends Component{
 		);
 	}
 }
+*/

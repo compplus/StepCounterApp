@@ -70,9 +70,10 @@ export default gentle_calmm(class Entry extends Component {
 
 		return (
 			<SideMenu
-				menu={<Menu screenTitle={screenTitle} selected={screenName} onItemSelected={this.onMenuItemSelected} />}
-				isOpen={this.state.isOpen}
-				onChange={isOpen => this.updateMenuState(isOpen)}
+				//menu={<Menu screenTitle={screenTitle} selected={screenName} onItemSelected={this.onMenuItemSelected} />}
+				//isOpen={this.state.isOpen}
+				//onChange={isOpen => this.updateMenuState(isOpen)}
+				disableGesture={true}
 			>
 				<View style={styles.container}>
 					<Header
