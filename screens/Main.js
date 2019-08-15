@@ -95,7 +95,7 @@ export default class Main extends Component {
 								{item.value}
 							</Text>
 							<View style={styles.arrowWrapper}>
-								<Icon style={styles.itemArrow} name="chevron-right" color="white" size='15' />
+								<Icon style={styles.itemArrow} name="chevron-right" color="white" size={15} />
 							</View>
 						</TouchableOpacity>
 					)}

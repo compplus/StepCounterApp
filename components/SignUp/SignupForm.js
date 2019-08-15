@@ -132,7 +132,7 @@ const styles = StyleSheet.create({
   buttonText: {
     textAlign: 'center',
     color: '#FFFFFF',
-    fontWeight: '400',
+    fontWeight: "400",
     fontFamily: 'Gill Sans'
   },
 

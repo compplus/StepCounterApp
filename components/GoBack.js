@@ -14,7 +14,7 @@ export default class GoBack extends Component{
                 icon={
                     <Icon
                       name={"arrow-"+direction}
-                      size={25}
+                      size={20}
                       color="rgba(0,0,0,0.5)"
                     />
                   }

@@ -71,14 +71,14 @@ const styles = StyleSheet.create({
 		textAlign: 'center',
 		color: 'white',
 		fontFamily: 'Gill Sans',
-		fontWeight: '600'
+		fontWeight: "600"
 	},
 
 	title: {
 		fontSize: 35,
 		textAlign: 'center',
 		color: 'white',
-		fontWeight: '400',
+		fontWeight: "400",
 		width: 300,
 		fontFamily: 'Gill Sans'
 	},

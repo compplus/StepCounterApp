@@ -87,7 +87,7 @@ const styles = StyleSheet.create({
         fontSize: 30,
         fontFamily: 'Gill Sans',
         color: 'white',
-        fontWeight: '500',
+        fontWeight: "500",
         marginBottom: 10,
         marginLeft: 15,
     },
