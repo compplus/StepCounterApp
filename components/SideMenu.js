@@ -43,7 +43,7 @@ export default class SideMenu extends Component{
 	render() {
 		const {alpha,isShowing}=this.state
 		return (
-		<GestureRecognizer
+		{/*<GestureRecognizer
 			onSwipeLeft={this.closeDrawer}
 			onSwipeRight={this.showDrawer}
 			config={{
@@ -70,7 +70,7 @@ export default class SideMenu extends Component{
 			</Animated.View>
 		</Animated.View>
 		</View>:null}
-		</GestureRecognizer>
+		</GestureRecognizer>*/}
 		);
 	}
 }

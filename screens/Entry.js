@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, TouchableWithoutFeedback, Platform } from 'react-native';
+import { StyleSheet, StatusBar, Text, View, TouchableWithoutFeedback, Platform } from 'react-native';
 import { please, L_, not, gentle_calmm, mark, S } from 'camarche'
 
 import { logged_in } from '../api'
@@ -25,9 +25,11 @@ import TeamForm from './Contest/TeamFormation'
 import TeamRank from './Contest/TeamRank'
 
 
-const screens = { Main, Map, Analysis, Info, Awards, Contest, IndiRank, TeamRank, TeamForm, Setting, In, SettingSync, SettingGoal, SettingUnits, SettingTheme, SettingAbout}
-const screenTitle = { Main: 'Home', Contest: 'Contest', IndiRank: 'Individual rank', TeamRank: 'Team rank', TeamForm: 'Team formation',
-					Info: 'Profile', Awards: 'Awards', Map: 'Map', Analysis: 'Activity', Setting: 'Settings' }
+const screens = { Main, Map, Analysis, Info, Awards, Contest, IndiRank, TeamRank, TeamForm, Setting, In, SettingSync, SettingGoal, SettingUnits, SettingTheme, SettingAbout }
+const screenTitle = {
+	Main: 'Home', Contest: 'Contest', IndiRank: 'Individual rank', TeamRank: 'Team rank', TeamForm: 'Team formation',
+	Info: 'Profile', Awards: 'Awards', Map: 'Map', Analysis: 'Activity', Setting: 'Settings'
+}
 var tabs = [{ Main }, { Contest }]
 
 export default gentle_calmm(class Entry extends Component {
@@ -70,17 +72,20 @@ export default gentle_calmm(class Entry extends Component {
 
 		return (
 			<SideMenu
-				menu={<Menu screenTitle={screenTitle} selected={screenName} onItemSelected={this.onMenuItemSelected} />}
-				isOpen={this.state.isOpen}
-				onChange={isOpen => this.updateMenuState(isOpen)}
+				isOpen={false}
+				disableGestures={true}
+			//menu={<Menu screenTitle={screenTitle} selected={screenName} onItemSelected={this.onMenuItemSelected} />}
+			//isOpen={this.state.isOpen}
+			//onChange={isOpen => this.updateMenuState(isOpen)}
 			>
 				<View style={styles.container}>
+
 					<Header
 						containerStyle={styles.header}
 						backgroundColor='black'
 						leftComponent={{
-							icon: (isSettingSon || isMainSon || isContestSon) ? 'arrowleft' : null, 
-							type: (isSettingSon || isMainSon || isContestSon) ? 'antdesign' : null, 
+							icon: (isSettingSon || isMainSon || isContestSon) ? 'arrowleft' : null,
+							type: (isSettingSon || isMainSon || isContestSon) ? 'antdesign' : null,
 							color: '#fff',
 							onPress: () => {
 								if (isSettingSon) {
@@ -98,16 +103,17 @@ export default gentle_calmm(class Entry extends Component {
 							}
 						}}
 						centerComponent={{ text: screenTitle[screenName], style: { color: '#fff', fontWeight: 'bold', } }}
-						rightComponent={{ text: 'Log out', style: { color: '#fff', marginRight: 5, },  onPress: this.back }}
+						rightComponent={{ text: 'Log out', style: { color: '#fff', marginRight: 5, }, onPress: this.back }}
 						barStyle="light-content"
 					/>
+
 					<ActiveScreen go={this.go} />
 					<View style={styles.tabContainer}>
 						<ButtonGroup
 							onPress={(i) => { this.go(tab_names[i]), this.setState({ tab_name: tab_names[i] }) }}
 							selectedIndex={tab_name_index(tab_name)}
 							buttons={tab_names}
-							textStyle={{fontSize:15}}
+							textStyle={{ fontSize: 15 }}
 							innerBorderStyle={{ color: '#212121' }}
 							selectedButtonStyle={{ backgroundColor: '#004D40' }}
 							containerStyle={{ height: 42, borderRadius: 5, borderColor: '#212121', backgroundColor: '#CFD8DC' }}
@@ -145,3 +151,9 @@ var only_key = x => Object.keys(x)[0]
 var tab_of = tab_name => Object.values(tabs.filter(x => only_key(x) === tab_name)[0])[0]
 var tab_names = tabs.map(only_key)
 var tab_name_index = tab_name => tab_names.indexOf(tab_name)
+
+{/*<SideMenu
+				//menu={<Menu screenTitle={screenTitle} selected={screenName} onItemSelected={this.onMenuItemSelected} />}
+				//isOpen={this.state.isOpen}
+				//onChange={isOpen => this.updateMenuState(isOpen)}
+			>*/}

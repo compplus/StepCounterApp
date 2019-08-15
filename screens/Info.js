@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Dimensions, StyleSheet, Text, View,  KeyboardAvoidingView, TouchableOpacity, ScrollView} from 'react-native';
+import { Platform, Dimensions, StyleSheet, Text, View,  KeyboardAvoidingView, TouchableOpacity, ScrollView} from 'react-native';
 import { Dropdown } from 'react-native-material-dropdown';
 import { TextField } from 'react-native-material-textfield';
 import SearchableDropdown from 'react-native-searchable-dropdown';
@@ -26,7 +26,7 @@ export default class Info extends Component {
         var nav_screen = this.props.go
 
         return (
-            <KeyboardAvoidingView behavior="padding" style={styles.wrapper}>
+            <KeyboardAvoidingView behavior= {(Platform.OS === 'ios')? "padding" : null} style={styles.wrapper}>
             <ScrollView>
                 <View style={styles.container}>
                   <View style={{flex: 1, flexDirection: 'row', marginTop: scale(30), padding: scale(10), justifyContent: 'center', alignContent: 'center'}}>
@@ -150,6 +150,7 @@ export default class Info extends Component {
                     <TextField
                         label='Last Name'
                         value={this.state.lastname}
+                        keyboardType="default"
                         returnKeyType="done"
                         onChangeText={(lastname)=>this.setState({lastname: lastname})}
                     />
