@@ -30,7 +30,7 @@ export default class LoginForm extends Component {
 				<TextInput
 					placeholder="Password"
 					placeholderTextColor="rgba(64,64,64,0.5)"
-					returnKeyType="go"
+					returnKeyType="done"
 					secureTextEntry={true}
 					style={styles.input}
 					ref={(input) => input && (this.passwordInput = input)} />

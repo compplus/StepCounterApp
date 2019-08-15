@@ -57,7 +57,7 @@ const styles = {
 	},
 
 	dialogueStyle:{
-		flexDirection: 'Column',
+		flexDirection: 'column',
 		alignItems:'center',
 		justifyContent:'center'
 	},

@@ -82,7 +82,6 @@ const styles = StyleSheet.create({
 
     Rank: {
         flex: 1,
-        padding: 15,
         textAlign: 'left',
         fontFamily: 'Gill Sans',
         marginLeft: scale(13)
@@ -91,14 +90,12 @@ const styles = StyleSheet.create({
     ID: {
         flex: 6,
         textAlign: 'left',
-        padding: 15,
         fontFamily: 'Gill Sans',
         marginLeft: scale(30)
     },
 
     Steps: {
         flex: 1,
-        padding: 15,
         textAlign: 'right',
         fontFamily: 'Gill Sans',
         marginRight: scale(20)

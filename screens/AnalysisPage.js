@@ -7,9 +7,9 @@ export default class AnalysisPage extends Component {
 
 	render() {
 		const { currentPage, width } = this.state
-		return <View style={styles.container}>
-				<Analysis width={width} portrait={this.props.portrait} parentshouldScroll={sE => this.setState({ scrollEnabled: sE })} />
-		</View>
+		return <ScrollView style={styles.container}>
+				<Analysis width={width} />
+		</ScrollView>
 	}
 }
 
@@ -19,7 +19,7 @@ const styles = {
 	container: {
 		backgroundColor: '#212121',
 		flex: 1,
-		justifyContent: 'center', 
-		alignContent: 'center'
+		alignContent: 'center',
+		flexDirection: 'column'
 	},
 }
