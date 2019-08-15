@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, View, Image, } from 'react-native';
 import RankList from "../../components/Contest/IndividualRank/rankList"
+import { scale, moderateScale, verticalScale } from '../../components/Scaling';
+
 
 export default class TeamRank extends Component {
 
@@ -9,7 +11,7 @@ export default class TeamRank extends Component {
             <View style={styles.container}>
                 <View style={styles.team}>
                     <View style={styles.teamItemWrapper}>
-                        <Image 
+                        <Image
                             style={styles.teamIcon}
                             source={require('../../assets/contest_page/myrank.png')}
                         />
@@ -18,7 +20,7 @@ export default class TeamRank extends Component {
                         </Text>
                     </View>
                     <View style={styles.teamItemWrapper}>
-                        <Image 
+                        <Image
                             style={styles.teamIcon}
                             source={require('../../assets/contest_page/mysteps.png')}
                         />
@@ -28,17 +30,17 @@ export default class TeamRank extends Component {
                     </View>
                 </View>
                 <View style={styles.titleBox}>
-                    
+
                     <Text style={styles.Rank}>Rank</Text>
                     <Text style={styles.ID}>Username</Text>
                     <Text style={styles.Steps}>Steps</Text>
 
                 </View>
-                    
-                <View style={styles.rankList}> 
-                    
-                    <RankList/>      
-                
+
+                <View style={styles.rankList}>
+
+                    <RankList />
+
                 </View>
             </View>
         )
@@ -56,44 +58,44 @@ const styles = StyleSheet.create({
     },
 
     team: {
-        flex: 1.5,
+        flex: 2,
         flexDirection: 'row',
         backgroundColor: 'yellow',
         alignItems: "stretch"
     },
 
-    teamItemWrapper:{
+    teamItemWrapper: {
         flex: 1,
-        flexDirection:'column',
-        backgroundColor:'#212121',
-        alignItems:'center',
+        flexDirection: 'column',
+        backgroundColor: '#212121',
+        alignItems: 'center',
         justifyContent: 'center'
     },
 
     titleBox: {
-        flex: 0.5,
+        flex: scale(0.8),
         backgroundColor: '#EBF6F7',
         flexDirection: "row",
         justifyContent: "space-between",
     },
 
     Rank: {
-        flex:1,
-        padding:15,
+        flex: 1,
+        padding: 15,
         textAlign: 'left',
-        fontFamily: 'Gill Sans'
-      },
-    
-    ID:{
-        flex:6,
-        textAlign: 'left',
-        padding:15,
         fontFamily: 'Gill Sans'
     },
-    
-    Steps:{
-        flex:1,
-        padding:15,
+
+    ID: {
+        flex: 6,
+        textAlign: 'left',
+        padding: 15,
+        fontFamily: 'Gill Sans'
+    },
+
+    Steps: {
+        flex: 1,
+        padding: 15,
         textAlign: 'right',
         fontFamily: 'Gill Sans'
     },
@@ -102,22 +104,24 @@ const styles = StyleSheet.create({
         flex: 6,
     },
 
-    teamIcon:{
+    teamIcon: {
         width: 65,
-        height:65,
+        height: 65,
         alignSelf: 'center',
     },
 
-    rank:{
+    rank: {
         fontFamily: 'Gill Sans',
         color: 'white',
-        fontSize: 15
+        fontSize: 18,
+        marginTop: 5,
     },
-    
-    steps:{
+
+    steps: {
         fontFamily: 'Gill Sans',
         color: 'white',
-        fontSize: 15
+        fontSize: 18,
+        marginTop: 5,
     }
 
 });

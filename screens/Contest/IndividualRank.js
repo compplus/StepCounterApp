@@ -54,14 +54,14 @@ const styles = StyleSheet.create({
         flex: 1,
         alignItems: 'stretch',
         flexDirection: 'column',
-        backgroundColor: '#EEEEEE'
+        backgroundColor: '#EEEEEE',
     },
 
     individual: {
-        flex: 1.5,
+        flex: 2,
         flexDirection: 'row',
         backgroundColor: 'yellow',
-        alignItems: "stretch"
+        alignItems: "stretch",
     },
 
     indiItemWrapper: {
@@ -69,35 +69,36 @@ const styles = StyleSheet.create({
         flexDirection: 'column',
         backgroundColor: '#212121',
         alignItems: 'center',
-        justifyContent: 'center'
+        justifyContent: 'center',
     },
 
     titleBox: {
-        flex: scale(0.5),
+        flex: scale(0.8),
         backgroundColor: '#EBF6F7',
         flexDirection: "row",
         justifyContent: "space-between",
+        alignItems:"center"
     },
 
     Rank: {
         flex: 1,
-        padding: 15,
         textAlign: 'left',
-        fontFamily: 'Gill Sans'
+        fontFamily: 'Gill Sans',
+        marginLeft: scale(13)
     },
 
     ID: {
         flex: 6,
         textAlign: 'left',
-        padding: 15,
-        fontFamily: 'Gill Sans'
+        fontFamily: 'Gill Sans',
+        marginLeft: scale(30)
     },
 
     Steps: {
         flex: 1,
-        padding: 15,
         textAlign: 'right',
-        fontFamily: 'Gill Sans'
+        fontFamily: 'Gill Sans',
+        marginRight: scale(20)
     },
 
     rankList: {
@@ -105,21 +106,23 @@ const styles = StyleSheet.create({
     },
 
     indiIcon: {
-        width: scale(65),
-        height: scale(65),
+        width: scale(60),
+        height: scale(60),
         alignSelf: 'center',
     },
 
     rank: {
         fontFamily: 'Gill Sans',
         color: 'white',
-        fontSize: 15
+        fontSize: 18,
+        marginTop: 5,
     },
 
     steps: {
         fontFamily: 'Gill Sans',
         color: 'white',
-        fontSize: 15
+        fontSize: 18,
+        marginTop: 5,
     }
 
 });
