@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, View, TouchableWithoutFeedback, FlatList, Image, } from 'react-native';
-import RankList from "../../components/Contest/IndividualRank/rankList"
+import RankList from "../../components/Contest/IndividualRank/rankList";
+import { scale, moderateScale, verticalScale } from '../../components/Scaling';
+
 
 export default class IndiRank extends Component {
 
@@ -71,7 +73,7 @@ const styles = StyleSheet.create({
     },
 
     titleBox: {
-        flex: 0.5,
+        flex: scale(0.5),
         backgroundColor: '#EBF6F7',
         flexDirection: "row",
         justifyContent: "space-between",
@@ -103,8 +105,8 @@ const styles = StyleSheet.create({
     },
 
     indiIcon: {
-        width: 65,
-        height: 65,
+        width: scale(65),
+        height: scale(65),
         alignSelf: 'center',
     },
 

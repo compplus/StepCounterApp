@@ -3,13 +3,14 @@ import { StyleSheet, FlatList, Text, View, Image, TouchableWithoutFeedback, Dime
 import CommonStats from '../components/CommonStats'
 import DynamicStats from '../components/DynamicStats'
 import Icon from 'react-native-vector-icons/FontAwesome';
+import { scale, moderateScale, verticalScale } from '../components/Scaling';
 
 const rows = 3;
 const cols = 2;
 const marginHorizontal = 5;
 const marginVertical = 5;
-const width = (Dimensions.get('window').width / cols) - (marginHorizontal * (cols + 1));
-const height = (Dimensions.get('window').height / rows) - (marginVertical * (rows + 1)) - 100;
+//const width = (Dimensions.get('window').width / cols) - (marginHorizontal * (cols + 1));
+//const height = (Dimensions.get('window').height / rows) - (marginVertical * (rows + 1)) - 100;
 
 export default class Main extends Component {
 	state = { portrait: this.isPortrait() }
@@ -148,8 +149,8 @@ const styles = {
 		marginBottom: marginVertical,
 		marginLeft: marginHorizontal,
 		marginRight: marginHorizontal,
-		width: width,
-		height: height,
+		width: scale(170),
+		height: scale(150),
 		justifyContent: 'center',
 		alignItems: 'center',
 		backgroundColor: '#424242',

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { StyleSheet, View, TouchableOpacity, Image } from 'react-native';
-import {gentle_calmm} from 'camarche'
+import { scale, moderateScale, verticalScale } from '../../components/Scaling';
 
 export default class ContestMain extends Component {
     teamRank = () => {
@@ -69,8 +69,8 @@ const styles = StyleSheet.create({
 
     imageClass: {
         flex: 1,
-        height: 400,
-        width: 400,
+        height: scale(30),
+        width: scale(350),
         borderRadius: 20,
     },
 
