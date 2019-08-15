@@ -3,6 +3,7 @@ import { StyleSheet, View, TextInput, Image, Text, Button } from 'react-native';
 import MemberList from '../../components/Contest/TeamFormation/MemberList';
 import MemberInput from '../../components/Contest/TeamFormation/MemberInput';
 import DialogInput from 'react-native-dialog-input';
+import { scale } from '../../components/Scaling';
 
 export default class TeamFormation extends Component {
 
@@ -39,13 +40,15 @@ export default class TeamFormation extends Component {
 
         return (
             <View style={styles.container}>
-                <View style={styles.pageTitle}>
-                    <Text style={styles.titleText}>
-                        Team Formation
-                    </Text>
-                </View>
 
-                <MemberInput style={styles.memberInput} onMemberAdded={this.memberAddedHandler} disableAdd={disableAdd()} />
+                <MemberInput
+                    style={styles.memberInput}
+                    onMemberAdded={this.memberAddedHandler}
+                    disableAdd={disableAdd()}
+                />
+                <Text style={styles.reminder}>
+                    *Important: You're required to have 5 members in a team!*
+                </Text>
 
                 <View style={styles.memberList}>
                     <MemberList
@@ -65,31 +68,19 @@ const styles = StyleSheet.create({
         flex: 1,
         backgroundColor: '#212121',
         paddingHorizontal: 10,
+        flexDirection: 'column'
     },
 
-    pageTitle: {
-        flex: 1,
-        backgroundColor: '#212121',
-        flexDirection: 'column-reverse'
+    reminder:{
+        flex:1,
+        color:'#FFFFFF'
     },
-
     memberInput: {
         flex: 1,
-        marginTop: 10
-    },
-    memberList: {
-        flex: 6,
-        marginTop: 10
     },
 
-    titleText: {
-        textAlign: 'left',
-        fontSize: 30,
-        fontFamily: 'Gill Sans',
-        color: 'white',
-        fontWeight: '500',
-        marginBottom: 10,
-        marginLeft: 15,
+    memberList: {
+        flex: 8,
     },
 
 });

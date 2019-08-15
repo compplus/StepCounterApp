@@ -81,9 +81,9 @@ const styles = StyleSheet.create({
     paddingBottom: 30,
   },
   image: {
-    //flex: 1,
-    height: '20%',
-    width: '80%',
+    flex: 1,
+    height: scale(20),
+    width: scale(80),
     alignItems: 'center',
   },  
   imagewrapper: {
@@ -92,6 +92,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   parawrapper: {
+    flex: 3,
     alignItems: 'center',
     justifyContent: 'center',
   },

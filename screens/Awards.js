@@ -62,7 +62,7 @@ let json = [
 
   {
     title: 'Weekend Motivation',
-    description: 'Accumulated steps during SAT and SUN > 100,000',
+    description: 'Accumulated steps on SAT and SUN > 100,000',
     imageuri: require('../assets/awards_page/weekend.png'),
     status: true
   },

@@ -114,14 +114,14 @@ const styles = StyleSheet.create({
     rank: {
         fontFamily: 'Gill Sans',
         color: 'white',
-        fontSize: 18,
+        fontSize: 15,
         marginTop: 5,
     },
 
     steps: {
         fontFamily: 'Gill Sans',
         color: 'white',
-        fontSize: 18,
+        fontSize: 15,
         marginTop: 5,
     }
 

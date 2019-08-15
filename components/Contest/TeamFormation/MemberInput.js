@@ -83,7 +83,7 @@ const styles = StyleSheet.create({
     memberInput: {
         backgroundColor: "white",
         width: "80%",
-        height: "80%",
+        height: "100%",
         paddingHorizontal: 15,
         borderRadius: 6,
         marginHorizontal: 10,
@@ -91,7 +91,7 @@ const styles = StyleSheet.create({
 
     addButton: {
         width: "20%",
-        height: '80%',
+        height: '100%',
         backgroundColor: '#00BCD4',
         borderRadius: 5,
         marginHorizontal: 5,

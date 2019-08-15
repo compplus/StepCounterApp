@@ -77,27 +77,31 @@ const styles = StyleSheet.create({
         backgroundColor: '#EBF6F7',
         flexDirection: "row",
         justifyContent: "space-between",
+        alignItems:"center"
     },
 
     Rank: {
         flex: 1,
         padding: 15,
         textAlign: 'left',
-        fontFamily: 'Gill Sans'
+        fontFamily: 'Gill Sans',
+        marginLeft: scale(13)
     },
 
     ID: {
         flex: 6,
         textAlign: 'left',
         padding: 15,
-        fontFamily: 'Gill Sans'
+        fontFamily: 'Gill Sans',
+        marginLeft: scale(30)
     },
 
     Steps: {
         flex: 1,
         padding: 15,
         textAlign: 'right',
-        fontFamily: 'Gill Sans'
+        fontFamily: 'Gill Sans',
+        marginRight: scale(20)
     },
 
     rankList: {
@@ -105,22 +109,22 @@ const styles = StyleSheet.create({
     },
 
     teamIcon: {
-        width: 65,
-        height: 65,
+        width: scale(60),
+        height: scale(60),
         alignSelf: 'center',
     },
 
     rank: {
         fontFamily: 'Gill Sans',
         color: 'white',
-        fontSize: 18,
+        fontSize: 15,
         marginTop: 5,
     },
 
     steps: {
         fontFamily: 'Gill Sans',
         color: 'white',
-        fontSize: 18,
+        fontSize: 15,
         marginTop: 5,
     }
 

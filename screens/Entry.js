@@ -25,8 +25,9 @@ import TeamForm from './Contest/TeamFormation'
 import TeamRank from './Contest/TeamRank'
 
 
-const screens = { Main, Map, Analysis, Info, Awards, Contest, IndiRank, Setting, In, SettingSync, SettingGoal, SettingUnits, SettingTheme, SettingAbout, TeamRank, TeamForm }
-const screenTitle = { Main: 'Home', Contest: 'Contest', IndiRank: 'Individual rank', Info: 'Profile', Awards: 'Awards', Map: 'Map', Analysis: 'Activity', Setting: 'Settings' }
+const screens = { Main, Map, Analysis, Info, Awards, Contest, IndiRank, TeamRank, TeamForm, Setting, In, SettingSync, SettingGoal, SettingUnits, SettingTheme, SettingAbout}
+const screenTitle = { Main: 'Home', Contest: 'Contest', IndiRank: 'Individual rank', TeamRank: 'Team Rank', TeamForm: 'Team Formation',
+					Info: 'Profile', Awards: 'Awards', Map: 'Map', Analysis: 'Activity', Setting: 'Settings' }
 var tabs = [{ Main }, { Contest }]
 
 export default gentle_calmm(class Entry extends Component {
@@ -97,7 +98,7 @@ export default gentle_calmm(class Entry extends Component {
 							}
 						}}
 						centerComponent={{ text: screenTitle[screenName], style: { color: '#fff', fontWeight: 'bold', } }}
-						rightComponent={{ text: 'Log out', style: { color: '#fff', marginRight: 10, },  onPress: this.back }}
+						rightComponent={{ text: 'Log out', style: { color: '#fff', marginRight: 5, },  onPress: this.back }}
 						barStyle="light-content"
 					/>
 					<ActiveScreen go={this.go} />
@@ -108,7 +109,7 @@ export default gentle_calmm(class Entry extends Component {
 							buttons={tab_names}
 							innerBorderStyle={{ color: '#212121' }}
 							selectedButtonStyle={{ backgroundColor: '#004D40' }}
-							containerStyle={{ height: 42, borderRadius: '5', borderColor: '#212121', backgroundColor: '#CFD8DC' }}
+							containerStyle={{ height: 42, borderRadius: 5, borderColor: '#212121', backgroundColor: '#CFD8DC' }}
 						/>
 					</View>
 
