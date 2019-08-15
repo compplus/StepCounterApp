@@ -41,14 +41,16 @@ export default class TeamFormation extends Component {
         return (
             <View style={styles.container}>
 
-                <MemberInput
+                <View style={styles.inputReminderWrapper}>
+                    <MemberInput
                     style={styles.memberInput}
                     onMemberAdded={this.memberAddedHandler}
                     disableAdd={disableAdd()}
-                />
-                <Text style={styles.reminder}>
-                    *Important: You're required to have 5 members in a team!*
-                </Text>
+                    />
+                    <Text style={styles.reminder}>
+                    *5 members is required to form a team*
+                    </Text>
+                </View>
 
                 <View style={styles.memberList}>
                     <MemberList
@@ -71,16 +73,19 @@ const styles = StyleSheet.create({
         flexDirection: 'column'
     },
 
+
     reminder:{
-        flex:1,
-        color:'#FFFFFF'
+       
+        color:'#FFFFFF',
+        marginTop:scale(40),
+        textAlign:'center'
     },
     memberInput: {
-        flex: 1,
+        
     },
 
     memberList: {
-        flex: 8,
+       
     },
 
 });

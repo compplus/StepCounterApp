@@ -107,6 +107,7 @@ export default gentle_calmm(class Entry extends Component {
 							onPress={(i) => { this.go(tab_names[i]), this.setState({ tab_name: tab_names[i] }) }}
 							selectedIndex={tab_name_index(tab_name)}
 							buttons={tab_names}
+							textStyle={{fontSize:15}}
 							innerBorderStyle={{ color: '#212121' }}
 							selectedButtonStyle={{ backgroundColor: '#004D40' }}
 							containerStyle={{ height: 42, borderRadius: 5, borderColor: '#212121', backgroundColor: '#CFD8DC' }}

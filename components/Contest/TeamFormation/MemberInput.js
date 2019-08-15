@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { View, Text, TextInput, Button, StyleSheet, TouchableOpacity } from "react-native";
-
+import { scale } from '../../Scaling';
 class MemberInput extends Component {
 
     state =
@@ -74,29 +74,31 @@ const styles = StyleSheet.create({
         flex: 0.4,
         width: "100%",
         flexDirection: "row",
-        marginTop: 10,
+        marginTop: scale(10),
         justifyContent: "center",
         alignItems: "center",
-        paddingHorizontal: 20,
+        paddingHorizontal: scale(20),
     },
 
     memberInput: {
         backgroundColor: "white",
         width: "80%",
-        height: "100%",
-        paddingHorizontal: 15,
-        borderRadius: 6,
-        marginHorizontal: 10,
+        height: scale(30),
+        paddingHorizontal: scale(15),
+        borderRadius: scale(6),
+        marginHorizontal: scale(10),
+        marginTop: scale(30)
     },
 
     addButton: {
         width: "20%",
-        height: '100%',
+        height: scale(30),
         backgroundColor: '#00BCD4',
-        borderRadius: 5,
-        marginHorizontal: 5,
+        borderRadius: scale(5),
+        marginHorizontal: scale(5),
         justifyContent: "center",
         alignItems: "center",
+        marginTop: scale(30)
     },
 
     addText: {
