@@ -1063,7 +1063,7 @@ const styles = StyleSheet.create({
     buttonText: {
         textAlign: 'center',
         color: '#FFFFFF',
-        fontWeight: '400',
+        fontWeight: "400",
         fontSize: 17,
         fontFamily: 'Gill Sans'
     },
@@ -1078,7 +1078,7 @@ const styles = StyleSheet.create({
         textAlign: 'left' ,
         color: 'rgba(0,51,51,1)',
         fontSize: 25,
-        fontWeight: '400',
+        fontWeight: "400",
         fontFamily: 'Gill Sans'
     },
 });

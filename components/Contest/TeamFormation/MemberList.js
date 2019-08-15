@@ -12,7 +12,7 @@ const MemberList = props => {
         if (status == 'inviting') {
             return <Icon_ion
                 name='ios-time'
-                size='30'
+                size={30}
             />;
         }
 
@@ -20,7 +20,7 @@ const MemberList = props => {
             return <Icon
                 name='check'
                 color='green'
-                size='20'
+                size={20}
             />;
         }
     }

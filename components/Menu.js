@@ -82,7 +82,7 @@ const styles = StyleSheet.create({
   userName: {
     fontSize: 25,
     fontFamily: 'Gill Sans',
-    fontWeight: '500',
+    fontWeight: "500",
     position: 'absolute',
     bottom: '10%',
     left: '10%'

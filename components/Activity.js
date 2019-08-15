@@ -117,7 +117,7 @@ const styles = {
     },
     day: {
         color: '#29b8e5',
-        fontWeight: '800'
+        fontWeight: "800"
     },
     quote: {
         backgroundColor: 'transparent',

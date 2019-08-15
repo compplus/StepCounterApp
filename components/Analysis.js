@@ -105,7 +105,7 @@ export default class Analysis extends Component {
                     textStyle={{ color: '#FFFFFF' }}
                     innerBorderStyle={{ color: '#212121' }}
                     selectedButtonStyle={{ backgroundColor: '#26A69A' }}
-                    containerStyle={{ borderRadius: '5', borderColor: '#212121', backgroundColor: '#424242' }}
+                    containerStyle={{ borderRadius: 5, borderColor: '#212121', backgroundColor: '#424242' }}
                 />
                 {/*<ButtonGroup
                     onPress={(i) => { this.setState({ SelectedData: data[i] }) }}
@@ -114,7 +114,7 @@ export default class Analysis extends Component {
                     textStyle={{ color: '#FFFFFF' }}
                     innerBorderStyle={{ color: '#171D33' }}
                     selectedButtonStyle={{ backgroundColor: '#006064', }}
-                    containerStyle={{ borderRadius: '5', borderColor: '#171D33', backgroundColor: '#424242' }}
+                    containerStyle={{ borderRadius: 5, borderColor: '#171D33', backgroundColor: '#424242' }}
                 />*/}
 
                 {loading ?
