@@ -144,26 +144,34 @@ export default class Info extends Component {
                     <TextField
                         label='First Name'
                         value={this.state.firstname}
+                        returnKeyType="done"
                         onChangeText={(firstname)=>this.setState({firstname: firstname})}
                     />
                     <TextField
                         label='Last Name'
                         value={this.state.lastname}
+                        returnKeyType="done"
                         onChangeText={(lastname)=>this.setState({lastname: lastname})}
                     />
                     <TextField
                         label='Age'
                         value={this.state.age}
+                        keyboardType="numeric"
+                        returnKeyType="done"
                         onChangeText={(age)=>this.setState({age: age})}
                     />
                     <TextField
                         label='Height (cm)'
                         value={this.state.height}
+                        keyboardType="decimal-pad"
+                        returnKeyType="done"
                         onChangeText={(height)=>this.setState({height: height})}
                     />
                     <TextField
                         label='Weight (kg)'
                         value={this.state.weight}
+                        keyboardType="decimal-pad"
+                        returnKeyType="done"
                         onChangeText={(weight)=>this.setState({weight: weight})}
                     />
 
