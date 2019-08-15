@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { Text, View, StyleSheet, ActivityIndicator, Dimensions } from 'react-native'
 import PureChart from "./react-native-pure-chart/examples/pure-chart"
 import { ButtonGroup } from 'react-native-elements'
+import { scale, moderateScale, verticalScale } from './Scaling';
 import { Button } from 'react-native-elements';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import Icon_ion from 'react-native-vector-icons/Ionicons';
@@ -138,7 +139,7 @@ export default class Analysis extends Component {
                                 }]
                             }}
                             width={Dimensions.get('window').width - 25} // from react-native
-                            height={Dimensions.get('window').height/2 - 200}
+                            height={scale(200)}
                             yAxisLabel={''}
                             chartConfig={{
                                 backgroundColor: '#006064',
@@ -178,7 +179,7 @@ export default class Analysis extends Component {
                                 }]
                             }}
                             width={Dimensions.get('window').width - 25} // from react-native
-                            height={Dimensions.get('window').height/2 - 200}
+                            height={scale(200)}
                             yAxisLabel={''}
                             chartConfig={{
                                 backgroundColor: '#004D40',
