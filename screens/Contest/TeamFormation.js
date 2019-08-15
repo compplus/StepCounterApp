@@ -6,8 +6,8 @@ import DialogInput from 'react-native-dialog-input';
 
 export default class TeamFormation extends Component {
 
-    state={
-        members:[
+    state = {
+        members: [
             {
                 memberID: 1,
                 email: 'Username',
@@ -19,24 +19,24 @@ export default class TeamFormation extends Component {
 
     memberAddedHandler = member => {
         this.setState(prevState => {
-          return {
-            members: prevState.members.concat(
-                member
-            )
-          };
+            return {
+                members: prevState.members.concat(
+                    member
+                )
+            };
         });
-      };
-    
+    };
+
     render() {
-        
+
         counter = this.state.members.length
-        
+
         function disableAdd(counter) {
-            if(this.counter==5){
+            if (this.counter == 5) {
                 return true
             }
         }
-        
+
         return (
             <View style={styles.container}>
                 <View style={styles.pageTitle}>
@@ -45,7 +45,7 @@ export default class TeamFormation extends Component {
                     </Text>
                 </View>
 
-                <MemberInput style={styles.memberInput} onMemberAdded={this.memberAddedHandler} disableAdd={disableAdd()}/>
+                <MemberInput style={styles.memberInput} onMemberAdded={this.memberAddedHandler} disableAdd={disableAdd()} />
 
                 <View style={styles.memberList}>
                     <MemberList
@@ -54,7 +54,7 @@ export default class TeamFormation extends Component {
                 </View>
 
             </View>
-            )
+        )
     }
 }
 
@@ -63,17 +63,18 @@ const styles = StyleSheet.create({
 
     container: {
         flex: 1,
-        backgroundColor: '#171D33',
+        backgroundColor: '#212121',
+        paddingHorizontal: 10,
     },
 
     pageTitle: {
         flex: 1,
-        backgroundColor: '#1F1F20',
+        backgroundColor: '#212121',
         flexDirection: 'column-reverse'
     },
 
-    memberInput:{
-        flex:1,
+    memberInput: {
+        flex: 1,
         marginTop: 10
     },
     memberList: {
@@ -81,14 +82,14 @@ const styles = StyleSheet.create({
         marginTop: 10
     },
 
-    titleText:{
+    titleText: {
         textAlign: 'left',
-        fontSize:40,
+        fontSize: 30,
         fontFamily: 'Gill Sans',
         color: 'white',
-        fontWeight:'500',
-        marginBottom:10,
-        marginLeft:10
+        fontWeight: '500',
+        marginBottom: 10,
+        marginLeft: 15,
     },
 
 });

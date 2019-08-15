@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { View, TextInput, Button, StyleSheet } from "react-native";
+import { View, Text, TextInput, Button, StyleSheet, TouchableOpacity } from "react-native";
 
 class MemberInput extends Component {
 
@@ -35,7 +35,7 @@ class MemberInput extends Component {
         console.log(this.state.memberID);
     };
 
-    disableAdd = () => { 
+    disableAdd = () => {
         return this.props.disableAdd
     }
 
@@ -46,16 +46,21 @@ class MemberInput extends Component {
                 <TextInput
                     style={styles.memberInput}
                     placeholder="Enter new member's email"
+                    placeholderTextColor="rgba(64,64,64,0.5)"
+                    keyboardType="email-address"
+                    autoCapitalize="none"
+                    returnKeyType="go"
                     onChangeText={this.memberEmailChangedHandler}
                 />
 
-                <Button
-                    title="Add"
+                <TouchableOpacity
                     style={styles.addButton}
                     onPress={this.memberSubmitHandler}
-                    color='#81F7F3'
+                    color='white'
                     disabled={this.disableAdd()}
-                />
+                >
+                    <Text style={styles.addText}>Add</Text>
+                </TouchableOpacity>
 
             </View>
         )
@@ -71,20 +76,32 @@ const styles = StyleSheet.create({
         flexDirection: "row",
         marginTop: 10,
         justifyContent: "center",
-        alignItems: "center"
+        alignItems: "center",
+        paddingHorizontal: 20,
     },
 
     memberInput: {
         backgroundColor: "white",
         width: "80%",
         height: "80%",
-        borderRadius: 10
+        paddingHorizontal: 15,
+        borderRadius: 6,
+        marginHorizontal: 10,
     },
 
     addButton: {
-        width: "30%",
-        color:"white"
-    }
+        width: "20%",
+        height: '80%',
+        backgroundColor: '#00BCD4',
+        borderRadius: 5,
+        marginHorizontal: 5,
+        justifyContent: "center",
+        alignItems: "center",
+    },
+
+    addText: {
+        fontFamily: 'Gill Sans',
+    },
 
 })
 
