@@ -49,6 +49,7 @@ const MemberList = props => {
             keyExtractor={this.keyExtractor}
             data={props.members}
             renderItem={this.renderItem}
+            contentContainerStyle={{paddingBottom:80}}
         />
     )
 }
