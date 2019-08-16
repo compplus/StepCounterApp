@@ -16,36 +16,7 @@ export default class Setting extends Component {
     return (
       <View style={styles.container}>
         <SettingsList borderColor='#c8c7cc' defaultItemSize={50}>
-          {/*<SettingsList.Header headerText='PREFERENCES' headerStyle={styles.headerStyle} />
-          <SettingsList.Item
-            //icon={<Image style={styles.imageStyle} source={Images['settings']}/>}
-            title='Syncronization'
-            titleInfo='Daily'
-            titleInfoStyle={styles.titleInfoStyle}
-            onPress={() => nav_screen('SettingSync')}
-          />
-          <SettingsList.Item
-            //icon={<Image style={styles.imageStyle} source={Images['settings']}/>}
-            title='Goal'
-            titleInfo='10000 Steps'
-            titleInfoStyle={styles.titleInfoStyle}
-            onPress={() => nav_screen('SettingGoal')}
-          />
-          <SettingsList.Item
-            //icon={<Image style={styles.imageStyle} source={Images['settings']}/>}
-            title='Units'
-            titleInfo='Kilometer (km)'
-            titleInfoStyle={styles.titleInfoStyle}
-            onPress={() => nav_screen('SettingUnits')}
-          />
-          <SettingsList.Item
-            //icon={<Image style={styles.imageStyle} source={Images['settings']}/>}
-            title='Theme'
-            titleInfo='Light'
-            titleInfoStyle={styles.titleInfoStyle}
-            onPress={() => nav_screen('SettingTheme')}
-          />*/}
-          
+                    
           <SettingsList.Header headerText='ACCOUNT' headerStyle={styles.headerStyle} />
           <SettingsList.Item
             title='Change Password'
@@ -59,7 +30,7 @@ export default class Setting extends Component {
           />
           <SettingsList.Header headerText='SUPPORT' headerStyle={styles.headerStyle} />
           <SettingsList.Item
-            title='Help'
+            title='News'
             hasNavArrow={false}
             onPress={ ()=>{ Linking.openURL('https://www.eim.cse.hku.hk/news/hku-walking-challenge-2.html')}}
           />

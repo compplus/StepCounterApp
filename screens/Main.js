@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { StyleSheet, FlatList, Text, View, Image, TouchableWithoutFeedback, Dimensions, ScrollView, TouchableOpacity } from 'react-native';
-import CommonStats from '../components/CommonStats'
 import DynamicStats from '../components/DynamicStats'
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { scale, moderateScale, verticalScale } from '../components/Scaling';

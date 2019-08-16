@@ -24,7 +24,7 @@ export default class AwardItem extends Component {
 
 					<Dialog
 						visible={this.state.visible}
-						width={'80%'}
+						width={0.8}
 						dialogStyle={{ borderRadius: 10, }}
 						onTouchOutside={() => {
 							this.setState({ visible: false });

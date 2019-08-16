@@ -6,15 +6,9 @@ import { logged_in } from '../api'
 import { Header } from 'react-native-elements'
 import { ButtonGroup } from 'react-native-elements';
 import SideMenu from 'react-native-side-menu'
-import Menu from '../components/Menu'
 import Info from './Info';
 import Awards from './Awards';
 import Setting from './Setting/Setting'
-import In from '../components/Entry/In'
-import SettingSync from './Setting/SettingSync'
-import SettingGoal from './Setting/SettingGoal'
-import SettingUnits from './Setting/SettingUnits'
-import SettingTheme from './Setting/SettingTheme'
 import SettingAbout from './Setting/SettingAbout'
 import Main from './Main'
 import Contest from './Contest/ContestMain';
@@ -25,7 +19,7 @@ import TeamForm from './Contest/TeamFormation'
 import TeamRank from './Contest/TeamRank'
 
 
-const screens = { Main, Map, Analysis, Info, Awards, Contest, IndiRank, TeamRank, TeamForm, Setting, In, SettingSync, SettingGoal, SettingUnits, SettingTheme, SettingAbout }
+const screens = { Main, Map, Analysis, Info, Awards, Contest, IndiRank, TeamRank, TeamForm, Setting, SettingAbout }
 const screenTitle = {
 	Main: 'Home', Contest: 'Contest', IndiRank: 'Individual rank', TeamRank: 'Team rank', TeamForm: 'Team formation',
 	Info: 'Profile', Awards: 'Awards', Map: 'Map', Analysis: 'Activity', Setting: 'Settings'
@@ -74,9 +68,9 @@ export default gentle_calmm(class Entry extends Component {
 			<SideMenu
 				isOpen={false}
 				disableGestures={true}
-			//menu={<Menu screenTitle={screenTitle} selected={screenName} onItemSelected={this.onMenuItemSelected} />}
-			//isOpen={this.state.isOpen}
-			//onChange={isOpen => this.updateMenuState(isOpen)}
+				//menu={<Menu screenTitle={screenTitle} selected={screenName} onItemSelected={this.onMenuItemSelected} />}
+				//isOpen={this.state.isOpen}
+				//onChange={isOpen => this.updateMenuState(isOpen)}
 			>
 				<View style={styles.container}>
 
@@ -151,9 +145,3 @@ var only_key = x => Object.keys(x)[0]
 var tab_of = tab_name => Object.values(tabs.filter(x => only_key(x) === tab_name)[0])[0]
 var tab_names = tabs.map(only_key)
 var tab_name_index = tab_name => tab_names.indexOf(tab_name)
-
-{/*<SideMenu
-				//menu={<Menu screenTitle={screenTitle} selected={screenName} onItemSelected={this.onMenuItemSelected} />}
-				//isOpen={this.state.isOpen}
-				//onChange={isOpen => this.updateMenuState(isOpen)}
-			>*/}

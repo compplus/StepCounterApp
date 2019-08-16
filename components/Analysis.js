@@ -1,19 +1,9 @@
 import React, { Component } from 'react'
 import { Text, View, StyleSheet, ActivityIndicator, Dimensions } from 'react-native'
-import PureChart from "./react-native-pure-chart/examples/pure-chart"
 import { ButtonGroup } from 'react-native-elements'
 import { scale, moderateScale, verticalScale } from './Scaling';
-import { Button } from 'react-native-elements';
-import Icon from 'react-native-vector-icons/FontAwesome';
-import Icon_ion from 'react-native-vector-icons/Ionicons';
-import {
-    LineChart,
-    BarChart,
-    PieChart,
-    ProgressChart,
-    ContributionGraph,
-    StackedBarChart
-} from 'react-native-chart-kit'
+
+import { LineChart } from 'react-native-chart-kit'
 
 const TimeUnits = ['hours', 'days', 'months']
 const data = ['steps', 'calories']
