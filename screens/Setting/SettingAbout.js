@@ -18,11 +18,11 @@ export default class SettingAbout extends Component {
       <View style={styles.container}>
 
       <View style={styles.aboutbox}>
-        <View style={styles.imagewrapper}>
-          <Image
+        <Image
             style={styles.image}
-            source={require('../../assets/setting_page/CSE_logo.png')} />
-        </View>
+            source={require('../../assets/setting_page/CSE_logo.png')} 
+            resizeMode='center'
+        />
 
         <View style={styles.parawrapper}>
           <Text style={styles.paragraph}>To-do: paragraph</Text>
@@ -33,27 +33,6 @@ export default class SettingAbout extends Component {
         <Text style={styles.versionStyle}>Version 1.0.1</Text>
         <Text style={styles.rightReserveStyle}>2019 HKU Centre for Sports and Exercise. All rights reserved.</Text>
       </View>
-
-      {/*<View style={styles.bottomBox}>
-        <SettingsList borderColor='transparent' defaultItemSize={50}>
-          <SettingsList.Item
-            title='Version 1.0.1'
-            hasNavArrow={false}
-            titleStyle={styles.versionStyle}
-            backgroundColor='transparent'
-            itemWidth={15}
-          //onPress={() => }
-          />
-          <SettingsList.Item
-            title='2019 HKU Centre for Sports and Exercise. All rights reserved.'
-            hasNavArrow={false}
-            titleStyle={styles.rightReserveStyle}
-            backgroundColor='transparent'
-            itemWidth={15}
-          //onPress={() => }
-          />
-        </SettingsList>
-        </View>*/}
 
       </View >
 		)
@@ -68,29 +47,26 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#EFEFF4'
   },
-  aboutbox: {
-    height: height * 0.5,
+  aboutbox: { 
+    height: scale(height * 0.62),
     marginTop: 40,
-    marginBottom: 20,
     backgroundColor: '#FFFFFF',
     borderTopColor: '#CFD8DC',
     borderTopWidth: 1.0,
     borderBottomColor: '#CFD8DC',
     borderBottomWidth: 1.0,
-    padding: 20,
-    paddingBottom: 30,
+    //padding: 20,
+    paddingBottom: 10,
+    flexDirection: "column"
   },
   image: {
     flex: 1,
-    height: scale(20),
-    width: scale(80),
-    alignItems: 'center',
+    alignSelf: 'center',
+    height: scale(150),
+    width: scale(150),
+  
   },  
-  imagewrapper: {
-    flex: 1, 
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
+
   parawrapper: {
     flex: 3,
     alignItems: 'center',
