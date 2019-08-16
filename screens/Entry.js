@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
-import { SafeAreaView, StyleSheet, StatusBar, Text, View, TouchableWithoutFeedback, Platform } from 'react-native';
+import { SafeAreaView, StyleSheet, StatusBar, Text, View, Platform } from 'react-native';
 import { please, L_, not, gentle_calmm, mark, S } from 'camarche'
 import { scale, moderateScale, verticalScale } from '../components/Scaling';
 
 import { logged_in } from '../api'
 import { Header } from 'react-native-elements'
 import { ButtonGroup } from 'react-native-elements';
-import SideMenu from 'react-native-side-menu'
 import Info from './Info';
 import Awards from './Awards';
 import Setting from './Setting/Setting'
@@ -18,9 +17,10 @@ import Map from './Map'
 import Analysis from './AnalysisPage'
 import TeamForm from './Contest/TeamFormation'
 import TeamRank from './Contest/TeamRank'
+import SplashScreen from './SplashScreen'
 
 
-const screens = { Main, Map, Analysis, Info, Awards, Contest, IndiRank, TeamRank, TeamForm, Setting, SettingAbout }
+const screens = { SplashScreen, Main, Map, Analysis, Info, Awards, Contest, IndiRank, TeamRank, TeamForm, Setting, SettingAbout }
 const screenTitle = {
 	Main: 'Home', Contest: 'Contest', IndiRank: 'Individual rank', TeamRank: 'Team rank', TeamForm: 'Team formation',
 	Info: 'Profile', Awards: 'Awards', Map: 'Map', Analysis: 'Activity', Setting: 'Settings'

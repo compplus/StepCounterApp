@@ -1,32 +1,27 @@
 import React, { Component } from 'react';
-import LinearGradient from 'react-native-linear-gradient';
-import { Dimensions, Image, View, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import { Images } from '../assets/assets'
+import { Image, View, Text, StyleSheet, ImageBackground } from 'react-native';
+import { scale, moderateScale, verticalScale } from '../components/Scaling';
 
 export default class SplashScreen extends Component {
 
     render() {
-        return <LinearGradient colors={['#4c669f', '#3b5998', '#192f6a']} style={styles.linearGradient}>
-        <Text style={styles.buttonText}>
-          Sign in with Facebook
-        </Text>
-      </LinearGradient>
+        return <ImageBackground source={Images['splash']} style={styles.container}>
+        </ImageBackground>
     };
 }
 
 
 var styles = StyleSheet.create({
-    linearGradient: {
-      flex: 1,
-      paddingLeft: 15,
-      paddingRight: 15,
-      borderRadius: 5
+    container: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center'
     },
-    buttonText: {
-      fontSize: 18,
-      fontFamily: 'Gill Sans',
-      textAlign: 'center',
-      margin: 10,
-      color: '#ffffff',
-      backgroundColor: 'transparent',
+
+    image: {
+        flex: 1, 
+        height: scale(50),
+        width: scale(250),
     },
-  });
+});
