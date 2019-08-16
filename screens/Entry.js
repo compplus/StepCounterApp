@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import { StyleSheet, StatusBar, Text, View, TouchableWithoutFeedback, Platform } from 'react-native';
+import { SafeAreaView, StyleSheet, StatusBar, Text, View, TouchableWithoutFeedback, Platform } from 'react-native';
 import { please, L_, not, gentle_calmm, mark, S } from 'camarche'
+import { scale, moderateScale, verticalScale } from '../components/Scaling';
 
 import { logged_in } from '../api'
 import { Header } from 'react-native-elements'
@@ -65,15 +66,7 @@ export default gentle_calmm(class Entry extends Component {
 		let isMainSon = (screenName == 'Info') || (screenName == 'Awards') || (screenName == 'Map') || (screenName == 'Analysis') || (screenName == 'Setting')
 
 		return (
-			<SideMenu
-				isOpen={false}
-				disableGestures={true}
-				//menu={<Menu screenTitle={screenTitle} selected={screenName} onItemSelected={this.onMenuItemSelected} />}
-				//isOpen={this.state.isOpen}
-				//onChange={isOpen => this.updateMenuState(isOpen)}
-			>
-				<View style={styles.container}>
-
+			<View style={styles.container}>
 					<Header
 						containerStyle={styles.header}
 						backgroundColor='black'
@@ -98,7 +91,7 @@ export default gentle_calmm(class Entry extends Component {
 						}}
 						centerComponent={{ text: screenTitle[screenName], style: { color: '#fff', fontWeight: 'bold', } }}
 						rightComponent={{ text: 'Log out', style: { color: '#fff', marginRight: 5, }, onPress: this.back }}
-						barStyle="light-content"
+						statusBarProps={{ barStyle: 'light-content', backgroundColor: '#004D40' }}
 					/>
 
 					<ActiveScreen go={this.go} />
@@ -114,8 +107,7 @@ export default gentle_calmm(class Entry extends Component {
 						/>
 					</View>
 
-				</View>
-			</SideMenu>
+			</View>
 		)
 	}
 })
@@ -127,7 +119,7 @@ const styles = StyleSheet.create({
 	},
 	header: {
 		borderBottomWidth: 0,
-		marginTop: Platform.OS === 'ios' ? 0 : - 30,
+		marginTop: Platform.OS === 'ios' ? 0 : -30,
 		backgroundColor: '#004D40',
 	},
 	tabContainer: {
@@ -145,3 +137,11 @@ var only_key = x => Object.keys(x)[0]
 var tab_of = tab_name => Object.values(tabs.filter(x => only_key(x) === tab_name)[0])[0]
 var tab_names = tabs.map(only_key)
 var tab_name_index = tab_name => tab_names.indexOf(tab_name)
+
+{/*<SideMenu
+				isOpen={false}
+				disableGestures={true}
+				//menu={<Menu screenTitle={screenTitle} selected={screenName} onItemSelected={this.onMenuItemSelected} />}
+				//isOpen={this.state.isOpen}
+				//onChange={isOpen => this.updateMenuState(isOpen)}
+			>*/}

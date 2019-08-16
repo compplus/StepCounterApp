@@ -65,12 +65,12 @@ export default class App extends Component{
 			( screen_name = this.state.screen
 			, ActiveScreen = screens [screen_name]
 			) =>
-			<SafeAreaView style={styles.container}>
+			<View style={styles.container}>
 				<ActiveScreen
 					EntryScreen={this.state.EntryScreen}//for Entry
 					go={this.go}
 				/>
-			</SafeAreaView> )
+			</View> )
 		:
 			<AppLoading
 				startAsync={ load }
