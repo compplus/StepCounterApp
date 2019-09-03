@@ -1,0 +1,167 @@
+import { Dimensions, StyleSheet, Text, View,  KeyboardAvoidingView, TouchableOpacity, ScrollView} from 'react-native'
+import { Dropdown } from 'react-native-material-dropdown'
+import { TextField } from 'react-native-material-textfield'
+import { Avatar } from 'react-native-elements'
+import SearchableDropdown from 'react-native-searchable-dropdown'
+
+import { L } from 'camarche/core'
+import { pinpoints } from 'camarche/optics'
+import { belief, please, L_, mark } from 'camarche/faith'
+import { calmm } from 'camarche/calmm'
+import { as, variant_name_ } from 'camarche/adt'
+import { as_to } from '~/project/aux'
+
+import { nav, profile_view } from '~/project/types'
+import { user, category, gender } from '~/project/types'
+import { location_state, dimensions_state } from '~/project/state'
+
+var { height } = Dimensions .get ('window')
+
+var styles = {
+	container: {
+		backgroundColor: '#212121',
+		flex: 1,
+		flexDirection: 'column',
+		justifyContent: 'center',
+		alignContent: 'stretch',
+		height: height/4 - 20,
+		shadowOffset: { width: 5,  height: 5 },
+		shadowColor: '#B0BEC5',
+		shadowOpacity: 1.0 },
+	avatar: {
+		flex: 1,
+		flexDirection: 'row',
+		marginTop: 20,
+		padding: 10,
+		justifyContent: 'center',
+		alignContent: 'center' },
+	username_box: {
+		flex: 1,
+		flexDirection: 'row',
+		marginTop: 10,
+		justifyContent: 'center',
+		alignContent: 'stretch' },
+	username: {
+		color: '#FFFFFF',
+		flexDirection: 'row',
+		fontSize: 25,
+		fontFamily: 'Gill Sans',
+		justifyContent: 'center',
+		alignContent: 'center',
+		marginTop: 15 },
+	wrapper: {
+		flex: 1,
+		flexDirection: 'column',
+		backgroundColor:'#EFEFF4',
+		justifyContent: 'center', 
+		alignContent: 'stretch' },
+	buttonContainer: {
+		marginTop: 20,
+		marginBottom: 20,
+		backgroundColor: 'rgba(0,51,51,1)',
+		paddingVertical: 15,
+		borderRadius: 7 },
+	buttonText: {
+		textAlign: 'center',
+		color: '#FFFFFF',
+		fontWeight: '400',
+		fontSize: 17,
+		fontFamily: 'Gill Sans' },
+	disclaimer: {
+		paddingTop: 20,
+		fontSize: 14,
+		color: 'grey' },
+	titleText: {
+		textAlign: 'left' ,
+		color: 'rgba(0,51,51,1)',
+		fontSize: 25,
+		fontWeight: '400',
+		fontFamily: 'Gill Sans' },
+	department_input: {
+		padding: 12,
+		borderWidth: 1,
+		borderColor: '#ccc',
+		borderRadius: 0 },
+	department_item: {
+		padding: 10,
+		marginTop: 0,
+		backgroundColor: 'white',
+		borderColor: '#bbb',
+		borderWidth: 0,
+		borderRadius: 0 },
+	department_box: {
+		padding: 0 },
+	department_text: {
+		color: 'black' },
+	department_items_box: {
+		maxHeight: 150 } }
+
+
+var categories = pinpoints (L .values, variant_name_) (category)
+var genders = pinpoints (L .values, variant_name_) (gender)
+var departments = require ('./data-departments.json')
+var faculties = require ('./data-faculties.json')
+
+var unbound_user_state = belief (as_to (nav) (profile_view) .unbound_user) (location_state)
+
+var faculty_state = belief (as (user) .faculty) (unbound_user_state)
+var department_state = belief (as (user) .department) (unbound_user_state)
+var category_state = belief (as (user) .category) (unbound_user_state)
+var first_name_state = belief (as (user) .first_name) (unbound_user_state)
+var last_name_state = belief (as (user) .last_name) (unbound_user_state)
+var gender_state = belief (as (user) .gender) (unbound_user_state)
+var age_state = belief (as (user) .age) (unbound_user_state)
+var height_state = belief (as (user) .height) (unbound_user_state)
+var weight_state = belief (as (user) .weight) (unbound_user_state)
+
+export default calmm (_ =>
+	<KeyboardAvoidingView behavior="padding" style={styles .wrapper}>
+		<ScrollView style={{ flex: 1 }}>
+			{/*<View style={styles .container}>
+				<View style={styles .avatar}>
+					<Avatar rounded size={100} icon={{name: 'user', type: 'font-awesome'}} />
+					</View>
+				<View style={styles .username_box}>
+					<Text style={styles.username}>Username</Text>
+					</View>
+				</View>*/}
+			<View style={{ paddingHorizontal: 50 }}> 
+				<Dropdown
+					label="Faculty"
+					data={faculties}
+					onChangeText={_faculty => {;please (L_ .set (_faculty)) (faculty_state)}} />
+				<SearchableDropdown
+					items={departments} onItemSelect={_department => {;please (L_ .set (_department)) (department_state)}} 
+					itemStyle={styles .department_item} itemsContainerStyle={styles .department_items_box}
+					textInputStyle={styles .department_input} itemTextStyle={styles .department_text}
+					containerStyle={styles .department_box}
+					placeholder="Department" placeholderTextColor="grey"
+					resetValue={false} underlineColorAndroid="transparent" />
+				<Dropdown
+					label="Category" data={categories}
+					onChangeText={_category => {;please (L_ .set (_category)) (category_state)}} />
+				<Text style={styles .disclaimer}>(To improve the accuracy of the data, please provide the following biometric information)</Text>
+				<Dropdown
+					label="Gender" data={genders}
+					onChangeText={_genders => {;please (L_ .set (_genders)) (gender_state)}} />
+				<TextField
+					label="First Name" value={mark (first_name_state)}
+					onChangeText={_firstname => {;please (L_ .set (_firstname)) (first_name_state)}} />
+				<TextField
+					label="Last Name" value={mark (last_name_state)}
+					onChangeText={_lastname => {;please (L_ .set (_lastname)) (last_name_state)}} />
+				<TextField
+					label="Age" value={mark (age_state)}
+					onChangeText={_age => {;please (L_ .set (_age)) (age_state)}} />
+				<TextField
+					label="Height (cm)" value={mark (height_state)}
+					onChangeText={_height => {;please (L_ .set (_height)) (height_state)}} />
+				<TextField
+					label="Weight (kg)" value={mark (weight_state)}
+					onChangeText={_weight => {;please (L_ .set (_weight)) (weight_state)}} />
+				<TouchableOpacity onPress={()=>null} style={styles .buttonContainer}>
+					<Text style={styles .buttonText}>SAVE</Text>
+					</TouchableOpacity>
+				</View>
+			</ScrollView>
+		</KeyboardAvoidingView> )

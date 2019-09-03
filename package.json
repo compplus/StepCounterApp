@@ -3,56 +3,65 @@
 	"version": "0.0.1",
 	"private": true,
 	"devDependencies": {
-		"exp": "53.1.0",
-		"react-test-renderer": "16.0.0-alpha.12",
-		"schedule": "^0.4.0"
+		"@babel/core": "^7.5.5",
+		"@babel/runtime": "^7.5.5",
+		"babel-plugin-jsx-strip-whitespace": "0.0.2",
+		"babel-plugin-macros": "^2.6.1",
+		"babel-plugin-module-resolver": "^3.2.0",
+		"babel-plugin-react-require": "^3.1.1",
+		"babel-preset-expo": "^5.2.0",
+		"expo-cli": "^3.0.10"
 	},
 	"main": "./node_modules/expo/AppEntry.js",
 	"scripts": {
-		"start": "expo start",
-		"eject": "expo eject",
-		"android": "expo start --android",
-		"ios": "expo start --ios",
-		"test": "jest",
-		"cleanRNSVG": "find ./node_modules -type d -mindepth 2 -name react-native-svg -exec rm -rf {} \\;"
+		"start": "BABEL_ENV=development BROWSER=none expo start --offline",
+		"android": "BABEL_ENV=development BROWSER=none expo start --offline --android --dev",
+		"ios": "BABEL_ENV=development BROWSER=none expo start --offline --ios --dev",
+		"reset": "BABEL_ENV=development BROWSER=none expo r -c --offline --dev",
+		"expo": "expo"
 	},
 	"dependencies": {
-		"@expo/vector-icons": "6.3.1",
-		"@fortawesome/free-solid-svg-icons": "^5.10.1",
-		"camarche": "0.0.28",
-		"expo": "^32.0.0",
-		"expo-react-native-adapter": "^3.0.1",
+		"@expo/vector-icons": "^10.0.3",
+		"camarche": "0.0.87",
+		"expo": "^33.0.7",
 		"partial.lenses": "^14.17.0",
 		"ramda": "^0.26.1",
-		"react": "^16.8.6",
-		"react-dom": "^16.8.6",
-		"react-native": "https://github.com/expo/react-native/archive/sdk-32.0.0.tar.gz",
-		"react-native-chart": "^1.0.8-beta",
+		"react": "16.8.3",
+		"react-native": "https://github.com/expo/react-native/archive/sdk-33.0.0.tar.gz",
 		"react-native-chart-kit": "^3.2.1",
-		"react-native-circular-progress": "^1.1.0",
 		"react-native-dialog-input": "^1.0.7",
 		"react-native-elements": "^1.0.0",
-		"react-native-geolocation-service": "^2.0.0",
 		"react-native-input-validation": "^1.2.2",
-		"react-native-linear-gradient": "^2.5.3",
-		"react-native-maps": "^0.22.1",
+		"react-native-maps": "^0.24.2",
 		"react-native-material-dropdown": "^0.11.1",
 		"react-native-material-textfield": "^0.12.0",
-		"react-native-popup": "^0.6.1",
 		"react-native-popup-dialog": "^0.18.3",
-		"react-native-pure-chart": "^0.0.24",
-		"react-native-remote-svg": "^1.3.0",
-		"react-native-router-flux": "^4.0.6",
 		"react-native-searchable-dropdown": "^1.0.6",
 		"react-native-settings-list": "^1.8.0",
 		"react-native-side-menu": "^1.1.3",
-		"react-native-swipe-gestures": "^1.0.3",
-		"react-native-swiper": "^1.5.13",
-		"react-native-vector-icons": "^6.2.0",
-		"react-navigation": "^3.3.2",
+		"react-native-vector-icons": "^6.6.0",
+		"s-js": "^0.4.9",
 		"whatwg-fetch": "^2.0.4"
 	},
-	"resolutions": {
-		"react-native-svg": "8.0.11"
+	"babel": {
+		"presets": [
+			"expo"
+		],
+		"plugins": [
+			"camarche/adt-babel",
+			"react-require",
+			[
+				"module-resolver",
+				{
+					"alias": {
+						"~": "./src",
+						"__": "./",
+						"react-native-vector-icons": "@expo/vector-icons"
+					}
+				}
+			],
+			"jsx-strip-whitespace",
+			"macros"
+		]
 	}
 }
