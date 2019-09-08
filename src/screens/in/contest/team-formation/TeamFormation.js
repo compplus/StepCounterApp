@@ -12,7 +12,7 @@ import { as } from 'camarche/adt'
 import { as_to } from '~/project/aux'
 
 import { nav, contest_view } from '~/project/types'
-import { team } from '~/project/types'
+import { user, team } from '~/project/types'
 import { location_state, team_state, user_state } from '~/project/state'
 
 var styles = {
@@ -43,7 +43,7 @@ var captain_state = belief (as (team) .captain) (team_state)
 var members_state = belief (as (team) .members) (team_state)
 var invitations_state = belief (as (team) .invitations) (team_state)
 
-var my_team_yes_state = belief (by (_ => equals (mark (user_state)))) (captain_state)
+var my_team_yes_state = belief ([ as (user) .id, by (_ => equals (pinpoint (as (user) .id) (mark (user_state)))) ]) (captain_state)
 
 export default calmm (_ =>
 	<View style={styles .container}>

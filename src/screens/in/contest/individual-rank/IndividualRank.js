@@ -4,7 +4,7 @@ import { RankList } from '~/components'
 import { K } from 'camarche/core'
 import { belief, mark } from 'camarche/faith'
 import { calmm } from 'camarche/calmm'
-import { _state } from '~/project/state'
+import { user_rank_state } from '~/project/aux'
 
 var styles = {
 	container: {
@@ -58,9 +58,7 @@ var styles = {
 		color: 'white',
 		fontSize: 18 } }
 
-var rank_state = belief (K (100)) (_state)
-var steps_state = belief (K (1000)) (_state)
-
+var steps_state = belief (pinpoints (L .elems, 'steps')) (user_rank_state)
 
 export default calmm (_ =>
 	suppose (

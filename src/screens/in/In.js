@@ -8,9 +8,8 @@ import { R, L, K } from 'camarche/core'
 import { pinpoint, pinpoints, match, case_ } from 'camarche/optics'
 import { belief, please, L_, mark } from 'camarche/faith'
 import { calmm } from 'camarche/calmm'
-import { lift_defined } from 'camarche/calling'
 import { as_in } from 'camarche/adt'
-import { as_string, as_to, as_into, nested_path_, path_screen_ } from '~/project/aux'
+import { display_, as_to, as_into, nested_path_, path_screen_ } from '~/project/aux'
 
 import screen_ from '~/project/screen_'
 import { nav, in_view, in_features, maybe } from '~/project/types'
@@ -38,7 +37,6 @@ var styles = {
 
 
 
-var display_ = lift_defined (pinpoint (L .modify ([ as_string, L .first ]) (R .toUpper), L .replaces ('_view') (''), L .replaces ('_') (' ')))
 var tab_index = _ => pinpoint
 	( L .elems
 	, L .when (_tab => L .isDefined (as_into (nav) (_tab)) (mark (location_state)))

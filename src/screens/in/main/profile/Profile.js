@@ -1,19 +1,18 @@
-import { Dimensions, StyleSheet, Text, View,  KeyboardAvoidingView, TouchableOpacity, ScrollView} from 'react-native'
+import { ActivityIndicator, Dimensions, Text, View, KeyboardAvoidingView, TouchableOpacity, ScrollView } from 'react-native'
 import { Dropdown } from 'react-native-material-dropdown'
 import { TextField } from 'react-native-material-textfield'
 import { Avatar } from 'react-native-elements'
-import SearchableDropdown from 'react-native-searchable-dropdown'
 
-import { L } from 'camarche/core'
+import { not, suppose, L } from 'camarche/core'
 import { pinpoints } from 'camarche/optics'
 import { belief, please, L_, mark } from 'camarche/faith'
 import { calmm } from 'camarche/calmm'
 import { as, variant_name_ } from 'camarche/adt'
-import { as_to } from '~/project/aux'
+import { as_to, name_variant_, deserialize_, display_ } from '~/project/aux'
 
 import { nav, profile_view } from '~/project/types'
 import { user, category, gender } from '~/project/types'
-import { location_state, dimensions_state } from '~/project/state'
+import { location_state, dimensions_state, local_state } from '~/project/state'
 
 var { height } = Dimensions .get ('window')
 
@@ -97,12 +96,14 @@ var styles = {
 		maxHeight: 150 } }
 
 
-var categories = pinpoints (L .values, variant_name_) (category)
-var genders = pinpoints (L .values, variant_name_) (gender)
+var categories = pinpoints (L .values, variant_name_, display_, value => ({ value })) (category)
+var genders = pinpoints (L .values, variant_name_, display_, value => ({ value })) (gender)
 var departments = require ('./data-departments.json')
 var faculties = require ('./data-faculties.json')
 
-var unbound_user_state = belief (as_to (nav) (profile_view) .unbound_user) (location_state)
+var profile_state = belief (as_to (nav) (profile_view)) (location_state)
+var unbound_user_state = belief (as (profile_view) .unbound_user) (profile_state)
+var committing_yes_state = belief (as (profile_view) .committing_yes) (profile_state)
 
 var faculty_state = belief (as (user) .faculty) (unbound_user_state)
 var department_state = belief (as (user) .department) (unbound_user_state)
@@ -114,7 +115,13 @@ var age_state = belief (as (user) .age) (unbound_user_state)
 var height_state = belief (as (user) .height) (unbound_user_state)
 var weight_state = belief (as (user) .weight) (unbound_user_state)
 
+
+//TODO: validation
+
 export default calmm (_ =>
+	suppose (
+	( commit_profile = _ => {;please (L_ .set (true)) (committing_yes_state)}
+	) =>
 	<KeyboardAvoidingView behavior="padding" style={styles .wrapper}>
 		<ScrollView style={{ flex: 1 }}>
 			{/*<View style={styles .container}>
@@ -127,23 +134,22 @@ export default calmm (_ =>
 				</View>*/}
 			<View style={{ paddingHorizontal: 50 }}> 
 				<Dropdown
-					label="Faculty"
-					data={faculties}
+					label="Faculty" data={faculties}
+					value={pinpoint (L .valueOr ('')) (mark (faculty_state))}
 					onChangeText={_faculty => {;please (L_ .set (_faculty)) (faculty_state)}} />
-				<SearchableDropdown
-					items={departments} onItemSelect={_department => {;please (L_ .set (_department)) (department_state)}} 
-					itemStyle={styles .department_item} itemsContainerStyle={styles .department_items_box}
-					textInputStyle={styles .department_input} itemTextStyle={styles .department_text}
-					containerStyle={styles .department_box}
-					placeholder="Department" placeholderTextColor="grey"
-					resetValue={false} underlineColorAndroid="transparent" />
+				<Dropdown
+					label="Department" data={departments}
+					value={pinpoint (L .valueOr ('')) (mark (department_state))}
+					onChangeText={_department => {;please (L_ .set (_department)) (department_state)}} />
 				<Dropdown
 					label="Category" data={categories}
-					onChangeText={_category => {;please (L_ .set (_category)) (category_state)}} />
+					value={pinpoint (L .choice ([ L .when (I), variant_name_, display_ ], L .valueOr (''))) (deserialize_ (category) (mark (category_state))) }
+					onChangeText={_category => {;please (L_ .set (name_variant_ (category) (_category))) (category_state)}} />
 				<Text style={styles .disclaimer}>(To improve the accuracy of the data, please provide the following biometric information)</Text>
 				<Dropdown
 					label="Gender" data={genders}
-					onChangeText={_genders => {;please (L_ .set (_genders)) (gender_state)}} />
+					value={pinpoint (L .choice ([ L .when (I), variant_name_, display_ ], L .valueOr (''))) (deserialize_ (gender) (mark (gender_state))) }
+					onChangeText={_genders => {;please (L_ .set (name_variant_ (gender) (_genders))) (gender_state)}} />
 				<TextField
 					label="First Name" value={mark (first_name_state)}
 					onChangeText={_firstname => {;please (L_ .set (_firstname)) (first_name_state)}} />
@@ -159,9 +165,12 @@ export default calmm (_ =>
 				<TextField
 					label="Weight (kg)" value={mark (weight_state)}
 					onChangeText={_weight => {;please (L_ .set (_weight)) (weight_state)}} />
-				<TouchableOpacity onPress={()=>null} style={styles .buttonContainer}>
+				{ !! not (mark (committing_yes_state)) ?
+				<TouchableOpacity onPress={commit_profile} style={styles .buttonContainer}>
 					<Text style={styles .buttonText}>SAVE</Text>
 					</TouchableOpacity>
+				:
+				<ActivityIndicator style={{ marginTop: 25 }} /> }
 				</View>
 			</ScrollView>
-		</KeyboardAvoidingView> )
+		</KeyboardAvoidingView> ) )

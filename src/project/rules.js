@@ -15,7 +15,7 @@ import api from './api'
 import screen_ from './screen_'
 import { hour_, day_, month_ } from '~/project/domain-aux'
 import { dimensions, step_stat, maybe } from './types'
-import { nav, in_view, main_view, signup_view, login_view } from './types'
+import { nav, in_view, main_view, signup_view, login_view, profile_view } from './types'
 import { location_state, location_nav_state, step_stat_state } from './state'
 import { coord_state, width_state, height_state } from './state'
 
@@ -26,7 +26,7 @@ var debug_network = false
 
 	;S (_ => {
 		if (typeof GLOBAL !== 'undefined') {
-			var globals = { ... global, ... require ('camarche'), ... require ('~/project/aux'), ... require ('~/project/domain-aux'), ... require ('~/project/types'), ... require ('~/project/state') }
+			var globals = { ... global, ... require ('camarche'), ... require ('~/project/aux'), ... require ('~/project/domain-aux'), ... require ('~/project/types'), ... require ('~/project/state'), screen_: require ('~/project/screen_') .default }
 			;for (i in globals) {;GLOBAL [i] = globals [i]} }
 		} )
 
@@ -113,6 +113,7 @@ var debug_network = false
 				L_ .set (maybe .just (in_features (_client, _email, _user, _step_stat, _team)))
 				) (in_features_state ) } ) )
 			.catch (_err => {
+				//TODO: what if fails on nav?
 				;alert (_err .message)
 				;please (L_ .set (false)) (login_committing_yes_state) } ) }
 		} )
@@ -123,6 +124,23 @@ var debug_network = false
 		if (L_ .isDefined (mark (in_client_state))) {
 			;api .merge_step_stat ({ client: show (in_client_state), step_stat: mark (in_step_stat_state) }) } } )
 
+	var profile_state = belief (as_to (nav) (profile_view)) (location_state)
+	var profile_unbound_user_state = belief (as (profile_view) .unbound_user) (profile_state)
+	var profile_committing_yes_state = belief (as (profile_view) .committing_yes) (profile_state)
+	;S (_ => {
+		if (equals (mark (profile_committing_yes_state)) (true)) {
+			var _client = show (in_client_state)
+			;api .update_user ({ client: _client, user: show (profile_unbound_user_state) }) .then (_ =>
+			api .user (_client) )
+			.then (_user => {
+				;please (
+				L .set (as_to (maybe (in_features)) (in_features) .user) (_user)
+				) (in_features_state ) } )
+			.catch (_err => {
+				;alert (_err .message) } )
+			.then (_ => {
+				;please (L_ .set (false)) (profile_committing_yes_state) } ) }
+		} )
 
 	var in_yes_state = belief (L .isDefined (as_to (nav) (in_view))) (location_state)
 	;S (_ => {

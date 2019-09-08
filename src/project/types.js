@@ -38,10 +38,15 @@ var age = data ()
 var height = data ()
 var weight = data ()
 var category = data (
-	( staff, student, alumni, other
+	( staff
+	, student
+	, alumni
+	, other
 	) => category )
 var gender = data (
-	( male, female, other
+	( male
+	, female
+	, other
 	) => gender )
 var time_unit = data (
 	( hour
@@ -77,8 +82,8 @@ var user = data (
 var team = data (
 	( _ =
 	{ _ :- id
-	, captain :- user
-	, members :- list (user)
+	, captain :- mention (user)
+	, members :- list (mention (user))
 	, invitations :- list (email) }
 	) => team )
 
@@ -93,7 +98,7 @@ var settings_view = data (
 	( settings
 	, about ) => settings_view )
 var profile_view = data (
-	( _ = { unbound_user :- user, syncing_yes :- bool }
+	( _ = { unbound_user :- user, committing_yes :- bool }
 	) => profile_view )
 var activity_view = data (
 	( _ =
@@ -145,7 +150,8 @@ var state = data (
 	{ history :- list (nav)
 	, _ :- dimensions
 	, _ :- coord
-	, local :- untyped }
+	, local :- untyped
+	, cache :- untyped }
 	) => state )
 
 

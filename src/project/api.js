@@ -7,6 +7,13 @@ import { pinpoint } from 'camarche/optics'
 import { go, trace, panic } from 'camarche/effects'
 import { faith, belief, please, L_ } from 'camarche/faith'
 
+import { cache_state } from './state'
+import { on_interest_ } from './aux'
+
+
+
+
+
 var backend_url = 'http://ec2-3-19-76-6.us-east-2.compute.amazonaws.com:8080'
 //var backend_url = 'http://localhost:8080'
 
@@ -39,6 +46,9 @@ var _fetch = (endpoint, payload) =>
 
 
 
+
+
+
 var load = _ =>
 	go
 	.then (_ =>
@@ -53,18 +63,30 @@ var signup = ({ email, password }) =>
 	_fetch ('/signup', { email, password, user: {} }) 
 var login = ({ email, password }) =>
 	_fetch ('/login', { email, password })
+var id_user = ({ client, id }) =>
+	_fetch ('/user?' + pinpoint (un (L .querystring)) ({ client, id }))
+	.then (R .tap (_user => {;L_ .set (_user) (id_user_state_ (id))}))
+var id_team = ({ client, id }) =>
+	_fetch ('/team?' + pinpoint (un (L .querystring)) ({ client, id }))
+	.then (R .tap (_team => {;L_ .set (_team) (id_team_state_ (id))}))
+var user_rank = client =>
+	_fetch ('/user-ranks?' + pinpoint (un (L .querystring)) ({ client, offset: 0 }))
+	.then (R .tap (_user_rank => {;L_ .set (_user_rank) (user_rank_state)}))
+var team_rank = client =>
+	_fetch ('/team-ranks?' + pinpoint (un (L .querystring)) ({ client, offset: 0 }))
+	.then (R .tap (_team_rank => {;L_ .set (_team_rank) (team_rank_state)}))
 var user = client =>
 	_fetch ('/client/user?' + pinpoint (un (L .querystring)) ({ client }))
-var update_user = ({ client, step_stat }) =>
-	_fetch ('/client/step-stat', { client, step_stat })
+var update_user = ({ client, user }) =>
+	_fetch ('/client/user', { client, user })
+var team = client =>
+	_fetch ('/client/team?' + pinpoint (un (L .querystring)) ({ client }))
 var email = ({ client, id }) =>
 	_fetch ('/client/email?' + pinpoint (un (L .querystring)) ({ client, id }))
 var step_stat = client =>
 	_fetch ('/client/step-stat?' + pinpoint (un (L .querystring)) ({ client }))
 var merge_step_stat = ({ client, step_stat }) =>
 	_fetch ('/client/step-stat', { client, step_stat })
-var team = client =>
-	_fetch ('/client/team?' + pinpoint (un (L .querystring)) ({ client }))
 var invites = client =>
 	_fetch ('/client/invite?' + pinpoint (un (L .querystring)) ({ client }))
 var invite = ({ client, email }) =>
@@ -76,4 +98,27 @@ var accept = ({ client, email }) =>
 
 // TODO: adt serialization/deserialization facilities
 
-export default { load, signup, login, user, update_user, email, step_stat, merge_step_stat, team, invites, invite, accept }
+
+
+
+var id_user_state_ = _id => belief ([ 'user', _id, on_interest_ (_ => user ({ client: show (client_state), id: _id })) ]) (cache_state)
+var id_team_state_ = _id => belief ([ 'team', _id, on_interest_ (_ => team ({ client: show (client_state), id: _id })) ]) (cache_state)
+var user_rank_state = belief ([ 'user-rank', on_interest_ (_ => user_rank (show (client_state))) ]) (cache_state)
+var team_rank_state = belief ([ 'team-rank', on_interest_ (_ => team_rank (show (client_state))) ]) (cache_state)
+
+
+
+export default
+{ load, signup, login
+, id_user, id_team
+, user_rank, team_rank
+, user, update_user
+, team, email
+, step_stat, merge_step_stat
+, invites, invite, accept
+
+
+, id_user_state_
+, id_team_state_
+, user_rank_state
+, team_rank_state }

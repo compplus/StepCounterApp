@@ -1,6 +1,7 @@
 let { by, I, K, L, R, S, equals, not, suppose } = require ('camarche/core')
 let { pinpoint, pinpoints, as_point } = require ('camarche/optics')
 let { satisfy } = require ('camarche/modules')
+let { lift_defined } = require ('camarche/calling')
 let { L_ } = require ('camarche/faith')
 let { T } = require ('camarche/calling')
 let { jinx, panic_on } = require ('camarche/effects')
@@ -109,6 +110,17 @@ suppose (
 
 , last_n = n => memoize (signal => S .root (_ => S (([ _, ...last_n_less_one ]) => [ ...last_n_less_one, signal () ], (new Array (n)) )))
 
+, on_interest_ = _fn => 
+	suppose (
+	( interested_yes = false
+	) =>
+	by (_ =>
+	suppose (
+	( $__gain_interest = jinx (_ => {if (not (interested_yes)) {;_fn () ;interested_yes = true}})
+	, $__lose_interest = jinx (_ => {;S .cleanup (lost_interest_yes => {if (lost_interest_yes) {;interested_yes = false}})})
+	) =>
+	I ) ) )
+
 , promise_ = fn => new Promise (fn)
 , promise_on_ = _ =>
 	suppose (
@@ -119,6 +131,19 @@ suppose (
 	[ promise, on_, err_ ] )
 
 
+, display_ = lift_defined (pinpoint (L .modify ([ as_string, L .first ]) (R .toUpper), L .replaces ('_view') (''), L .replaces ('_') (' ')))
+
+, name_variant_ = _type => name =>
+	pinpoint (
+	pinpoint (R .toLower, L .replaces (' ') ('_')) (name)
+	) (_type )
+, deserialize_ = _type => lift_defined (_val =>
+	suppose (
+	( _variant_name = pinpoint (L .keyed, L .singleton, ([ _name, _ ]) => _name, L .prefix (-1), as_string) (_val)
+	, _variant = pinpoint (_variant_name) (_type)
+	) =>
+	pinpoint (L .values, un (as_in (_variant))) (_val) ) )
+
 ) =>
 
 satisfy (module
@@ -128,9 +153,13 @@ satisfy (module
 , as_complete, complete_
 , as_string
 , last_n
+, on_interest_
 
 , promise_, promise_on_
 , as_to, as_into
 , l_undefined
-, nested_path_, nav_path_, path_screen_ }
+, nested_path_, nav_path_, path_screen_
+
+, display_
+, name_variant_, deserialize_ }
 } ) )

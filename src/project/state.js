@@ -54,6 +54,8 @@ var coord_state = belief (as (state) .coord) (_state)
 
 var local_state = belief (as (state) .local) (_state)
 
+var cache_state = belief (as (state) .cache) (_state)
+
 
 export
 { _state
@@ -75,5 +77,7 @@ export
 , coord_state
 
 , local_state
+
+, cache_state
 
 , undo_history }
