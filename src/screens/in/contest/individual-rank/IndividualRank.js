@@ -1,16 +1,16 @@
 import { Text, View, TouchableWithoutFeedback, Image } from 'react-native'
 import { RankList } from '~/components'
 
-import { K } from 'camarche/core'
+import { suppose, L, K } from 'camarche/core'
+import { pinpoints } from 'camarche/optics'
 import { belief, mark } from 'camarche/faith'
 import { calmm } from 'camarche/calmm'
-import { user_rank_state } from '~/project/aux'
+import { user_ranking_state } from '~/project/api'
 
 var styles = {
 	container: {
 		flex: 1,
 		alignItems: 'stretch',
-		flexDirection: 'column',
 		backgroundColor: '#EEEEEE' },
 	individual: {
 		flex: 1.5,
@@ -23,68 +23,67 @@ var styles = {
 		backgroundColor: '#212121',
 		alignItems: 'center',
 		justifyContent: 'center' },
-	titleBox: {
-		flex: 0.5,
+	title_box: {
+		marginHorizontal: 10,
+		height: 50,
+		flexShrink: 0,
+		alignSelf: 'stretch',
 		backgroundColor: '#EBF6F7',
 		flexDirection: 'row',
-		justifyContent: 'space-between', },
-	Rank: {
-		flex: 1,
-		padding: 15,
+		alignItems: 'center' },
+	title_rank: {
+		position: 'absolute',
+		left: 10,
 		textAlign: 'left',
 		fontFamily: 'Gill Sans' },
-	ID: {
-		flex: 6,
+	title_id: {
+		position: 'absolute',
+		left: 60,
 		textAlign: 'left',
-		padding: 15,
 		fontFamily: 'Gill Sans' },
-	Steps: {
-		flex: 1,
-		padding: 15,
+	title_steps: {
+		position: 'absolute',
+		right: 10,
 		textAlign: 'right',
 		fontFamily: 'Gill Sans' },
+	user_info: {
+		color: 'white',
+		fontFamily: 'Gill Sans',
+		fontSize: 18 },
 	rankList: {
 		flex: 6, },
 	indiIcon: {
 		width: 65,
 		height: 65,
-		alignSelf: 'center', },
-	rank: {
-		fontFamily: 'Gill Sans',
-		color: 'white',
-		fontSize: 18 },
-	steps: {
-		fontFamily: 'Gill Sans',
-		color: 'white',
-		fontSize: 18 } }
+		alignSelf: 'center', } }
 
-var steps_state = belief (pinpoints (L .elems, 'steps')) (user_rank_state)
+var steps_state = belief (pinpoints (L .elems, 'steps')) (user_ranking_state)
 
 export default calmm (_ =>
 	suppose (
-	( _rank = mark (rank_state)
+	( _ranking = mark (user_ranking_state)
 	, _steps = mark (steps_state)
 	) =>
-	<View style={styles.container}>
+	<View style={styles .container}>
 		<View style={styles.individual}>
 			<View style={styles.indiItemWrapper}>
 				<Image
 					style={styles.indiIcon}
 					source={require ('__/assets/contest_page/myrank.png')} />
-				<Text style={styles.rank}>Your rank: { _rank }</Text>
+				<Text style={styles .user_info}>Your rank: {/* _rank */}</Text>
 				</View>
 			<View style={styles.indiItemWrapper}>
 				<Image
 					style={styles.indiIcon}
 					source={require ('__/assets/contest_page/mysteps.png')} />
-				<Text style={styles .steps}>Your steps: { _steps }</Text>
+				<Text style={styles .user_info}>Your steps: {/* _steps */}</Text>
 				</View>
 			</View>
-		<View style={styles.titleBox}>
-			<Text style={styles.Rank}>Rank</Text>
-			<Text style={styles.ID}>Username</Text>
-			<Text style={styles.Steps}>Steps</Text>
+		<View style={styles .title_box}>
+			<Text style={styles .title_rank}>Rank</Text>
+			<Text style={styles .title_id}>Name</Text>
+			<Text style={styles .title_steps}>Steps</Text>
 			</View>
 		<View style={styles.rankList}>
-			<RankList />
+			<RankList ranking={_ranking} />
 			</View> </View> ) )

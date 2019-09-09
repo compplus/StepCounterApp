@@ -1,77 +1,52 @@
-import { FlatList, Text, View} from 'react-native'
+import { FlatList, Text, View } from 'react-native'
+import FlatListItem from './FlatListItem'
 
 var styles = {
 	listContainer:{
 		flex: 1 },
 	listItem: {
-		padding: 10,
+		marginHorizontal: 10,
+		height: 50,
+		flexShrink: 0,
+		alignSelf: 'stretch',
 		backgroundColor: '#eee',
 		flexDirection: 'row',
-		justifyContent: 'space-between' },
+		alignItems: 'center' },
 	rank: {
-		flex:1,
-		padding:10,
-		alignSelf: 'flex-start',
-		fontFamily: 'Gill Sans' },
-	ID:{
-		flex:6,
+		position: 'absolute',
+		left: 10,
 		textAlign: 'left',
-		padding:10,
 		fontFamily: 'Gill Sans' },
-	Steps:{
-		flex:4,
-		padding:10,
+	id: {
+		position: 'absolute',
+		left: 60,
+		textAlign: 'left',
+		fontFamily: 'Gill Sans' },
+	steps: {
+		position: 'absolute',
+		right: 10,
 		textAlign: 'right',
 		fontFamily: 'Gill Sans' },
 	separator: {
 		height: 1,
 		width: '97%',
 		backgroundColor: '#CED0CE',
-		marginLeft: '3%' }
-}
+		marginLeft: '3%' } }
 
-var flatListData = [
-	{
-		Rank: '1',
-		ID: 'HKU',
-		Steps: '99,999,999,999'
-	},
-	{
-		Rank: '2',
-		ID: 'CU',
-		Steps: '10,000'
-	},
-	{
-		Rank: '3',
-		ID: 'HKUST',
-		Steps: '5,000'
-	},
-	{
-		Rank: '4',
-		ID: 'PolyU',
-		Steps: '2,500'
-	},
-	{
-		Rank: '5',
-		ID: 'BU',
-		Steps: '1,250'
-	}
-]
-
-var ListItem = ({ rank, id, steps }) =>
+var ListItem = FlatListItem (({ rank, name, step_count }) =>
 	<View style={styles .listItem}>
 		<Text style={styles .rank}>{ rank }</Text>
-		<Text style={styles .id}>{ id }</Text>
-		<Text style={styles .steps}>{ steps }</Text>
-		</View>
+		<Text style={styles .id}>{ name }</Text>
+		<Text style={styles .steps}>{ step_count }</Text>
+		</View> )
 
 var renderSeparator = _ => 
 	<View style={styles .separator} />
 
-export default _ =>
+export default ({ ranking }) =>
     <FlatList
 	    style={styles .listContainer}
-	    data={flatListData}
+	    data={ranking}
 	    renderItem={ListItem}
 	    keyExtractor={({ rank }) => rank}
 	    ItemSeparatorComponent={renderSeparator} />

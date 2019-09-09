@@ -2,13 +2,13 @@ import Ionicons from 'react-native-vector-icons/Ionicons'
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
 import * as Font from 'expo-font'
 
-import { L, K, suppose, equals } from 'camarche/core'
-import { pinpoint } from 'camarche/optics'
+import { R, L, K, suppose, equals } from 'camarche/core'
+import { pinpoint, un } from 'camarche/optics'
 import { go, trace, panic } from 'camarche/effects'
-import { faith, belief, please, L_ } from 'camarche/faith'
+import { faith, belief, show, please, L_ } from 'camarche/faith'
 
-import { cache_state } from './state'
-import { on_interest_ } from './aux'
+import { step_stat_state, user_state, team_state, client_state, cache_state } from './state'
+import { deserialize, on_interest_ } from './aux'
 
 
 
@@ -31,18 +31,20 @@ var _fetch = (endpoint, payload) =>
 				, 'Content-Type': 'application/json' }
 			, body: JSON .stringify (x) }) )
 		) (
-		payload)
+		serialize (payload) )
 	) =>
 	fetch (backend_url + endpoint, _payload)
 	.then (_req => _req .json ())
+	.catch (_err => ({ error: _err }))
 	.then (R .tap (_res => {
 		if (log_fetches_yes) {
-			;trace (endpoint, payload, _res ) } } ) )
+			;trace (endpoint, serialize (payload), _res) } } ) )
 	.then (
 		pinpoint (
 		L .choice
 		( [ 'error', L .when (L_ .isDefined), panic ]
-		, 'response' ) ) ) )
+		, 'response' ) ) )
+	.then (deserialize) )
 
 
 
@@ -59,66 +61,86 @@ var load = _ =>
 			, 'AntDesign': require ('__/assets/fonts/anticon.ttf') } )
 		, Font .loadAsync (MaterialIcons .font)
 		, Font .loadAsync (Ionicons .font) ] ) )
-var signup = ({ email, password }) =>
-	_fetch ('/signup', { email, password, user: {} }) 
+var signup = ({ email, password, user }) =>
+	_fetch ('/signup', { email, password, user }) 
 var login = ({ email, password }) =>
 	_fetch ('/login', { email, password })
-var id_user = ({ client, id }) =>
-	_fetch ('/user?' + pinpoint (un (L .querystring)) ({ client, id }))
-	.then (R .tap (_user => {;L_ .set (_user) (id_user_state_ (id))}))
-var id_team = ({ client, id }) =>
-	_fetch ('/team?' + pinpoint (un (L .querystring)) ({ client, id }))
-	.then (R .tap (_team => {;L_ .set (_team) (id_team_state_ (id))}))
-var user_rank = client =>
-	_fetch ('/user-ranks?' + pinpoint (un (L .querystring)) ({ client, offset: 0 }))
-	.then (R .tap (_user_rank => {;L_ .set (_user_rank) (user_rank_state)}))
-var team_rank = client =>
-	_fetch ('/team-ranks?' + pinpoint (un (L .querystring)) ({ client, offset: 0 }))
-	.then (R .tap (_team_rank => {;L_ .set (_team_rank) (team_rank_state)}))
-var user = client =>
-	_fetch ('/client/user?' + pinpoint (un (L .querystring)) ({ client }))
-var update_user = ({ client, user }) =>
-	_fetch ('/client/user', { client, user })
-var team = client =>
-	_fetch ('/client/team?' + pinpoint (un (L .querystring)) ({ client }))
-var email = ({ client, id }) =>
-	_fetch ('/client/email?' + pinpoint (un (L .querystring)) ({ client, id }))
-var step_stat = client =>
-	_fetch ('/client/step-stat?' + pinpoint (un (L .querystring)) ({ client }))
-var merge_step_stat = ({ client, step_stat }) =>
-	_fetch ('/client/step-stat', { client, step_stat })
-var invites = client =>
-	_fetch ('/client/invite?' + pinpoint (un (L .querystring)) ({ client }))
-var invite = ({ client, email }) =>
-	_fetch ('/client/invite', { client, email })
-var accept = ({ client, email }) =>
-	_fetch ('/client/accept', { client, email })
+var id_email = ({ client: _client, id }) =>
+	_fetch ('/email?' + pinpoint (un (L .querystring)) ({ client: _client || show (client_state), id }))
+	.then (R .tap (_email => {;please (L_ .set (_email)) (id_email_state_ (id))}))
+var id_user = ({ client: _client, id }) =>
+	_fetch ('/user?' + pinpoint (un (L .querystring)) ({ client: _client || show (client_state), id }))
+	.then (R .tap (_user => {;please (L_ .set (_user)) (id_user_state_ (id))}))
+var id_team = ({ client: _client, id }) =>
+	_fetch ('/team?' + pinpoint (un (L .querystring)) ({ client: _client || show (client_state), id }))
+	.then (R .tap (_team => {;please (L_ .set (_team)) (id_team_state_ (id))}))
+var user_ranking = ({ client: _client }) =>
+	_fetch ('/user-ranking?' + pinpoint (un (L .querystring)) ({ client: _client || show (client_state), offset: 0 }))
+	.then (R .tap (_user_ranking => {;please (L_ .set (_user_ranking)) (user_ranking_state)}))
+var team_ranking = ({ client: _client }) =>
+	_fetch ('/team-ranking?' + pinpoint (un (L .querystring)) ({ client: _client || show (client_state), offset: 0 }))
+	.then (R .tap (_team_ranking => {;please (L_ .set (_team_ranking)) (team_ranking_state)}))
+var user = ({ client: _client }) =>
+	_fetch ('/client/user?' + pinpoint (un (L .querystring)) ({ client: _client || show (client_state) }))
+	.then (R .tap (_user => {;please (L_ .set (_user)) (user_state) }))
+var team = ({ client: _client }) =>
+	_fetch ('/client/team?' + pinpoint (un (L .querystring)) ({ client: _client || show (client_state) }))
+	.then (R .tap (_team => {;please (L_ .set (_team)) (team_state) }))
+var step_stat = ({ client: _client }) =>
+	_fetch ('/client/step-stat?' + pinpoint (un (L .querystring)) ({ client: _client || show (client_state) }))
+	.then (R .tap (_step_stat => {;please (L_ .set (_step_stat)) (step_stat_state) }))
+var update_user = ({ client: _client, user }) =>
+	_fetch ('/client/user', { client: _client || show (client_state), user })
+var invites = ({ client: _client }) =>
+	_fetch ('/client/invite?' + pinpoint (un (L .querystring)) ({ client: _client || show (client_state) }))
+	.then (R .tap (_invites => {;please (L_ .set (_invites)) (invites_state)}))
+var invite = ({ client: _client, email }) =>
+	_fetch ('/client/invite', { client: _client || show (client_state), email })
+var accept = ({ client: _client, email }) =>
+	_fetch ('/client/accept', { client: _client || show (client_state), email })
+var reject = ({ client: _client, email }) =>
+	_fetch ('/client/reject', { client: _client || show (client_state), email })
+var merge_step_stat = ({ client: _client, step_stat }) =>
+	_fetch ('/client/step-stat', { client: _client || show (client_state), step_stat })
 
 
 
 // TODO: adt serialization/deserialization facilities
 
 
+var memoize = fn => suppose (
+	( cache = new Map
+	) =>
+	x =>
+	suppose (
+	( $__invalidate_cache = jinx (_ => {
+		if (not (cache .has (x))) {;cache .set (x, fn (x))} } )
+	) =>
+	cache .get (x) ) )
 
 
-var id_user_state_ = _id => belief ([ 'user', _id, on_interest_ (_ => user ({ client: show (client_state), id: _id })) ]) (cache_state)
-var id_team_state_ = _id => belief ([ 'team', _id, on_interest_ (_ => team ({ client: show (client_state), id: _id })) ]) (cache_state)
-var user_rank_state = belief ([ 'user-rank', on_interest_ (_ => user_rank (show (client_state))) ]) (cache_state)
-var team_rank_state = belief ([ 'team-rank', on_interest_ (_ => team_rank (show (client_state))) ]) (cache_state)
+var id_email_state_ = memoize (_id => belief ([ 'email', _id, on_interest_ (_ => id_email ({ client: show (client_state), id: _id })) ]) (cache_state))
+var id_user_state_ = memoize (_id => belief ([ 'user', _id, on_interest_ (_ => id_user ({ client: show (client_state), id: _id })) ]) (cache_state))
+var id_team_state_ = memoize (_id => belief ([ 'team', _id, on_interest_ (_ => id_team ({ client: show (client_state), id: _id })) ]) (cache_state))
+var invites_state = belief ([ 'invites', on_interest_ (_ => invites (show (client_state))) ]) (cache_state)
+var user_ranking_state = belief ([ 'user-ranking', on_interest_ (_ => user_ranking (show (client_state))) ]) (cache_state)
+var team_ranking_state = belief ([ 'team-ranking', on_interest_ (_ => team_ranking (show (client_state))) ]) (cache_state)
 
 
 
-export default
-{ load, signup, login
-, id_user, id_team
-, user_rank, team_rank
-, user, update_user
-, team, email
-, step_stat, merge_step_stat
-, invites, invite, accept
-
-
+export
+{ id_email_state_
 , id_user_state_
 , id_team_state_
-, user_rank_state
-, team_rank_state }
+, invites_state
+, user_ranking_state
+, team_ranking_state }
+
+export default
+{ load
+, signup, login
+, id_email, id_user, id_team
+, user_ranking, team_ranking
+, step_stat, merge_step_stat
+, user, update_user
+, team, invites, invite, accept, reject }

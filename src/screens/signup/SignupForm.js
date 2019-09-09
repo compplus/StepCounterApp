@@ -1,10 +1,11 @@
-import { Text, View, TouchableOpacity } from 'react-native'
+import { ActivityIndicator, Text, View, TouchableOpacity } from 'react-native'
 import Input from 'react-native-input-validation'
 import { DismissKeyboard } from '~/components'
 import { Images } from '__/assets/assets'
 
-import { equals, suppose, I } from 'camarche/core'
-import { belief, please, show } from 'camarche/faith'
+import { L, equals, suppose, I } from 'camarche/core'
+import { pinpoint, match, case_ } from 'camarche/optics'
+import { L_, belief, please, show, mark } from 'camarche/faith'
 import { calmm } from 'camarche/calmm'
 import { as } from 'camarche/adt'
 
@@ -55,11 +56,12 @@ export default calmm (({ signup_state }) =>
 	, email_state = belief (as (signup_view) .email) (signup_state)
 	, password_state = belief (as (signup_view) .password) (signup_state)
 	, password_confirmation_state = belief (as (signup_view) .password_confirmation) (signup_state)
+	, committing_yes_state = belief (as (signup_view) .committing_yes) (signup_state)
 
 	, select_email = _email => {;please (L_ .set (_email)) (email_state)}
 	, select_password = _password => {;please (L_ .set (_password)) (password_state)}
 	, select_password_confirmation = _password => {;please (L_ .set (_password)) (password_confirmation_state)}
-	, commit_signup = _ => {;please (L .set (as (signup_view) .committing_yes) (true)) (signup_state)}
+	, commit_signup = _ => {;please (L_ .set (true)) (committing_yes_state)}
 	) =>
 	<DismissKeyboard>
 		<View style={styles.container}>
@@ -93,6 +95,13 @@ export default calmm (({ signup_state }) =>
 				onValidatorExecuted={I}
 				errorMessage="Password does not match."
 				errorMessageStyle={styles .errorMessageStyle} errorInputContainerStyle={{}} />
-			<TouchableOpacity onPress={mark (valid_yes_belief) ? commit_signup : I} style={mark (valid_yes_belief) ? styles.buttonContainer : styles.buttonContainerDisabled}>
+			{ !! mark (committing_yes_state) ?
+			<ActivityIndicator style={{ marginVertical: 20 }} />
+			: mark (valid_yes_belief) ?
+			<TouchableOpacity onPress={commit_signup} style={styles .buttonContainer}>
 				<Text style={styles.buttonText}>SIGN UP</Text> </TouchableOpacity>
+			: not (mark (valid_yes_belief)) ?
+			<View style={styles .buttonContainerDisabled}>
+				<Text style={styles.buttonText}>SIGN UP</Text> </View>
+			: _ }
 			</View> </DismissKeyboard> ) )

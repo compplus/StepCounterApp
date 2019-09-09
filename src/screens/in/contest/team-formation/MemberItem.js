@@ -2,7 +2,7 @@ import { ActivityIndicator } from 'react-native'
 import { ListItem } from 'react-native-elements'
 import { MaterialIcons } from '@expo/vector-icons'
 
-import { not, suppose, L, by } from 'camarche/core'
+import { K, not, suppose, L, by } from 'camarche/core'
 import { pinpoint, match, case_ } from 'camarche/optics'
 import { L_, belief, please, show, mark } from 'camarche/faith'
 import { calmm } from 'camarche/calmm'
@@ -29,17 +29,14 @@ var Status = K (
 export default calmm (({ user: _user }) =>
 	suppose (
 	( _id = pinpoint (as (user) .id) (_user)
-	, email_state = belief ([ 'member-select', _id ]) (local_state)
-	, $__load_email = jinx (_ => {
-		if (not (L_ .isDefined (show (email_state)))) {
-			;api .email ({ client: show (client_state), id: _id })
-			.then (_email => {;please (L_ .set (_email)) (email_state)}) } } )
+	, email_state = id_email_state_ (_id)
+	, _email = mark (email_state)
 	) =>
-	!! L_ .isDefined (mark (email_state)) ?
+	!! L_ .isDefined (_email) ?
 	<ListItem
 		containerStyle={styles .item}
-		title={mark (email_state)}
+		title={_email}
 		rightIcon={Status} />
 		//leftAvatar={{ source: { uri: image } }}
 	:
-	<ActivityIndicator /> )  )
+	<ActivityIndicator /> ) )

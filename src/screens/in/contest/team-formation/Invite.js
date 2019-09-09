@@ -1,11 +1,14 @@
 import { ActivityIndicator, View, TextInput, Button } from 'react-native'
 
 import { I, not, suppose, R, L } from 'camarche/core'
-import { belief, mark, please } from 'camarche/faith'
+import { l_sum } from 'camarche/optics'
+import { L_, belief, mark, please } from 'camarche/faith'
 import { calmm } from 'camarche/calmm'
+import { go } from 'camarche/effects'
 import { as } from 'camarche/adt'
 
 import api from '~/project/api'
+import { team } from '~/project/types'
 import { client_state, local_state } from '~/project/state'
 
 var styles = {

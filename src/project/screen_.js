@@ -1,13 +1,12 @@
 import { L, K, by } from 'camarche/core'
 import { show } from 'camarche/faith'
 import { pinpoint, as_point } from 'camarche/optics'
+import { Y } from '~/project/aux'
 
 import { time_unit, maybe } from './types'
-import { nav, signup_view, login_view, in_features, in_view, main_view, settings_view, profile_view, activity_view } from './types'
+import { nav, signup_view, login_view, in_features, in_view, main_view, contest_view, settings_view, profile_view, activity_view } from './types'
 import { user_state, team_state } from './state'
 
-// TODO: why doesn't this work? f => pinpoint (L .lazy (pinpoint (pinpoint, f)))
-var Y = f => pinpoint (L .lazy (rec => f (pinpoint (rec))))  
 
 export default Y (screen_ =>
 by (pinpoint (

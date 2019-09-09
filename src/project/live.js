@@ -1,5 +1,6 @@
 import { L, I, by } from 'camarche/core'
-import { belief } from 'camarche/faith'
+import { pinpoint } from 'camarche/optics'
+import { mark, belief } from 'camarche/faith'
 
 import { width_state, height_state } from './state'
 

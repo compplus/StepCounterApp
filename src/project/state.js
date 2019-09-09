@@ -1,5 +1,5 @@
 import { by, R, L, K, suppose, not, equals } from 'camarche/core'
-import { L_, faith, belief } from 'camarche/faith'
+import { L_, faith, belief, show } from 'camarche/faith'
 import { un, pinpoint } from 'camarche/optics'
 import { variant_type_, variant_, as, as_in } from 'camarche/adt'
 
@@ -28,7 +28,8 @@ var end_trim_ = trim_yes_ => _list =>
 
 var undo_history = by (history =>
 	suppose (
-	( path = nav_path_ (R .last (history))
+	( hyper_path //= _nav => nav_path_ (_nav) + !! if has committing_yes, add '!' at end
+	, path = nav_path_ (R .last (history))
 	) =>
 	end_trim_ (pinpoint (nav_path_, equals (path))) ) )
 

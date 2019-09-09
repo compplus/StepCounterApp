@@ -81,7 +81,7 @@ export default calmm (_ =>
 					<View style={styles .forgotpwWrapper}>
 						<TouchableOpacity onPress={go_forgot_password} style={{ padding: 10 }}>
 							<Text style={styles .forgotpwText}>Forgot password?</Text> </TouchableOpacity> </View>
-					<DialogInput isDialogVisible={false}
+					<DialogInput isDialogVisible={mark (forgot_password_yes_state)}
 						title={'Forgot your password?'}
 						message={'Enter your registered email.'}
 						hintInput={'Email'}

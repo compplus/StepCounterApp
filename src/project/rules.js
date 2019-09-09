@@ -5,7 +5,7 @@ import * as Permissions from 'expo-permissions'
 import * as Location from 'expo-location'
 
 import { L, equals, S } from 'camarche/core'
-import { L_, belief, mark, please } from 'camarche/faith'
+import { L_, belief, show, mark, please } from 'camarche/faith'
 import { go } from 'camarche/effects'
 import { as } from 'camarche/adt'
 import { as_to, as_into } from './aux'
@@ -13,21 +13,28 @@ import { promise_ } from './aux'
 
 import api from './api'
 import screen_ from './screen_'
-import { hour_, day_, month_ } from '~/project/domain-aux'
-import { dimensions, step_stat, maybe } from './types'
+import { calories_, hour_, day_, month_ } from '~/project/domain-aux'
+import { dimensions, user, step_stat, maybe, in_features } from './types'
 import { nav, in_view, main_view, signup_view, login_view, profile_view } from './types'
-import { location_state, location_nav_state, step_stat_state } from './state'
+import { location_state, location_nav_state, user_state, step_stat_state } from './state'
 import { coord_state, width_state, height_state } from './state'
 
 
+var debug_globals = true
 var debug_network = false
 
 ;S .root (_ => {
 
 	;S (_ => {
-		if (typeof GLOBAL !== 'undefined') {
-			var globals = { ... global, ... require ('camarche'), ... require ('~/project/aux'), ... require ('~/project/domain-aux'), ... require ('~/project/types'), ... require ('~/project/state'), screen_: require ('~/project/screen_') .default }
-			;for (i in globals) {;GLOBAL [i] = globals [i]} }
+		if (debug_globals) {
+			if (typeof GLOBAL !== 'undefined') {
+				var globals =
+					{ ... global
+					, ... require ('camarche'), ... require ('~/project/aux'), ... require ('~/project/domain-aux')
+					, ... require ('~/project/types'), ... require ('~/project/state'), ... require ('~/project/api')
+					, screen_: require ('~/project/screen_') .default
+					, api: require ('~/project/api') .default }
+				;for (i in globals) {;GLOBAL [i] = globals [i]} } }
 		} )
 
 	;S (_ => {
@@ -70,15 +77,15 @@ var debug_network = false
 	;S (_ => {
 		if (equals (mark (signup_committing_yes_state)) (true)) {
 			var _email = show (signup_email_state)
-			;api .signup ({ email: _email, password: show (signup_password_state) })
+			;api .signup ({ email: _email, password: show (signup_password_state), user: user () })
 			.then (_client => go .then (_ => {
 				;please (
 				L_ .set (screen_ (nav .in) (maybe .nothing))
 				) (location_nav_state ) } ) .then (_ =>
 			Promise .all (
-			[ api .user (_client)
-			, api .step_stat (_client)
-			, api .team (_client)
+			[ api .user ({ client: _client })
+			, api .step_stat ({ client: _client })
+			, api .team ({ client: _client })
 			, api .permissions ] ) )
 			.then (([ _user, _step_stat, _team ]) => {
 				;please (
@@ -104,9 +111,9 @@ var debug_network = false
 				L_ .set (screen_ (nav .in) (maybe .nothing))
 				) (location_nav_state ) } ) .then (_ =>
 			Promise .all (
-			[ api .user (_client)
-			, api .step_stat (_client)
-			, api .team (_client)
+			[ api .user ({ client: _client })
+			, api .step_stat ({ client: _client })
+			, api .team ({ client: _client })
 			, api .permissions ] ) )
 			.then (([ _user, _step_stat, _team ]) => {
 				;please (
@@ -145,6 +152,7 @@ var debug_network = false
 	var in_yes_state = belief (L .isDefined (as_to (nav) (in_view))) (location_state)
 	;S (_ => {
 		if (mark (in_yes_state)) {
+			var weight_state = belief (as (user) .weight) (user_state)
 			;S (_ => {
 				var last_steps = 0
 				;Pedometer .watchStepCount (({ steps }) => {
@@ -155,19 +163,21 @@ var debug_network = false
 					var _month = month_ (timestamp)
 
 					var steps_delta = steps - last_steps
+					var calories_delta = !! L_ .isDefined (show (weight_state)) ? calories_ (show (weight_state)) (steps_delta) : 0
 					;last_steps = steps
 					// TODO: refactor
 					;S .freeze (_ => {
 						;please (L .modify ([ as (step_stat) .by_hours, un (L .keyed), _hour, L .valueOr (step_sample (0, 0, 0)), as (step_sample) .steps ]) (R .add (steps_delta))) (step_stat_state)
 						;please (L .modify ([ as (step_stat) .by_days, un (L .keyed), _day, L .valueOr (step_sample (0, 0, 0)), as (step_sample) .steps ]) (R .add (steps_delta))) (step_stat_state)
 						;please (L .modify ([ as (step_stat) .by_months, un (L .keyed), _month, L .valueOr (step_sample (0, 0, 0)), as (step_sample) .steps ]) (R .add (steps_delta))) (step_stat_state)
+						
+						;please (L .modify ([ as (step_stat) .by_hours, un (L .keyed), _hour, L .valueOr (step_sample (0, 0, 0)), as (step_sample) .steps ]) (R .add (calories_delta))) (step_stat_state)
+						;please (L .modify ([ as (step_stat) .by_days, un (L .keyed), _day, L .valueOr (step_sample (0, 0, 0)), as (step_sample) .steps ]) (R .add (calories_delta))) (step_stat_state)
+						;please (L .modify ([ as (step_stat) .by_months, un (L .keyed), _month, L .valueOr (step_sample (0, 0, 0)), as (step_sample) .steps ]) (R .add (calories_delta))) (step_stat_state)
 
 						//;please (L .modify ([ as (step_stat) .by_hours, _hour, L .valueOr (step_sample (0, 0, 0)), as (step_sample) .distance ]) (R .add (distance))) (step_stat_state)
 						//;please (L .modify ([ as (step_stat) .by_days, _day, L .valueOr (step_sample (0, 0, 0)), as (step_sample) .distance ]) (R .add (distance))) (step_stat_state)
 						//;please (L .modify ([ as (step_stat) .by_months, _month, L .valueOr (step_sample (0, 0, 0)), as (step_sample) .distance ]) (R .add (distance))) (step_stat_state)
-						//;please (L .modify ([ as (step_stat) .by_hours, _hour, L .valueOr (step_sample (0, 0, 0)), as (step_sample) .calories ]) (R .add (calories))) (step_stat_state)
-						//;please (L .modify ([ as (step_stat) .by_days, _day, L .valueOr (step_sample (0, 0, 0)), as (step_sample) .calories ]) (R .add (calories))) (step_stat_state)
-						//;please (L .modify ([ as (step_stat) .by_months, _month, L .valueOr (step_sample (0, 0, 0)), as (step_sample) .calories ]) (R .add (calories))) (step_stat_state)
 						} )
 					} )
 				;S .cleanup (_ => {}) } )

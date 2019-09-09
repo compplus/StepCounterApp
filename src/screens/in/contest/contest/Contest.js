@@ -1,5 +1,6 @@
 import { View, TouchableOpacity, Image } from 'react-native'
 
+import { suppose } from 'camarche/core'
 import { belief, please, L_ } from 'camarche/faith'
 import { as_to } from '~/project/aux'
 

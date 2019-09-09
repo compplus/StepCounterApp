@@ -3,15 +3,15 @@ import { FlatListItem } from '~/components'
 import Icon from 'react-native-vector-icons/FontAwesome'
 
 import { suppose, L, K, I } from 'camarche/core'
-import { L_, please, belief } from 'camarche/faith'
+import { L_, please, belief, mark } from 'camarche/faith'
 import { pin_first, l_sum } from 'camarche/optics'
 import { calmm } from 'camarche/calmm'
 import { as } from 'camarche/adt'
-import { map_v_as_value } from '~/project/aux'
+import { as_to, map_v_as_value } from '~/project/aux'
 
 import screen_ from '~/project/screen_'
-import { main_view, step_stat } from '~/project/types'
-import { step_stat_state, location_nav_state } from '~/project/state'
+import { nav, main_view, step_stat, step_sample } from '~/project/types'
+import { location_state, orientation_state, step_stat_state, location_nav_state } from '~/project/state'
 
 //TODO: reformulate this shit with flex
 var rows = 3

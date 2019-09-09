@@ -2,11 +2,13 @@ import { View, Text, Image, TouchableOpacity } from 'react-native'
 import Dialog from 'react-native-popup-dialog'
 import { DialogContent, DialogTitle } from 'react-native-popup-dialog'
 
-import { L } from 'camarche/core'
+import { I, L, suppose } from 'camarche/core'
 import { pinpoint, match, case_ } from 'camarche/optics'
 import { belief, please, L_, mark } from 'camarche/faith'
 import { calmm } from 'camarche/calmm'
 import { live_, scale } from '~/project/live'
+
+import { _state } from '~/project/state'
 
 var styles = {
 	container: {
@@ -27,11 +29,11 @@ var styles = {
 		fontSize: scale (13),
 		textAlign: 'center',
 		color: 'white',
-		fontWeight: "600" }, 
+		fontWeight: '600' }, 
 	title: {
 		fontSize: scale (18),
 		textAlign: 'center',
-		fontWeight: "600" }, 
+		fontWeight: '600' }, 
 	description: {
 		fontSize: scale (15),
 		textAlign: 'center' } }
@@ -48,7 +50,7 @@ export default calmm (({ title, description, status, image }) =>
 				: require('__/assets/awards_page/question_mark.png')} />
 			<Dialog
 				visible={mark (award_on_state)}
-				width='80%'
+				width={300}
 				dialogStyle={{ borderRadius: 10 }}
 				onTouchOutside={_ => {;please (L_ .set (false)) (award_on_state)}}
 				>

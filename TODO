@@ -1,7 +1,7 @@
-serialize/deserialize
-api caches
+//serialize/deserialize
+//api caches
 change profile flow
-implement ranking
-implement receiving invites/accepting invites
+/implement ranking
+//implement receiving invites/accepting invites
 implement receiving kicking/(leaving?)
-change all references to mention(ref?)
+//change all references to mention(ref?)

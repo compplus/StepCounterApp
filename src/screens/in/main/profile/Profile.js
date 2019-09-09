@@ -3,12 +3,12 @@ import { Dropdown } from 'react-native-material-dropdown'
 import { TextField } from 'react-native-material-textfield'
 import { Avatar } from 'react-native-elements'
 
-import { not, suppose, L } from 'camarche/core'
-import { pinpoints } from 'camarche/optics'
+import { I, not, suppose, L } from 'camarche/core'
+import { pinpoint, pinpoints } from 'camarche/optics'
 import { belief, please, L_, mark } from 'camarche/faith'
 import { calmm } from 'camarche/calmm'
 import { as, variant_name_ } from 'camarche/adt'
-import { as_to, name_variant_, deserialize_, display_ } from '~/project/aux'
+import { as_to, name_variant_, display_ } from '~/project/aux'
 
 import { nav, profile_view } from '~/project/types'
 import { user, category, gender } from '~/project/types'
@@ -143,12 +143,12 @@ export default calmm (_ =>
 					onChangeText={_department => {;please (L_ .set (_department)) (department_state)}} />
 				<Dropdown
 					label="Category" data={categories}
-					value={pinpoint (L .choice ([ L .when (I), variant_name_, display_ ], L .valueOr (''))) (deserialize_ (category) (mark (category_state))) }
+					value={pinpoint (L .choice ([ L .when (I), variant_name_, display_ ], L .valueOr (''))) (mark (category_state)) }
 					onChangeText={_category => {;please (L_ .set (name_variant_ (category) (_category))) (category_state)}} />
 				<Text style={styles .disclaimer}>(To improve the accuracy of the data, please provide the following biometric information)</Text>
 				<Dropdown
 					label="Gender" data={genders}
-					value={pinpoint (L .choice ([ L .when (I), variant_name_, display_ ], L .valueOr (''))) (deserialize_ (gender) (mark (gender_state))) }
+					value={pinpoint (L .choice ([ L .when (I), variant_name_, display_ ], L .valueOr (''))) (mark (gender_state)) }
 					onChangeText={_genders => {;please (L_ .set (name_variant_ (gender) (_genders))) (gender_state)}} />
 				<TextField
 					label="First Name" value={mark (first_name_state)}

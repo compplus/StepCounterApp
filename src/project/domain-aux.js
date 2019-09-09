@@ -1,5 +1,5 @@
 let { by, I, K, L, R, S, equals, not, suppose } = require ('camarche/core')
-let { pinpoint, pinpoints, as_points } = require ('camarche/optics')
+let { pinpoint, pinpoints, as_points, match, case_ } = require ('camarche/optics')
 let { satisfy } = require ('camarche/modules')
 let { L_ } = require ('camarche/faith')
 let { T } = require ('camarche/calling')
@@ -9,7 +9,7 @@ let { as_in, variant_, signature_ } = require ('camarche/adt')
 let { time_unit } = require ('./types')
 
 suppose (
-( calories_ = ({ steps, weight_by_kg }/* default as 65 kg */) => 
+( calories_ = weight_by_kg => steps => 
 	suppose (
 	( steps_per_mile = 2105
         , calories_per_mile = 0.57 * 2.205 * weight_by_kg

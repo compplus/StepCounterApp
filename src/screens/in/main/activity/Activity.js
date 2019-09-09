@@ -5,16 +5,17 @@ import Icon from 'react-native-vector-icons/FontAwesome'
 import Icon_ion from 'react-native-vector-icons/Ionicons'
 import { LineChart } from 'react-native-chart-kit'
 
-import { L, K, R } from 'camarche/core'
-import { pinpoint, pinpoints, match, case_ } from 'camarche/optics'
+import { suppose, by, L, K, R } from 'camarche/core'
+import { un, pinpoint, pinpoints, match, case_ } from 'camarche/optics'
 import { belief, please, L_, mark } from 'camarche/faith'
 import { calmm } from 'camarche/calmm'
-import { as, variant_name_ } from 'camarche/adt'
+import { as, as_in, variant_name_ } from 'camarche/adt'
 import { as_string, as_to, as_into } from '~/project/aux'
 
-import { calories_, days_in_month_, hour_as_ordinal, day_as_ordinal, month_as_ordinal } from '~/project/domain-aux'
+import { display_stamp_, days_in_month_, month_ } from '~/project/domain-aux'
+import { calories_, hour_as_ordinal, day_as_ordinal, month_as_ordinal } from '~/project/domain-aux'
 import { nav, in_view, activity_view } from '~/project/types'
-import { step_stat, time_unit, dimensions } from '~/project/types'
+import { step_sample, step_stat, time_unit, dimensions } from '~/project/types'
 import { location_state, width_state, height_state, step_stat_state } from '~/project/state'
 
 var styles = {

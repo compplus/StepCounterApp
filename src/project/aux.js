@@ -1,5 +1,5 @@
 let { by, I, K, L, R, S, equals, not, suppose } = require ('camarche/core')
-let { pinpoint, pinpoints, as_point } = require ('camarche/optics')
+let { un, pinpoint, pinpoints, as_point, match, case_ } = require ('camarche/optics')
 let { satisfy } = require ('camarche/modules')
 let { lift_defined } = require ('camarche/calling')
 let { L_ } = require ('camarche/faith')
@@ -114,12 +114,13 @@ suppose (
 	suppose (
 	( interested_yes = false
 	) =>
+	L .lens (
 	by (_ =>
 	suppose (
 	( $__gain_interest = jinx (_ => {if (not (interested_yes)) {;_fn () ;interested_yes = true}})
 	, $__lose_interest = jinx (_ => {;S .cleanup (lost_interest_yes => {if (lost_interest_yes) {;interested_yes = false}})})
 	) =>
-	I ) ) )
+	I ) ) ) (I) )
 
 , promise_ = fn => new Promise (fn)
 , promise_on_ = _ =>
@@ -137,12 +138,41 @@ suppose (
 	pinpoint (
 	pinpoint (R .toLower, L .replaces (' ') ('_')) (name)
 	) (_type )
-, deserialize_ = _type => lift_defined (_val =>
-	suppose (
-	( _variant_name = pinpoint (L .keyed, L .singleton, ([ _name, _ ]) => _name, L .prefix (-1), as_string) (_val)
-	, _variant = pinpoint (_variant_name) (_type)
-	) =>
-	pinpoint (L .values, un (as_in (_variant))) (_val) ) )
+
+
+
+// TODO: why doesn't this work? f => pinpoint (L .lazy (pinpoint (pinpoint, f)))
+, Y = f => pinpoint (L .lazy (rec => f (pinpoint (rec))))  
+
+
+
+
+, { user, team, credential, step_stat, trophy, category, gender, step_sample, time_unit } = require ('./types')
+
+, serialize_on_ = _types => Y (rec => by (pinpoint (match
+	( ... R .map (([ type_name, _type ]) =>
+		case_ (as (_type)) (pinpoint
+			( L .set ('__type') (type_name)
+			, L .modify ([ L .values, L .values, L .when (R .is (Object)) ]) (rec) ) )
+		) (pinpoint (L .keyed) (_types) )
+	, case_ (L .subset (R .is (Array))) (L .modify (L .elems) (rec)) 
+	, case_ (L .subset (R .is (Object))) (L .modify (L .values) (rec)) 
+	, case_ (K) (I) ) ) ) )
+, __deserialize = _type => pinpoint (L .entries, ([ _variant_mark, _data ]) => pinpoint (un (as_in (_type [R .slice (0) (-1) (_variant_mark)]))) (_data))
+, deserialize_on_ = _types => Y (rec => by (pinpoint (match
+	( ... R .map (([ type_name, _type ]) =>
+		case_ ([ '__type', L .subset (equals (type_name)) ]) (pinpoint
+			( L .modify ([ L .values, L .values ]) (rec)
+			, __deserialize (_type) ) )
+		) (pinpoint (L .keyed) (_types) )
+	, case_ (L .subset (R .is (Array))) (L .modify (L .elems) (rec)) 
+	, case_ (L .subset (R .is (Object))) (L .modify (L .values) (rec)) 
+	, case_ (K) (I) ) ) ) )
+
+
+, serialize = serialize_on_ ({ user, team, credential, step_stat, trophy, category, gender, step_sample, time_unit })
+, deserialize = deserialize_on_ ({ user, team, credential, step_stat, trophy, category, gender, step_sample, time_unit })
+
 
 ) =>
 
@@ -155,11 +185,15 @@ satisfy (module
 , last_n
 , on_interest_
 
+, Y
+
 , promise_, promise_on_
 , as_to, as_into
 , l_undefined
 , nested_path_, nav_path_, path_screen_
 
 , display_
-, name_variant_, deserialize_ }
+, name_variant_
+
+, serialize, deserialize }
 } ) )

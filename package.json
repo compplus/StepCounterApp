@@ -22,7 +22,7 @@
 	},
 	"dependencies": {
 		"@expo/vector-icons": "^10.0.3",
-		"camarche": "0.0.89",
+		"camarche": "0.0.90",
 		"expo": "^33.0.7",
 		"partial.lenses": "^14.17.0",
 		"ramda": "^0.26.1",

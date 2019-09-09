@@ -1,10 +1,11 @@
 import { Text, View, Image } from 'react-native'
 import { RankList } from '~/components'
 
-import { K } from 'camarche/core'
+import { suppose, L, K } from 'camarche/core'
+import { pinpoints } from 'camarche/optics'
 import { belief, mark } from 'camarche/faith'
 import { calmm } from 'camarche/calmm'
-import { _state } from '~/project/state'
+import { team_ranking_state } from '~/project/api'
 
 var styles = {
 	container: {
@@ -23,24 +24,27 @@ var styles = {
 		backgroundColor: '#212121',
 		alignItems: 'center',
 		justifyContent: 'center' },
-	titleBox: {
-		flex: 0.5,
+	title_box: {
+		marginHorizontal: 10,
+		height: 50,
+		flexShrink: 0,
+		alignSelf: 'stretch',
 		backgroundColor: '#EBF6F7',
 		flexDirection: 'row',
-		justifyContent: 'space-between' },
-	Rank: {
-		flex: 1,
-		padding: 15,
+		alignItems: 'center' },
+	title_rank: {
+		position: 'absolute',
+		left: 10,
 		textAlign: 'left',
 		fontFamily: 'Gill Sans' },
-	ID: {
-		flex: 6,
+	title_id: {
+		position: 'absolute',
+		left: 60,
 		textAlign: 'left',
-		padding: 15,
 		fontFamily: 'Gill Sans' },
-	Steps: {
-		flex: 1,
-		padding: 15,
+	title_steps: {
+		position: 'absolute',
+		right: 10,
 		textAlign: 'right',
 		fontFamily: 'Gill Sans' },
 	rankList: {
@@ -49,21 +53,16 @@ var styles = {
 		width: 65,
 		height: 65,
 		alignSelf: 'center' },
-	rank: {
-		fontFamily: 'Gill Sans',
-		color: 'white',
-		fontSize: 18 },
-	steps: {
+	team_info: {
 		fontFamily: 'Gill Sans',
 		color: 'white',
 		fontSize: 18 } }
 
-var rank_state = belief (K (100)) (_state)
-var steps_state = belief (K (1000)) (_state)
+var steps_state = belief (pinpoints (L .elems, 'steps')) (team_ranking_state)
 
 export default calmm (_ =>
 	suppose (
-	( _rank = mark (rank_state)
+	( _ranking = mark (team_ranking_state)
 	, _steps = mark (steps_state)
 	) =>
 	<View style={styles .container}>
@@ -72,19 +71,19 @@ export default calmm (_ =>
 				<Image 
 					style={styles .teamIcon}
 					source={require ('__/assets/contest_page/myrank.png')} />
-				<Text style={styles .rank}>Team's rank: { _rank }</Text>
+				<Text style={styles .team_info}>Team's rank: {/* _rank */}</Text>
 				</View>
 			<View style={styles.teamItemWrapper}>
 				<Image 
 					style={styles.teamIcon}
 					source={require ('__/assets/contest_page/mysteps.png')} />
-				<Text style={styles .steps}>Team's steps: { _steps }</Text>
+				<Text style={styles .team_info}>Team's steps: {/* _steps */}</Text>
 				</View> </View>
-		<View style={styles .titleBox}>
-			<Text style={styles .Rank}>Rank</Text>
-			<Text style={styles .ID}>Username</Text>
-			<Text style={styles .Steps}>Steps</Text>
+		<View style={styles .title_box}>
+			<Text style={styles .title_rank}>Rank</Text>
+			<Text style={styles .title_id}>Team Name</Text>
+			<Text style={styles .title_steps}>Steps</Text>
 			</View>
 		<View style={styles .rankList}> 
-			<RankList />
+			<RankList ranking={_ranking} />
 			</View> </View> ) )

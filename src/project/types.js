@@ -18,12 +18,12 @@ var either = $ (left => right => data (
 	( left_ = { _ :- left }
 	, right_ = { _ :- right } ) => either ) )
 var mention = $ (a => data (
-	( mention_ = { _ :- id }
-	, subject = { subject :- a } ) => mention (a) ) )
-
-var password = data ()
+	( link = { _ :- id }
+	, linked = { _ :- id, subject :- a } ) => mention (a) ) )
 
 var coord = data ()
+
+var password = data ()
 
 var client = id
 var month = data ()
@@ -48,16 +48,17 @@ var gender = data (
 	, female
 	, other
 	) => gender )
+
 var time_unit = data (
 	( hour
 	, day
 	, month
 	) => time_unit )
-
 var step_sample = data (
 	( _ =
 	{ steps :- nat, distance :- number, calories :- number }
 	) => step_sample)
+
 var step_stat = data (
 	( _ =
 	{ by_months :- map (month) (step_sample) 
@@ -65,6 +66,11 @@ var step_stat = data (
 	, by_hours :- map (hour_of_day) (step_sample) }
 	) => step_stat )
 
+var credential = data (
+	( _ =
+	{ _ :- email
+	, _ :- password }
+	) => credential )
 
 var user = data (
 	( _ =
@@ -87,6 +93,11 @@ var team = data (
 	, invitations :- list (email) }
 	) => team )
 
+var trophy = data (
+	( _ =
+	{ }
+	) => trophy )
+
 var forgot_password_view = data (
 	( _ = { _ :- email, committing_yes :- bool } ) => forgot_password_view )
 
@@ -98,7 +109,7 @@ var settings_view = data (
 	( settings
 	, about ) => settings_view )
 var profile_view = data (
-	( _ = { unbound_user :- user, committing_yes :- bool }
+	( _ = { unbound_user :- unbound (user), committing_yes :- bool }
 	) => profile_view )
 var activity_view = data (
 	( _ =
@@ -157,20 +168,17 @@ var state = data (
 
 
 
-
-
-
-
-
 module .exports =
-{ bool, str, nat, id, unbound, v, list, map, either, maybe
+{ bool, str, nat, id, unbound, v, list, map, either, maybe, mention
 
 , client, faculty, department, category, gender, first_name, last_name, age, height, weight
 
-, time_unit, step_sample, step_stat
 , orientation, dimensions, coord
 
+, time_unit, step_sample, step_stat
+, credential
 , user, team
+, trophy
 
 , in_features
 
