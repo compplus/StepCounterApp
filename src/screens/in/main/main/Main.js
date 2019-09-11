@@ -127,12 +127,12 @@ var Option = ({  name, screen }) =>
 		</TouchableOpacity> )
 
 var main_state = belief (as_to (nav) (main_view)) (location_state)
-var today_steps_state = belief ([ as (step_stat) .by_days, L .choice ([ L .first, map_v_as_value, as (step_sample) .steps ], K (0)) ]) (step_stat_state)
+var today_steps_state = belief ([ as (step_stat) .by_days, L .choice ([ L .first, map_v_as_value, as (step_sample) .steps ], K (0)) ]) (step_stat_state) //debug
 
 export default calmm (_ =>
 	suppose (
 	( _orientation = mark (orientation_state)
-	, today_steps = mark (today_steps_state)
+	, today_steps = mark (today_steps_state) //debug
 	, go_profile = _ => {;please (L_ .set (screen_ (main_view .profile))) (main_state)}
 	, go_activity = _ => {;please (L_ .set (screen_ (main_view .activity))) (main_state)}
 	, go_map = _ => {;please (L_ .set (screen_ (main_view .map))) (main_state)}

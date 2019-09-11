@@ -51,7 +51,10 @@ export default calmm (({ signup_state }) =>
 	, password_confirmation_ref
 
 	, valid_yes_ = _ => equals (show (password_state)) (show (password_confirmation_state))
-	, valid_yes_belief = belief (_ => equals (mark (password_state)) (mark (password_confirmation_state))) (signup_state)
+	, valid_email_ = _email => _email .endsWith ('@connect.hku.hk') || _email .endsWith ('@hku.hk')
+	, valid_yes_belief = belief (_ =>
+		valid_email_ (mark (email_state)) && (equals (mark (password_state)) (mark (password_confirmation_state)))
+		) (signup_state )
 	
 	, email_state = belief (as (signup_view) .email) (signup_state)
 	, password_state = belief (as (signup_view) .password) (signup_state)
