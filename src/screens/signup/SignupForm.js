@@ -58,7 +58,6 @@ export default calmm (({ signup_state }) =>
 	
 	, email_state = belief (as (signup_view) .email) (signup_state)
 	, password_state = belief (as (signup_view) .password) (signup_state)
-	, password_confirmation_state = belief (as (signup_view) .password_confirmation) (signup_state)
 	, committing_yes_state = belief (as (signup_view) .committing_yes) (signup_state)
 
 	, select_email = _email => {;please (L_ .set (_email)) (email_state)}

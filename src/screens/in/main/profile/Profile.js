@@ -151,7 +151,7 @@ export default calmm (_ =>
 					value={pinpoint (L .choice ([ L .when (I), variant_name_, display_ ], L .valueOr (''))) (mark (gender_state)) }
 					onChangeText={_genders => {;please (L_ .set (name_variant_ (gender) (_genders))) (gender_state)}} />
 				<TextField
-					label="First Name" value={mark (first_name_state)}
+					label="First Name" maxLength={15} value={mark (first_name_state)}
 					onChangeText={_firstname => {;please (L_ .set (_firstname)) (first_name_state)}} />
 				<TextField
 					label="Last Name" value={mark (last_name_state)}
