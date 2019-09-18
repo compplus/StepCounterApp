@@ -142,19 +142,22 @@ export default calmm (_ =>
 					value={display_ (mark (gender_state)) }
 					onChangeText={_genders => {;please (L_ .set (name_variant_ (gender) (_genders))) (gender_state)}} />
 				<TextField
-					label="First Name" value={mark (first_name_state)}
+					label="First Name" maxLength={15} value={mark (first_name_state)}
 					onChangeText={_firstname => {;please (L_ .set (_firstname)) (first_name_state)}} />
 				<TextField
-					label="Last Name" value={mark (last_name_state)}
+					label="Last Name" maxLength={20} value={mark (last_name_state)}
 					onChangeText={_lastname => {;please (L_ .set (_lastname)) (last_name_state)}} />
 				<TextField
 					label="Age" value={mark (age_state)}
+					keyboardType = "number-pad"
 					onChangeText={_age => {;please (L_ .set (_age)) (age_state)}} />
 				<TextField
 					label="Height (cm)" value={mark (height_state)}
+					keyboardType = "numeric"
 					onChangeText={_height => {;please (L_ .set (_height)) (height_state)}} />
 				<TextField
 					label="Weight (kg)" value={mark (weight_state)}
+					keyboardType = 'numeric'
 					onChangeText={_weight => {;please (L_ .set (_weight)) (weight_state)}} />
 				{ !! not (mark (committing_yes_state)) ?
 				<TouchableOpacity onPress={commit_profile} style={styles .buttonContainer}>

@@ -58,14 +58,14 @@ var time_unit = data (
 var step_sample = data (
 	( _ =
 	{ steps :- nat, distance :- number, calories :- number }
-	) => step_sample)
+	) => step_sample) //debug
 
 var step_stat = data (
 	( _ =
 	{ by_months :- map (month) (step_sample) 
 	, by_days :- map (day_of_month) (step_sample) 
 	, by_hours :- map (hour_of_day) (step_sample) }
-	) => step_stat )
+	) => step_stat ) //debug
 
 var credential = data (
 	( _ =
