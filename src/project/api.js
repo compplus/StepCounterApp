@@ -14,7 +14,7 @@ import { serialize, deserialize, on_interest_ } from './aux'
 
 
 
-var backend_url = /**/'http://ec2-3-19-76-6.us-east-2.compute.amazonaws.com:8080'/*/'http://localhost:8080'/**/
+var backend_url = /*/'http://ec2-3-19-76-6.us-east-2.compute.amazonaws.com:8080'/*/'http://localhost:8080'/**/
 
 var log_fetches_yes = true
 
@@ -102,6 +102,8 @@ var reject = with_client_ (({ client, email }) =>
 	_fetch ('/client/reject', { client, email }) )
 var remove = with_client_ (({ client, email }) =>
 	_fetch ('/client/remove', { client, email }) )
+var uninvite = with_client_ (({ client, email }) =>
+	_fetch ('/client/uninvite', { client, email }) )
 var name_team = with_client_ (({ client, name }) =>
 	_fetch ('/client/team/name', { client, name }) )
 
@@ -134,7 +136,7 @@ var api =
 	, user_ranking, team_ranking
 	, step_stat, merge_step_stat
 	, user, update_user
-	, team, invites, invite, accept, reject, remove, name_team }
+	, team, invites, invite, accept, reject, remove, uninvite, name_team }
 
 
 export

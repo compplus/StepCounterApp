@@ -1,4 +1,6 @@
-import { View, Text } from 'react-native'
+import { TextInput } from 'react-native'
+import { ListItem } from 'react-native-elements'
+import { MaterialIcons } from '@expo/vector-icons'
 
 import { K, not, suppose, L, by } from 'camarche/core'
 import { L_, belief, please, show, mark } from 'camarche/faith'
@@ -20,13 +22,17 @@ var styles = {
 		paddingVertical: 5,
 		backgroundColor: 'white',
 		borderRadius: 10,
-		justifyContent: 'center',
-		height: 40 } }
+		height: 40,
+		fontSize: 20 } }
 
 var name_state = belief (as (team) .name) (team_state)
+var update_name = debounce (1000) (_name => {
+	;go .then (_ =>
+	api .name_team ({ name: _name || 'Unnamed' }) ) .then (_ =>
+	api .team ()) } )
 
 export default calmm (_ =>
 	suppose (
 	( name_team = _name => {;please (L_ .set (_name)) (name_state) ;update_name (_name)}
 	) =>
-	<View style={styles .name_box}><Text style={{ fontSize: 20 }}>{ mark (name_state) }</Text></View> ) )
+	<TextInput placeholder="Team name" value={mark (name_state)} onChangeText={name_team} style={styles .name_box} /> ) )

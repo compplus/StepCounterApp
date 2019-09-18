@@ -1,4 +1,5 @@
 import { ActivityIndicator, ScrollView, View, TextInput, Text } from 'react-native'
+import TeamNameSelect from './TeamNameSelect'
 import TeamNameItem from './TeamNameItem'
 import Invitation from './Invitation'
 import CaptainItem from './CaptainItem'
@@ -54,8 +55,11 @@ var hkuer_yes_state = belief (as (user) .id, _id => mark (id_email_state_ (_id))
 export default calmm (_ =>
 	<View style={styles .container}>
 		{ match (case_ (L .subset (equals (true))) (
-		<TeamNameItem /> )
+		<TeamNameSelect /> )
 		) (mark (team_mines_yes_state) && mark (hkuer_yes_state) ) }
+		{ match (case_ (L .subset (equals (true))) (
+		<TeamNameItem /> )
+		) (not (mark (team_mines_yes_state)) ) }
 		{ pinpoints (L .elems, _id =>
 		<Invitation id={_id} />
 		) (mark (invites_state) ) }
@@ -71,14 +75,14 @@ export default calmm (_ =>
 			:
 			<ActivityIndicator style={{ marginVertical: 20 }} />
 			) (mark (captain_state) ) }
-			{ pinpoints (L .elems, _user => 
+			{ pinpoints (L .elems, trace_as ('ai'), _user => 
 			!! L_ .isDefined (_user) ?
-			<MemberItem user={_user} />
+			<MemberItem user={_user} key={pinpoint (as (user) .id) (_user)} />
 			:
 			<ActivityIndicator style={{ marginVertical: 20 }} />
 			) (mark (members_state) ) }
 			{ pinpoints (L .elems, _email =>
-			<InvitationItem email={_email} />
+			<InvitationItem email={_email} key={_email} />
 			) (mark (invitations_state) ) } </> )
 			) (not (mark (team_mines_yes_state)) || mark (hkuer_yes_state) ) }
 			{ match (case_ (L .subset (equals (true))) (
