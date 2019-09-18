@@ -1,9 +1,9 @@
-import { ActivityIndicator } from 'react-native'
+import { Text, ActivityIndicator } from 'react-native'
 import { ListItem } from 'react-native-elements'
 import { MaterialIcons } from '@expo/vector-icons'
 
 import { K, not, suppose, L, by } from 'camarche/core'
-import { pinpoint, match, case_ } from 'camarche/optics'
+import { pinpoint } from 'camarche/optics'
 import { L_, belief, please, show, mark } from 'camarche/faith'
 import { calmm } from 'camarche/calmm'
 import { jinx } from 'camarche/effects'
@@ -26,7 +26,7 @@ var styles = {
 		height: 100 } }
 
 var Status = K (
-	<MaterialIcons name="check" color="green" size={20} /> )
+	<Text style={{ color: 'darkgoldenrod' }}>Captain</Text> )
 
 export default calmm (({ user: _user }) =>
 	suppose (
@@ -41,4 +41,4 @@ export default calmm (({ user: _user }) =>
 		rightIcon={Status} />
 		//leftAvatar={{ source: { uri: image } }}
 	:
-	<ActivityIndicator /> )  )
+	<ActivityIndicator style={{ marginVertical: 20 }} /> )  )

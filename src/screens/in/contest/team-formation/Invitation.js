@@ -3,13 +3,11 @@ import { ListItem } from 'react-native-elements'
 import { MaterialIcons } from '@expo/vector-icons'
 
 import { K, not, suppose, L, by } from 'camarche/core'
-import { pinpoint, match, case_ } from 'camarche/optics'
 import { L_, belief, please, show, mark } from 'camarche/faith'
 import { calmm } from 'camarche/calmm'
 import { jinx } from 'camarche/effects'
 import { as } from 'camarche/adt'
 
-import { client_state, local_state } from '~/project/state'
 import { user } from '~/project/types'
 import { id_email_state_ } from  '~/project/api'
 import api from  '~/project/api'

@@ -38,5 +38,6 @@
     { "value": "Department of Sociology" },
     { "value": "Department of Statistics and Actuarial Science" },
     { "value": "Department of Surgery" },
-    { "value": "Department of Urban Planning and Design" }
+    { "value": "Department of Urban Planning and Design" },
+    { "value": "Others" }
 ]

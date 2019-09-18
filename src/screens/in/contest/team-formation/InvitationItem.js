@@ -2,7 +2,6 @@ import { ListItem } from 'react-native-elements'
 import Ionicon from 'react-native-vector-icons/Ionicons'
 
 import { K, L, by } from 'camarche/core'
-import { pinpoint, match, case_ } from 'camarche/optics'
 
 var styles = {
 	item: {

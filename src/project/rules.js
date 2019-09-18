@@ -7,17 +7,23 @@ import * as Location from 'expo-location'
 import { L, equals, S } from 'camarche/core'
 import { L_, belief, show, mark, please } from 'camarche/faith'
 import { go } from 'camarche/effects'
-import { as } from 'camarche/adt'
+import { as_match, case_ } from 'camarche/optics'
+import { as, as_in } from 'camarche/adt'
 import { as_to, as_into } from './aux'
 import { promise_ } from './aux'
 
 import api from './api'
-import screen_ from './screen_'
+import default_ from './default_'
 import { calories_, hour_, day_, month_ } from '~/project/domain-aux'
-import { dimensions, user, step_stat, maybe, in_features } from './types'
+import { dimensions, user, step_stat, maybe, in_features, signup_step_one, signup_step_two } from './types'
 import { nav, in_view, main_view, signup_view, login_view, profile_view } from './types'
 import { location_state, location_nav_state, user_state, step_stat_state } from './state'
 import { coord_state, width_state, height_state } from './state'
+
+var maybe_as_bool = as_match (
+	case_ (as_in (maybe .just)) (true),
+	case_ (as_in (maybe .nothing)) (false) )
+
 
 
 var debug_globals = true
@@ -32,7 +38,7 @@ var debug_network = false
 					{ ... global
 					, ... require ('camarche'), ... require ('~/project/aux'), ... require ('~/project/domain-aux')
 					, ... require ('~/project/types'), ... require ('~/project/state'), ... require ('~/project/api')
-					, screen_: require ('~/project/screen_') .default
+					, default_: require ('~/project/default_') .default
 					, api: require ('~/project/api') .default }
 				;for (i in globals) {;GLOBAL [i] = globals [i]} } }
 		} )
@@ -62,7 +68,7 @@ var debug_network = false
 		;go
 		.then (api .load)
 		.then (_ => {
-			;please (L_ .set (screen_ (nav .login))) (location_nav_state)
+			;please (L_ .set (default_ (nav .login))) (location_nav_state)
 			;SplashScreen .hide ()
 			} )
 		} )
@@ -70,17 +76,20 @@ var debug_network = false
 
 
 	var signup_state = belief (as_to (nav) (signup_view)) (location_state)
-	var signup_email_state = belief (as (signup_view) .email) (signup_state)
-	var signup_password_state = belief (as (signup_view) .password) (signup_state)
+	var step_one_state = belief (as_to (signup_view) (signup_step_one)) (signup_state)
+	var signup_email_state = belief (as (signup_step_one) .email) (step_one_state)
+	var signup_password_state = belief (as (signup_step_one) .password) (step_one_state)
+	var step_two_state = belief (as_to (signup_view) (signup_step_two)) (signup_state)
+	var signup_user_state = belief (as (signup_step_two) .unbound_user) (step_two_state)
 	var signup_committing_yes_state = belief (as (signup_view) .committing_yes) (signup_state)
 	var in_features_state = belief (as_to (nav) (maybe (in_features))) (location_state)
 	;S (_ => {
 		if (equals (mark (signup_committing_yes_state)) (true)) {
 			var _email = show (signup_email_state)
-			;api .signup ({ email: _email, password: show (signup_password_state), user: user () })
+			;api .signup ({ email: _email, password: show (signup_password_state), user: show (signup_user_state) })
 			.then (_client => go .then (_ => {
 				;please (
-				L_ .set (screen_ (nav .in) (maybe .nothing))
+				L_ .set (default_ (nav .in) (maybe .nothing))
 				) (location_nav_state ) } ) .then (_ =>
 			Promise .all (
 			[ api .user ({ client: _client })
@@ -108,7 +117,7 @@ var debug_network = false
 			;api .login ({ email: show (login_email_state), password: show (login_password_state) })
 			.then (_client => go .then (_ => {
 				;please (
-				L_ .set (screen_ (nav .in) (maybe .nothing))
+				L_ .set (default_ (nav .in) (maybe .nothing))
 				) (location_nav_state ) } ) .then (_ =>
 			Promise .all (
 			[ api .user ({ client: _client })

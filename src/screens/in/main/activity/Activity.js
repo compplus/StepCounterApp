@@ -6,7 +6,7 @@ import Icon_ion from 'react-native-vector-icons/Ionicons'
 import { LineChart } from 'react-native-chart-kit'
 
 import { suppose, by, L, K, R } from 'camarche/core'
-import { un, pinpoint, pinpoints, match, case_ } from 'camarche/optics'
+import { un, pinpoint, pinpoints, as_match, match, case_ } from 'camarche/optics'
 import { belief, please, L_, mark } from 'camarche/faith'
 import { calmm } from 'camarche/calmm'
 import { as, as_in, variant_name_ } from 'camarche/adt'
@@ -82,7 +82,7 @@ var charts = {
 
 var tab_label_ = L .modify ([ as_string, L .first ]) (R .toUpper)
 
-var tabs = [ time_unit .hour, time_unit .day, time_unit .month ]
+var tabs = [ time_unit .day, time_unit .month ]
 
 var activity_state = belief (as_to (nav) (activity_view)) (location_state)
 var tab_state = belief (as (activity_view) .time_unit) (activity_state)
@@ -93,23 +93,22 @@ var interval_on = n => total =>
 	( _from = R .min (R .max (0) (n - samples_per_graph + 1)) (total - samples_per_graph + 1)
 	) =>
 	[ _from, _from + samples_per_graph - 1])
-var sample_stamps_ = by (_time_unit => pinpoint (
+var sample_stamps_ = by (_time_unit => 
 	match (
-	case_ (as_in (time_unit .hour)) (_stamp => 
+	case_ (as_in (time_unit .day)) (_stamp => 
 		suppose (
 		( [ _from, _to ] = interval_on (pinpoint (hour_as_ordinal) (_stamp)) (24)
 		) =>
 		[ ... R .map (_n => L .set (hour_as_ordinal) (_n) (_stamp)) (R .range (_from) (_to + 1)) ] ) ),
-	case_ (as_in (time_unit .day)) (_stamp => 
+	case_ (as_in (time_unit .month)) (_stamp => 
 		suppose (
 		( [ _from, _to ] = interval_on (pinpoint (day_as_ordinal) (_stamp)) (days_in_month_ (month_ (_stamp)))
 		) =>
 		[ ... R .map (_n => L .set (day_as_ordinal) (_n) (_stamp)) (R .range (_from) (_to + 1)) ] ) ),
-	case_ (as_in (time_unit .month)) (_stamp => 
-		suppose (
-		( [ _from, _to ] = interval_on (pinpoint (month_as_ordinal) (_stamp)) (12)
-		) =>
-		[ ... R .map (_n => L .set (month_as_ordinal) (_n) (_stamp)) (R .range (_from) (_to + 1)) ] ) ) ) ) )
+	case_ (K) (K ()) ) ) 
+var downgrade_unit_ = match (
+	case_ (as_in (time_unit .day)) (time_unit .hour),
+	case_ (as_in (time_unit .month)) (time_unit .day) )
 
 
 
@@ -117,12 +116,12 @@ export default calmm (_ =>
 	suppose (
 	( _width = mark (width_state)
 	, _height = mark (height_state)
-	, _time_unit = mark (tab_state)
+	, _time_unit = downgrade_unit_ (mark (tab_state))
 	, _step_sample_state = belief (
-			pinpoint (match (
+			match (
 			case_ (as_in (time_unit .hour)) (as (step_stat) .by_hours),
 			case_ (as_in (time_unit .day)) (as (step_stat) .by_days),
-			case_ (as_in (time_unit .month)) (as (step_stat) .by_months) )
+			case_ (as_in (time_unit .month)) (as (step_stat) .by_months)
 			) (_time_unit )
 		) (step_stat_state )
 
@@ -131,45 +130,43 @@ export default calmm (_ =>
 
 	, _steps_data_state = belief (_step_sample => (
 			{ labels: pinpoints (L .elems, display_stamp_ (_time_unit)) (sample_stamps)
-			, datasets: [ { data: pinpoints (L .elems, _stamp => pinpoint (un (L .keyed), display_stamp_ (_time_unit) (_stamp), L .choice (as (step_sample) .steps, K (0))) (_step_sample)) (sample_stamps) } ] } )
+			, datasets: [ { data: pinpoints (L .elems, _stamp => pinpoint (pinpoint (un (L .keyed), display_stamp_ (_time_unit) (_stamp), as (step_sample) .steps), L .valueOr (0)) (_step_sample)) (sample_stamps) } ] } )
 		) (_step_sample_state )
 	, _calories_data_state = belief (_calories => (
 			{ labels: pinpoints (L .elems, display_stamp_ (_time_unit)) (sample_stamps)
-			, datasets: [ { data: pinpoints (L .elems, _stamp => pinpoint (un (L .keyed), display_stamp_ (_time_unit) (_stamp), L .choice (as (step_sample) .calories, K (0))) (_calories)) (sample_stamps) } ] } )
+			, datasets: [ { data: pinpoints (L .elems, _stamp => pinpoint (pinpoint (un (L .keyed), display_stamp_ (_time_unit) (_stamp), as (step_sample) .calories), L .valueOr (0)) (_calories)) (sample_stamps) } ] } )
 		) (_step_sample_state )
 	) =>
 	<ScrollView style={{ width: _width, ... styles .container }} contentContainerStyle={styles .scroll_container}>
 		<View style={{ height: 15 }} />
 		<ButtonGroup
 			onPress={i => {;please (L_ .set (tabs [i])) (tab_state)}}
-			selectedIndex={R .indexOf (_time_unit) (tabs)}
+			selectedIndex={R .indexOf (mark (tab_state)) (tabs)}
 			buttons={pinpoints (L .elems, variant_name_, tab_label_) (tabs)}
 			containerStyle={styles .buttons_container} selectedButtonStyle={styles .selected_button}
 			innerBorderStyle={styles .buttons_border} textStyle={styles .buttons_text} />
-		{ pinpoint (match (
+		{ match (
 		case_ (L_ .isDefined) (
 		<>
 		<View style={styles .titleContainer}><Text style={styles .title}>Number of steps you've walked</Text></View>
-		<LineChart
+		<LineChart style={styles .steps}
+			width={_width - 25} height={_height / 2 - 200}
 			labels={[]}
 			data={mark (_steps_data_state)} yAxisLabel={''}
-			bezier chartConfig={charts .steps}
-			style={styles .steps}
-			width={_width - 25} height={_height / 2 - 200} /> </> ),
+			bezier chartConfig={charts .steps} /> </> ),
 		case_ (K) (
-		<ActivityIndicator /> ) )
+		<ActivityIndicator /> )
 		) (mark (_steps_data_state) ) }
-		{ pinpoint (match (
+		{ match (
 		case_ (L_ .isDefined) (
 		<>
 		<View style={styles .titleContainer}><Text style={styles .title}>Calories you've burnt</Text></View>
-		<LineChart
+		<LineChart style={styles .calories}
+			width={_width - 25} height={_height / 2 - 200}
 			labels={[]}
 			data={mark (_calories_data_state)} yAxisLabel={''}
-			bezier chartConfig={charts .calories}
-			style={styles .calories}
-			width={_width - 25} height={_height / 2 - 200} /> </> ),
+			bezier chartConfig={charts .calories} /> </> ),
 		case_ (K) (
-		<ActivityIndicator /> ) )
+		<ActivityIndicator /> )
 		) (mark (_calories_data_state) ) }
 		</ScrollView> ) )

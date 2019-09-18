@@ -65,6 +65,7 @@ export
 , location_state
 , location_nav_state
 
+, in_features_state
 , client_state
 , email_state
 , user_state

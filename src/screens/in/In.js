@@ -11,7 +11,7 @@ import { calmm } from 'camarche/calmm'
 import { variant_name_, as_in } from 'camarche/adt'
 import { display_, as_to, as_into, nested_path_, path_screen_ } from '~/project/aux'
 
-import screen_ from '~/project/screen_'
+import default_ from '~/project/default_'
 import { nav, in_view, in_features, maybe } from '~/project/types'
 import { location_state, location_nav_state, undo_history, history_state } from '~/project/state'
 
@@ -56,9 +56,9 @@ export default calmm (_ =>
 	, _features = mark (in_features_state)
 	, _in = mark (in_state)
 	, go_back = _ => {;please (undo_history) (history_state)}
-	, log_out = _ => {;please (L_ .set (screen_ (nav .login))) (location_state)}
+	, log_out = _ => {;please (L_ .set (default_ (nav .login))) (location_state)}
 	) =>
-	pinpoint (match (
+	match (
 	case_ (as_in (maybe .nothing)) (
 	<View style={styles .loading_container}>
 		<ActivityIndicator /> </View> ),
@@ -73,10 +73,10 @@ export default calmm (_ =>
 		<Screen />
 		<View style={styles .tabContainer}>
 			<ButtonGroup
-				onPress={i => {;please (L_ .set (screen_ (tabs [i]))) (location_nav_state)}}
+				onPress={i => {;please (L_ .set (default_ (tabs [i]))) (location_nav_state)}}
 				selectedIndex={tab_index ()}
-				buttons={pinpoints (L .elems, variant_name_, display_) (tabs)}
+				buttons={pinpoints (L .elems, display_) (tabs)}
 				innerBorderStyle={{ color: '#212121' }}
 				selectedButtonStyle={{ backgroundColor: '#004D40' }}
-				containerStyle={{ height: 42, borderRadius: 5, borderColor: '#212121', backgroundColor: '#CFD8DC' }} /> </View> </View> ) )
+				containerStyle={{ height: 42, borderRadius: 5, borderColor: '#212121', backgroundColor: '#CFD8DC' }} /> </View> </View> )
 	) (_features ) ) )

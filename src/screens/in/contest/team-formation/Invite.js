@@ -1,7 +1,7 @@
-import { ActivityIndicator, View, TextInput, Button } from 'react-native'
+import { ActivityIndicator, Text, View, TextInput, Button } from 'react-native'
 
 import { I, not, suppose, R, L } from 'camarche/core'
-import { l_sum } from 'camarche/optics'
+import { l_sum, match, case_ } from 'camarche/optics'
 import { L_, belief, mark, please } from 'camarche/faith'
 import { calmm } from 'camarche/calmm'
 import { go } from 'camarche/effects'
@@ -15,11 +15,10 @@ var styles = {
 	inputContainer: {
 		width: '100%',
 		flexDirection: 'row',
-		marginTop: 10,
+		marginVertical: 10,
 		justifyContent: 'center',
 		alignItems: 'center',
-		paddingHorizontal: 20,
-	},
+		paddingHorizontal: 20 },
 	memberInput: {
 		backgroundColor: 'white',
 		width: '80%',
@@ -35,7 +34,11 @@ var styles = {
 		borderRadius: 5,
 		marginHorizontal: 5,
 		justifyContent: 'center',
-		alignItems: 'center' } }
+		alignItems: 'center' },
+	notice_box: {
+		color: 'white',
+		alignSelf: 'center',
+		marginBottom: 20 } }
 
 var adding_yes_state = belief ([ 'team-invite', 'adding-yes', L .valueOr (false) ]) (local_state)
 
@@ -56,6 +59,7 @@ export default calmm (({ team_state, style }) =>
 		.catch (I) .then (_ => {
 		;please (L_ .set (false)) (adding_yes_state) } ) }
 	) =>
+	<>
 	<View style={{ ... styles .inputContainer, ... style }}>
 		<TextInput
 			style={styles .memberInput}
@@ -63,11 +67,14 @@ export default calmm (({ team_state, style }) =>
 			onChangeText={select_email} />
 		{ !! not (mark (adding_yes_state)) ?
 		<Button
-			title="Add"
+			title="Invite"
 			style={styles .addButton}
 			onPress={invite_email}
 			color='#81F7F3'
 			disabled={mark (disabled_yes_state)} />
 		:
-		<ActivityIndicator /> }
-		</View> ) )
+		<ActivityIndicator style={{ marginVertical: 20 }} /> }
+		</View>
+	{ match (case_ (L .subset (not)) (
+	<Text style={styles .notice_box}>You need to have five members in your team to participate in the team competition!</Text> )
+	) (mark (disabled_yes_state) ) } </> ) )

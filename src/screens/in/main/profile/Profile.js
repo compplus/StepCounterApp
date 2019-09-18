@@ -7,12 +7,13 @@ import { I, not, suppose, L } from 'camarche/core'
 import { pinpoint, pinpoints } from 'camarche/optics'
 import { belief, please, L_, mark } from 'camarche/faith'
 import { calmm } from 'camarche/calmm'
-import { as, variant_name_ } from 'camarche/adt'
+import { as, variants_, variant_name_ } from 'camarche/adt'
 import { as_to, name_variant_, display_ } from '~/project/aux'
 
 import { nav, profile_view } from '~/project/types'
 import { user, category, gender } from '~/project/types'
 import { location_state, dimensions_state, local_state } from '~/project/state'
+import { departments, faculties } from '~/project/domain-aux'
 
 var { height } = Dimensions .get ('window')
 
@@ -96,10 +97,8 @@ var styles = {
 		maxHeight: 150 } }
 
 
-var categories = pinpoints (L .values, variant_name_, display_, value => ({ value })) (category)
-var genders = pinpoints (L .values, variant_name_, display_, value => ({ value })) (gender)
-var departments = require ('./data-departments.json')
-var faculties = require ('./data-faculties.json')
+var categories = pinpoints (variants_, L .values, display_, value => ({ value })) (category)
+var genders = pinpoints (variants_, L .values, display_, value => ({ value })) (gender)
 
 var profile_state = belief (as_to (nav) (profile_view)) (location_state)
 var unbound_user_state = belief (as (profile_view) .unbound_user) (profile_state)
@@ -124,14 +123,6 @@ export default calmm (_ =>
 	) =>
 	<KeyboardAvoidingView behavior="padding" style={styles .wrapper}>
 		<ScrollView style={{ flex: 1 }}>
-			{/*<View style={styles .container}>
-				<View style={styles .avatar}>
-					<Avatar rounded size={100} icon={{name: 'user', type: 'font-awesome'}} />
-					</View>
-				<View style={styles .username_box}>
-					<Text style={styles.username}>Username</Text>
-					</View>
-				</View>*/}
 			<View style={{ paddingHorizontal: 50 }}> 
 				<Dropdown
 					label="Faculty" data={faculties}
@@ -143,12 +134,12 @@ export default calmm (_ =>
 					onChangeText={_department => {;please (L_ .set (_department)) (department_state)}} />
 				<Dropdown
 					label="Category" data={categories}
-					value={pinpoint (L .choice ([ L .when (I), variant_name_, display_ ], L .valueOr (''))) (mark (category_state)) }
+					value={display_ (mark (category_state)) }
 					onChangeText={_category => {;please (L_ .set (name_variant_ (category) (_category))) (category_state)}} />
 				<Text style={styles .disclaimer}>(To improve the accuracy of the data, please provide the following biometric information)</Text>
 				<Dropdown
 					label="Gender" data={genders}
-					value={pinpoint (L .choice ([ L .when (I), variant_name_, display_ ], L .valueOr (''))) (mark (gender_state)) }
+					value={display_ (mark (gender_state)) }
 					onChangeText={_genders => {;please (L_ .set (name_variant_ (gender) (_genders))) (gender_state)}} />
 				<TextField
 					label="First Name" value={mark (first_name_state)}

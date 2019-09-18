@@ -4,7 +4,7 @@ import { suppose } from 'camarche/core'
 import { belief, please, L_ } from 'camarche/faith'
 import { as_to } from '~/project/aux'
 
-import screen_ from '~/project/screen_'
+import default_ from '~/project/default_'
 import { nav, contest_view } from '~/project/types'
 import { location_state } from '~/project/state'
 
@@ -34,9 +34,9 @@ var contest_state = belief (as_to (nav) (contest_view)) (location_state)
 
 export default _ =>
 	suppose (
-	( go_individual_rank = _ => {;please (L_ .set (screen_ (contest_view .individual_rank))) (contest_state)}
-	, go_team_formation = _ => {;please (L_ .set (screen_ (contest_view .team_formation))) (contest_state)}
-	, go_team_rank = _ => {;please (L_ .set (screen_ (contest_view .team_rank))) (contest_state)}
+	( go_individual_rank = _ => {;please (L_ .set (default_ (contest_view .individual_rank))) (contest_state)}
+	, go_team_formation = _ => {;please (L_ .set (default_ (contest_view .team_formation))) (contest_state)}
+	, go_team_rank = _ => {;please (L_ .set (default_ (contest_view .team_rank))) (contest_state)}
 	) =>
 	<View style={styles .container}>
 		<View style={styles .individualRank}>

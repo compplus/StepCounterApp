@@ -5,7 +5,7 @@ import { suppose } from 'camarche/core'
 import { belief, please } from 'camarche/faith'
 import { as_to } from '~/project/aux'
 
-import screen_ from '~/project/screen_'
+import default_ from '~/project/default_'
 import { nav, settings_view } from '~/project/types'
 import { location_state } from '~/project/state'
 
@@ -24,7 +24,7 @@ var settings_state = belief (as_to (nav) (settings_view)) (location_state)
 
 export default _ =>
 	suppose (
-	( go_to_about = _ => {;please (L_ .set (screen_ (settings_view .about))) (settings_state)}
+	( go_to_about = _ => {;please (L_ .set (default_ (settings_view .about))) (settings_state)}
 	) =>
 	<View style={styles.container}>
 		<SettingsList borderColor='#c8c7cc' defaultItemSize={50}>

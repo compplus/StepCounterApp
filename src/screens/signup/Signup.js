@@ -1,69 +1,24 @@
-import { StyleSheet, Text, View, TouchableWithoutFeedback, ImageBackground, KeyboardAvoidingView, TouchableOpacity } from 'react-native'
-import { DismissKeyboard } from '~/components'
-import SignupForm from './SignupForm'
-import { Images } from '__/assets/assets'
+import StepOne from './StepOne'
+import StepTwo from './StepTwo'
 
-import { suppose } from 'camarche/core'
-import { L_, belief, please } from 'camarche/faith'
+import { belief } from 'camarche/faith'
+import { as_match, case_ } from 'camarche/optics'
 import { calmm } from 'camarche/calmm'
+import { as } from 'camarche/adt'
 import { as_to } from '~/project/aux'
 
-import screen_ from '~/project/screen_'
-import { nav, signup_view } from '~/project/types'
-import { location_state, location_nav_state } from '~/project/state'
+import { nav, signup_view, maybe } from '~/project/types'
+import { location_state } from '~/project/state'
 
-var styles = {
-	container: {
-		flex: 1,
-		justifyContent: 'center',
-		alignItems: 'center' },
-	wrapper: {
-		flex: 1 },
-	signupWrapper: {
-		flexGrow: 1,
-		justifyContent: 'center' },
-	loginWrapper: {
-		justifyContent: 'center',
-		flexDirection: "row" },
-	bottomText: {
-		fontSize: 17,
-		textAlign: 'center',
-		color: 'white',
-		fontFamily: 'Gill Sans' },
-	loginText: {
-		fontSize: 17,
-		textAlign: 'center',
-		color: 'white',
-		fontFamily: 'Gill Sans',
-		fontWeight: '600' },
-	title: {
-		fontSize: 35,
-		textAlign: 'center',
-		color: 'white',
-		fontWeight: '400',
-		width: 300,
-		fontFamily: 'Gill Sans' } }
+var maybe_as_bool = as_match (
+	case_ (as_in (maybe .just)) (true),
+	case_ (as_in (maybe .nothing)) (false) )
 
 var signup_state = belief (as_to (nav) (signup_view)) (location_state)
+var step_two_yes_state = belief (as (signup_view) .step_two, maybe_as_bool) (signup_state)
 
 export default calmm (_ =>
-	suppose (
-	( go_login = _ => {;please (L_ .set (screen_ (nav .login))) (location_nav_state)}
-	) =>
-	<DismissKeyboard>		
-		<ImageBackground source={Images .background} style={styles .container}>
-			<KeyboardAvoidingView behavior="padding" style={styles .wrapper}>
-				<View style={styles .signupWrapper}>
-					<TouchableWithoutFeedback>
-						<Text style={styles .title}>Sign Up Here</Text> </TouchableWithoutFeedback>
-					<View><SignupForm signup_state={signup_state} /></View>
-					<View style={styles .loginWrapper}>
-						<Text style={styles .bottomText}>Already have an account?</Text>
-						<TouchableOpacity onPress={go_login}>
-							<Text style={styles .loginText}> Login.</Text>
-							</TouchableOpacity>
-						</View>
-					</View>
-				</KeyboardAvoidingView>
-			</ImageBackground> 
-		</DismissKeyboard> ) )
+	!! not (mark (step_two_yes_state)) ?
+	<StepOne />
+	:
+	<StepTwo /> )

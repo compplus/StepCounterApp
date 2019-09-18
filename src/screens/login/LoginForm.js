@@ -1,7 +1,8 @@
-import { Text, View, TextInput, TouchableOpacity } from 'react-native'
+import { ActivityIndicator, Text, View, TextInput, TouchableOpacity } from 'react-native'
 
 import { L, suppose } from 'camarche/core'
 import { L_, belief, please } from 'camarche/faith'
+import { calmm } from 'camarche/calmm'
 import { as } from 'camarche/adt'
 
 import { login_view } from '~/project/types'
@@ -29,7 +30,7 @@ var styles = {
 		fontWeight: '400',
 		fontFamily: 'Gill Sans' } }
 
-export default ({ login_state }) =>
+export default calmm (({ login_state }) =>
 	suppose (
 	( password_ref
 	
@@ -56,4 +57,4 @@ export default ({ login_state }) =>
 		: 
 		<TouchableOpacity onPress={commit_login} style={styles.buttonContainer}>
 			<Text style={styles.buttonText}>LOGIN</Text> </TouchableOpacity> }
-		</View> )
+		</View> ) )

@@ -24,7 +24,7 @@ suppose (
 
 , hour_ = _stamp => ('' + (new Date (_stamp)) .getHours ()) .padStart (2, '0') + ':00'
 , day_ = _stamp => '' + (new Date (_stamp)) .getDate ()
-, month_ = _stamp => pinpoint (match (
+, month_ = _stamp => match (
 	case_ (L .subset (equals (0))) ('Jan'),
 	case_ (L .subset (equals (1))) ('Feb'),
 	case_ (L .subset (equals (2))) ('Mar'),
@@ -36,13 +36,13 @@ suppose (
 	case_ (L .subset (equals (8))) ('Sep'),
 	case_ (L .subset (equals (9))) ('Oct'),
 	case_ (L .subset (equals (10))) ('Nov'),
-	case_ (L .subset (equals (11))) ('Dec') )
+	case_ (L .subset (equals (11))) ('Dec') 
 	) ((new Date (_stamp)) .getMonth () )
 
-, display_stamp_ = by (_time_unit => pinpoint (match (
+, display_stamp_ = by (_time_unit => match (
 	case_ (as_in (time_unit .hour)) (hour_), 
 	case_ (as_in (time_unit .day)) (day_), 
-	case_ (as_in (time_unit .month)) (month_) ) ) )
+	case_ (as_in (time_unit .month)) (month_) ) )
 
 
 , hour_as_ordinal = L .lens (_timestamp => (new Date (_timestamp)) .getHours ()) ((_ordinal, _timestamp) => + (new Date (hour_stamp_ (_timestamp))) .setHours (_ordinal, 0, 0, 0))
@@ -65,6 +65,10 @@ suppose (
 	, [ 'Nov', 30 ]
 	, [ 'Dec', 31 ] ] ) )
 
+
+, departments = require ('./data-departments.json')
+, faculties = require ('./data-faculties.json')
+
 ) =>
 
 satisfy (module
@@ -79,4 +83,6 @@ satisfy (module
 { hour_as_ordinal, day_as_ordinal, month_as_ordinal }
 ,...
 { days_in_month_ }
+,...
+{ departments, faculties }
 } ) )

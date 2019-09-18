@@ -61,9 +61,8 @@ export default calmm (({ title, description, status, image }) =>
 					</DialogContent>
 				</Dialog>
 			</TouchableOpacity>
-		{ pinpoint (
-		match (
+		{ match (
 		case_ (L .when (I)) (
-		<Text style={live_ (styles .text)}>{ title }</Text> ) )
+		<Text style={live_ (styles .text)}>{ title }</Text> )
 		) (status ) }
 		</View> ) )
