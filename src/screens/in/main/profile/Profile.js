@@ -14,6 +14,7 @@ import { nav, profile_view } from '~/project/types'
 import { user, category, gender } from '~/project/types'
 import { location_state, dimensions_state, local_state } from '~/project/state'
 import { departments, faculties } from '~/project/domain-aux'
+import { scale } from '../../../../project/scaling'
 
 var { height } = Dimensions .get ('window')
 
@@ -121,7 +122,7 @@ export default calmm (_ =>
 	suppose (
 	( commit_profile = _ => {;please (L_ .set (true)) (committing_yes_state)}
 	) =>
-	<KeyboardAvoidingView behavior="padding" style={styles .wrapper}>
+	<KeyboardAvoidingView behavior= {(Platform.OS === 'ios')? "padding" : null} style={styles.wrapper}>
 		<ScrollView style={{ flex: 1 }}>
 			<View style={{ paddingHorizontal: 50 }}> 
 				<Dropdown
