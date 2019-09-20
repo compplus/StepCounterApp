@@ -61,7 +61,7 @@ export default calmm (_ =>
 		<TeamNameItem /> )
 		) (not (mark (team_mines_yes_state)) ) }
 		{ pinpoints (L .elems, _id =>
-		<Invitation id={_id} />
+		<Invitation id={_id} key={_id} />
 		) (mark (invites_state) ) }
 		{ match (case_ (L .subset (equals (true))) (
 		<Text style={{ color: 'white', padding: 25 }}>Ask a friend with an hku.hk email to create a team!</Text> )

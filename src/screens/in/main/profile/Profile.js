@@ -1,4 +1,4 @@
-import { ActivityIndicator, Dimensions, Text, View, KeyboardAvoidingView, TouchableOpacity, ScrollView } from 'react-native'
+import { Platform, ActivityIndicator, Dimensions, Text, View, KeyboardAvoidingView, TouchableOpacity, ScrollView } from 'react-native'
 import { Dropdown } from 'react-native-material-dropdown'
 import { TextField } from 'react-native-material-textfield'
 import { Avatar } from 'react-native-elements'

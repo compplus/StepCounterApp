@@ -116,7 +116,7 @@ var options =
 	[ { name: 'Walking challenge' }
 	, { name: 'Settings', screen: main_view .settings } ]
 
-var Option = ({  name, screen }) =>
+var Option = ({ name, screen }) =>
 	suppose (
 	( go_option = pin_first (l_sum ([ [ K (default_ (screen)), L .when (I), _screen => {;please (L_ .set (_screen)) (inner_nav_state)} ], _ => {;alert ('Page under construction')} ])) 
 	) =>
@@ -168,6 +168,7 @@ export default calmm (_ =>
 		<View style={{ ... styles .gap, marginTop: 40 }} />
 		<FlatList
 			data={options}
+			keyExtractor={({ name }) => name}
 			ItemSeparatorComponent={K (<View style={styles .gap} />)}
 			renderItem={FlatListItem (Option)} />
 		<View style={styles .gap} />

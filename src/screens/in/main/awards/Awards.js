@@ -30,7 +30,7 @@ export default _ =>
 				style={{ flex: 1 }}
 				numColumns={3} initialNumToRender={12}
 				data={award_items}
-				keyExtractor={(item, index) => index}
+				keyExtractor={({ title }) => title}
 				showsVerticalScrollIndicator={false}
 				renderItem={FlatListItem (ListAwardItem)} />
 			</View> </View>

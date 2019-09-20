@@ -14,7 +14,7 @@ import { serialize, deserialize, on_interest_ } from './aux'
 
 
 
-var backend_url = /**/'http://ec2-3-19-76-6.us-east-2.compute.amazonaws.com:8080'/*/'http://localhost:8080'/**/
+var backend_url = /*/'http://ec2-3-19-76-6.us-east-2.compute.amazonaws.com:8080'/*/'http://localhost:8080'/**/
 
 var log_fetches_yes = true
 
@@ -79,9 +79,9 @@ var id_user = with_client_ (({ _client, _id }) => interested_ (id_user_state_ (_
 var id_team = with_client_ (({ _client, _id }) => interested_ (id_team_state_ (_id)) (
 	_fetch ('/team' + query_ ({ _client, _id })) ) )
 var user_ranking = with_client_ (({ _client }) => interested_ (user_ranking_state) (
-	_fetch ('/user-ranking' + query_ ({ _client, offset: 0 })) ) )
+	_fetch ('/user-ranking' + query_ ({ _client, _offset: 0 })) ) )
 var team_ranking = with_client_ (({ _client }) => interested_ (team_ranking_state) (
-	_fetch ('/team-ranking' + query_ ({ _client, offset: 0 })) ) )
+	_fetch ('/team-ranking' + query_ ({ _client, _offset: 0 })) ) )
 var user = with_client_ (({ _client }) => interested_ (user_state) (
 	_fetch ('/client/user' + query_ ({ _client })) ) )
 var team = with_client_ (({ _client }) => interested_ (team_state) (
