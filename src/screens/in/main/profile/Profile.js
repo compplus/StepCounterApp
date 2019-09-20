@@ -3,8 +3,8 @@ import { Dropdown } from 'react-native-material-dropdown'
 import { TextField } from 'react-native-material-textfield'
 import { Avatar } from 'react-native-elements'
 
-import { I, not, suppose, L } from 'camarche/core'
-import { pinpoint, pinpoints } from 'camarche/optics'
+import { equals, I, not, suppose, L } from 'camarche/core'
+import { pinpoint, pinpoints, match, case_ } from 'camarche/optics'
 import { belief, please, L_, mark } from 'camarche/faith'
 import { calmm } from 'camarche/calmm'
 import { as, variants_, variant_name_ } from 'camarche/adt'
@@ -24,7 +24,7 @@ var styles = {
 		flexDirection: 'column',
 		justifyContent: 'center',
 		alignContent: 'stretch',
-		height: height/4 - 20,
+		height: height /4 - 20,
 		shadowOffset: { width: 5,  height: 5 },
 		shadowColor: '#B0BEC5',
 		shadowOpacity: 1.0 },
@@ -121,7 +121,7 @@ export default calmm (_ =>
 	suppose (
 	( commit_profile = _ => {;please (L_ .set (true)) (committing_yes_state)}
 	) =>
-	<KeyboardAvoidingView behavior="padding" style={styles .wrapper}>
+	<KeyboardAvoidingView behavior={match (case_ (L .subset (equals ('ios'))) ('padding')) (Platform .OS)} style={styles.wrapper}>
 		<ScrollView style={{ flex: 1 }}>
 			<View style={{ paddingHorizontal: 50 }}> 
 				<Dropdown
