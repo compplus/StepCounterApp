@@ -5,7 +5,7 @@ import { MaterialIcons } from '@expo/vector-icons'
 import { K, not, suppose, L, by } from 'camarche/core'
 import { L_, belief, please, show, mark } from 'camarche/faith'
 import { calmm } from 'camarche/calmm'
-import { jinx } from 'camarche/effects'
+import { go, jinx } from 'camarche/effects'
 import { as } from 'camarche/adt'
 
 import { user } from '~/project/types'
@@ -29,8 +29,8 @@ var Reject = _email => _ =>
 	suppose (
 	( reject = _ => {
 		;go
-		.then (_ => api .reject ({ email: _email }))
-		.then (_ => (api .invites ({}), api .team ({}))) }
+		.then (_ => api .reject ({ _email }))
+		.then (_ => (api .invites (), api .team ({}))) }
 	) =>
 	<TouchableOpacity onPress={reject}>
 		<MaterialIcons name="cancel" color="black" size={35} /> </TouchableOpacity> )
@@ -41,8 +41,8 @@ export default calmm (({ id: _id }) =>
 	, _email = mark (email_state)
 	, accept = _ => {
 		;go
-		.then (_ => api .accept ({ email: _email }))
-		.then (_ => (api .invites ({}), api .team ({}))) }
+		.then (_ => api .accept ({ _email }))
+		.then (_ => (api .invites (), api .team ())) }
 	) =>
 	!! L_ .isDefined (_email) ?
 	<TouchableOpacity onPress={accept}>

@@ -7,9 +7,9 @@ import MemberItem from './MemberItem'
 import InvitationItem from './InvitationItem'
 import Invite from './Invite'
 
-import { L, I, K, by, equals } from 'camarche/core'
-import { belief, mark } from 'camarche/faith'
-import { pinpoint, pinpoints } from 'camarche/optics'
+import { R, L, I, K, not, by, equals } from 'camarche/core'
+import { L_, belief, mark } from 'camarche/faith'
+import { match, case_, pinpoint, pinpoints } from 'camarche/optics'
 import { calmm } from 'camarche/calmm'
 import { as } from 'camarche/adt'
 import { as_to } from '~/project/aux'
@@ -17,7 +17,7 @@ import { as_to } from '~/project/aux'
 import { invites_state, id_user_state_, id_email_state_ } from '~/project/api'
 import { nav, contest_view } from '~/project/types'
 import { user, team, mention } from '~/project/types'
-import { location_state, team_state, user_state } from '~/project/state'
+import { team_state, user_state } from '~/project/state'
 
 var styles = {
 	container: {
@@ -75,7 +75,7 @@ export default calmm (_ =>
 			:
 			<ActivityIndicator style={{ marginVertical: 20 }} />
 			) (mark (captain_state) ) }
-			{ pinpoints (L .elems, trace_as ('ai'), _user => 
+			{ pinpoints (L .elems, _user => 
 			!! L_ .isDefined (_user) ?
 			<MemberItem user={_user} key={pinpoint (as (user) .id) (_user)} />
 			:

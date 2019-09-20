@@ -5,7 +5,7 @@ import { MaterialIcons } from '@expo/vector-icons'
 import { K, not, suppose, L, by } from 'camarche/core'
 import { L_, belief, please, show, mark } from 'camarche/faith'
 import { calmm } from 'camarche/calmm'
-import { jinx } from 'camarche/effects'
+import { go, jinx } from 'camarche/effects'
 import { as } from 'camarche/adt'
 import { debounce } from '~/project/aux'
 
@@ -26,10 +26,10 @@ var styles = {
 		fontSize: 20 } }
 
 var name_state = belief (as (team) .name) (team_state)
-var update_name = debounce (1000) (_name => {
-	;go .then (_ =>
-	api .name_team ({ name: _name || 'Unnamed' }) ) .then (_ =>
-	api .team ()) } )
+var update_name = debounce (1000) (pinpoint (_name => _name || 'Unnamed', _name => {
+	;go
+	.then (_ => api .rename_team ({ _name }))
+	.then (_ => api .team ()) } ) )
 
 export default calmm (_ =>
 	suppose (

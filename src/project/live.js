@@ -10,7 +10,7 @@ var live_ = pinpoint (
 		) (
 		pinpoint (L .choose (val => !! val ._mark ? mark : rec)) ) ) )
 
-//Guideline sizes are based on iphone X
+// Guideline sizes are based on iphone X
 var guidelineBaseWidth = 375
 var guidelineBaseHeight = 812
 var scale = size => belief (_width => _width / guidelineBaseWidth * size) (width_state)

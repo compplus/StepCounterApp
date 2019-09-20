@@ -9,7 +9,6 @@ import { debounce } from '~/project/aux'
 
 import { team } from '~/project/types'
 import { team_state } from '~/project/state'
-import api from  '~/project/api'
 
 var styles = {
 	name_box: {
@@ -26,7 +25,4 @@ var styles = {
 var name_state = belief (as (team) .name) (team_state)
 
 export default calmm (_ =>
-	suppose (
-	( name_team = _name => {;please (L_ .set (_name)) (name_state) ;update_name (_name)}
-	) =>
-	<View style={styles .name_box}><Text style={{ fontSize: 20 }}>{ mark (name_state) }</Text></View> ) )
+	<View style={styles .name_box}><Text style={{ fontSize: 20 }}>{ mark (name_state) }</Text></View> )

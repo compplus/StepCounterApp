@@ -2,10 +2,17 @@ import { TouchableOpacity } from 'react-native'
 import { ListItem } from 'react-native-elements'
 import { MaterialIcons } from '@expo/vector-icons'
 
-import { K, L, by, suppose } from 'camarche/core'
+import { I, K, L, equals, by, suppose } from 'camarche/core'
+import { pinpoint } from 'camarche/optics'
 import { calmm } from 'camarche/calmm'
 import { mark, belief } from 'camarche/faith'
 import { go } from 'camarche/effects'
+import { as } from 'camarche/adt'
+
+import { user, team, mention } from '~/project/types'
+import { user_state, team_state } from '~/project/state'
+import { id_user_state_ } from '~/project/api'
+import api from '~/project/api'
 
 var styles = {
 	item: {
@@ -22,8 +29,8 @@ var Remove = _email => _ =>
 	suppose (
 	( remove = _ => {
 		;go
-		.then (_ => api .uninvite ({ email: _email }))
-		.then (_ => api .team ({})) }
+		.then (_ => api .uninvite ({ _email }))
+		.then (_ => api .team ()) }
 	) =>
 	<TouchableOpacity onPress={remove}>
 		<MaterialIcons name="cancel" color="darkslategray" size={35} /> </TouchableOpacity> )

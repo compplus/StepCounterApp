@@ -4,7 +4,7 @@ import { DismissKeyboard } from '~/components'
 import { Images } from '__/assets/assets'
 import LoginForm from './LoginForm'
 
-import { suppose, equals } from 'camarche/core'
+import { L, not, suppose, equals } from 'camarche/core'
 import { belief, L_, please, mark } from 'camarche/faith'
 import { calmm } from 'camarche/calmm'
 import { as } from 'camarche/adt'
@@ -12,7 +12,7 @@ import { as_to } from '~/project/aux'
 
 import default_ from '~/project/default_'
 import { nav, login_view, signup_view, maybe, forgot_password_view } from '~/project/types'
-import { location_state, location_nav_state } from '~/project/state'
+import { nav_state, inner_nav_state } from '~/project/state'
 
 
 var styles = {
@@ -56,14 +56,14 @@ var styles = {
 		fontFamily: 'Gill Sans',
 		marginTop: 3 } }
 
-var login_state = belief (as_to (nav) (login_view)) (location_state)
+var login_state = belief (as_to (nav) (login_view)) (nav_state)
 var maybe_forgot_password_state = belief (as_to (login_view) (maybe (forgot_password_view))) (login_state)
 var forgot_password_state = belief (as_to (login_view) (forgot_password_view)) (login_state)
 var forgot_password_yes_state = belief (L_ .isDefined) (forgot_password_state)
 
 export default calmm (_ =>
 	suppose (
-	( go_signup = _ => {;please (L_ .set (default_ (nav .signup))) (location_nav_state)}
+	( go_signup = _ => {;please (L_ .set (default_ (nav .signup))) (inner_nav_state)}
 	, go_forgot_password = _ => {;please (L_ .set (maybe .just (forgot_password_view ('', false)))) (maybe_forgot_password_state)}
 	, go_no_forgot_password = _ => {;please (L_ .set (maybe .nothing)) (maybe_forgot_password_state)}
 	, commit_forgot_password = _ => {;please (L .modify (as (forgot_password_view) .committing_yes) (not)) (forgot_password_state)}

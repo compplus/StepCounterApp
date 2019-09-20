@@ -34,11 +34,11 @@ var undo_history = by (history =>
 	end_trim_ (pinpoint (nav_path_, equals (path))) ) )
 
 var history_state = belief (as (state) .history) (_state)
-var location_state = belief ([ L .lens (L .get (L .last)) ((location, history) => L .set ([ L .rewrite (R .dropRepeats), L .appendTo ]) (location) (history)), L .valueOr (nav .loading) ]) (history_state)
-var location_nav_state = belief (L .lens (innermost_nav) ((to, from) => transfer (from) (pinpoint (un (as_to (nav) (variant_type_ (variant_ (to))))) (to)))) (location_state)
+var nav_state = belief ([ L .lens (L .get (L .last)) ((location, history) => L .set ([ L .rewrite (R .dropRepeats), L .appendTo ]) (location) (history)), L .valueOr (nav .loading) ]) (history_state)
+var inner_nav_state = belief (L .lens (innermost_nav) ((to, from) => transfer (from) (pinpoint (un (as_to (nav) (variant_type_ (variant_ (to))))) (to)))) (nav_state)
 
 
-var in_features_state = belief (as_to (nav) (in_features)) (location_state)
+var in_features_state = belief (as_to (nav) (in_features)) (nav_state)
 var client_state = belief (as (in_features) .client) (in_features_state)
 var email_state = belief (as (in_features) .email) (in_features_state)
 var user_state = belief (as (in_features) .user) (in_features_state)
@@ -62,8 +62,8 @@ export
 { _state
 
 , history_state
-, location_state
-, location_nav_state
+, nav_state
+, inner_nav_state
 
 , in_features_state
 , client_state

@@ -6,7 +6,7 @@ import { as_to } from '~/project/aux'
 
 import default_ from '~/project/default_'
 import { nav, contest_view } from '~/project/types'
-import { location_state } from '~/project/state'
+import { nav_state } from '~/project/state'
 
 var styles = {
 	container: {
@@ -30,7 +30,7 @@ var styles = {
 		width: 400,
 		borderRadius: 20 } }
 
-var contest_state = belief (as_to (nav) (contest_view)) (location_state)
+var contest_state = belief (as_to (nav) (contest_view)) (nav_state)
 
 export default _ =>
 	suppose (

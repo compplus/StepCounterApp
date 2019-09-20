@@ -4,10 +4,10 @@ import { Pedometer } from 'expo-sensors'
 import * as Permissions from 'expo-permissions'
 import * as Location from 'expo-location'
 
-import { L, equals, S } from 'camarche/core'
+import { R, L, equals, S } from 'camarche/core'
 import { L_, belief, show, mark, please } from 'camarche/faith'
 import { go } from 'camarche/effects'
-import { as_match, case_ } from 'camarche/optics'
+import { un, as_match, case_ } from 'camarche/optics'
 import { as, as_in } from 'camarche/adt'
 import { as_to, as_into } from './aux'
 import { promise_ } from './aux'
@@ -15,9 +15,9 @@ import { promise_ } from './aux'
 import api from './api'
 import default_ from './default_'
 import { calories_, hour_, day_, month_ } from '~/project/domain-aux'
-import { dimensions, user, step_stat, maybe, in_features, signup_step_one, signup_step_two } from './types'
+import { dimensions, user, step_stat, step_sample, maybe, in_features, signup_step_one, signup_step_two } from './types'
 import { nav, in_view, main_view, signup_view, login_view, profile_view } from './types'
-import { location_state, location_nav_state, user_state, step_stat_state } from './state'
+import { nav_state, inner_nav_state, user_state, step_stat_state } from './state'
 import { coord_state, width_state, height_state } from './state'
 
 var maybe_as_bool = as_match (
@@ -40,7 +40,7 @@ var debug_network = false
 					, ... require ('~/project/types'), ... require ('~/project/state'), ... require ('~/project/api')
 					, default_: require ('~/project/default_') .default
 					, api: require ('~/project/api') .default }
-				;for (i in globals) {;GLOBAL [i] = globals [i]} } }
+				;for (var i in globals) {;GLOBAL [i] = globals [i]} } }
 		} )
 
 	;S (_ => {
@@ -68,33 +68,33 @@ var debug_network = false
 		;go
 		.then (api .load)
 		.then (_ => {
-			;please (L_ .set (default_ (nav .login))) (location_nav_state)
+			;please (L_ .set (default_ (nav .login))) (inner_nav_state)
 			;SplashScreen .hide ()
 			} )
 		} )
 
 
 
-	var signup_state = belief (as_to (nav) (signup_view)) (location_state)
+	var signup_state = belief (as_to (nav) (signup_view)) (nav_state)
 	var step_one_state = belief (as_to (signup_view) (signup_step_one)) (signup_state)
 	var signup_email_state = belief (as (signup_step_one) .email) (step_one_state)
 	var signup_password_state = belief (as (signup_step_one) .password) (step_one_state)
 	var step_two_state = belief (as_to (signup_view) (signup_step_two)) (signup_state)
 	var signup_user_state = belief (as (signup_step_two) .unbound_user) (step_two_state)
 	var signup_committing_yes_state = belief (as (signup_view) .committing_yes) (signup_state)
-	var in_features_state = belief (as_to (nav) (maybe (in_features))) (location_state)
+	var in_features_state = belief (as_to (nav) (maybe (in_features))) (nav_state)
 	;S (_ => {
 		if (equals (mark (signup_committing_yes_state)) (true)) {
 			var _email = show (signup_email_state)
-			;api .signup ({ email: _email, password: show (signup_password_state), user: show (signup_user_state) })
+			;api .signup ({ _email, _password: show (signup_password_state), _user: show (signup_user_state) })
 			.then (_client => go .then (_ => {
 				;please (
 				L_ .set (default_ (nav .in) (maybe .nothing))
-				) (location_nav_state ) } ) .then (_ =>
+				) (inner_nav_state ) } ) .then (_ =>
 			Promise .all (
-			[ api .user ({ client: _client })
-			, api .step_stat ({ client: _client })
-			, api .team ({ client: _client })
+			[ api .user ({ _client })
+			, api .step_stat ({ _client })
+			, api .team ({ _client })
 			, api .permissions ] ) )
 			.then (([ _user, _step_stat, _team ]) => {
 				;please (
@@ -107,22 +107,22 @@ var debug_network = false
 			}
 		} )
 
-	var login_state = belief (as_to (nav) (login_view)) (location_state)
+	var login_state = belief (as_to (nav) (login_view)) (nav_state)
 	var login_email_state = belief (as (login_view) .email) (login_state)
 	var login_password_state = belief (as (login_view) .password) (login_state)
 	var login_committing_yes_state = belief (as (login_view) .committing_yes) (login_state)
 	;S (_ => {
 		if (equals (mark (login_committing_yes_state)) (true)) {
 			var _email = show (login_email_state)
-			;api .login ({ email: show (login_email_state), password: show (login_password_state) })
+			;api .login ({ _email: show (login_email_state), _password: show (login_password_state) })
 			.then (_client => go .then (_ => {
 				;please (
 				L_ .set (default_ (nav .in) (maybe .nothing))
-				) (location_nav_state ) } ) .then (_ =>
+				) (inner_nav_state ) } ) .then (_ =>
 			Promise .all (
-			[ api .user ({ client: _client })
-			, api .step_stat ({ client: _client })
-			, api .team ({ client: _client })
+			[ api .user ({ _client })
+			, api .step_stat ({ _client })
+			, api .team ({ _client })
 			, api .permissions ] ) )
 			.then (([ _user, _step_stat, _team ]) => {
 				;please (
@@ -138,15 +138,15 @@ var debug_network = false
 	var in_step_stat_state = belief (as_to (maybe (in_features)) (in_features) .step_stat) (in_features_state)
 	;S (_ => {
 		if (L_ .isDefined (mark (in_client_state))) {
-			;api .merge_step_stat ({ client: show (in_client_state), step_stat: mark (in_step_stat_state) }) } } )
+			;api .merge_step_stat ({ _client: show (in_client_state), _step_stat: mark (in_step_stat_state) }) } } )
 
-	var profile_state = belief (as_to (nav) (profile_view)) (location_state)
+	var profile_state = belief (as_to (nav) (profile_view)) (nav_state)
 	var profile_unbound_user_state = belief (as (profile_view) .unbound_user) (profile_state)
 	var profile_committing_yes_state = belief (as (profile_view) .committing_yes) (profile_state)
 	;S (_ => {
 		if (equals (mark (profile_committing_yes_state)) (true)) {
 			var _client = show (in_client_state)
-			;api .update_user ({ client: _client, user: show (profile_unbound_user_state) }) .then (_ =>
+			;api .update_user ({ _client, _user: show (profile_unbound_user_state) }) .then (_ =>
 			api .user (_client) )
 			.then (_user => {
 				;please (
@@ -158,7 +158,7 @@ var debug_network = false
 				;please (L_ .set (false)) (profile_committing_yes_state) } ) }
 		} )
 
-	var in_yes_state = belief (L .isDefined (as_to (nav) (in_view))) (location_state)
+	var in_yes_state = belief (L .isDefined (as_to (nav) (in_view))) (nav_state)
 	;S (_ => {
 		if (mark (in_yes_state)) {
 			var weight_state = belief (as (user) .weight) (user_state)

@@ -1,7 +1,7 @@
 import { ActivityIndicator, Text, View, TextInput, TouchableOpacity } from 'react-native'
 
 import { L, suppose } from 'camarche/core'
-import { L_, belief, please } from 'camarche/faith'
+import { L_, belief, mark, please } from 'camarche/faith'
 import { calmm } from 'camarche/calmm'
 import { as } from 'camarche/adt'
 

@@ -3,8 +3,10 @@ import { show } from 'camarche/faith'
 import { pinpoint, as_point } from 'camarche/optics'
 import { Y } from '~/project/aux'
 
-import { time_unit, maybe } from './types'
-import { nav, signup_step_one, signup_step_two, signup_view, login_view, in_features, in_view, main_view, contest_view, settings_view, profile_view, activity_view } from './types'
+import { maybe } from './types'
+import { time_unit, in_features, user } from './types'
+import { nav, signup_view, login_view, in_view, main_view, contest_view } from './types'
+import { signup_step_one, signup_step_two, settings_view, profile_view, activity_view } from './types'
 import { user_state, team_state } from './state'
 
 

@@ -4,14 +4,14 @@ import Icon from 'react-native-vector-icons/FontAwesome'
 
 import { suppose, L, K, I } from 'camarche/core'
 import { L_, please, belief, mark } from 'camarche/faith'
-import { pin_first, l_sum } from 'camarche/optics'
+import { pinpoint, pin_first, l_sum } from 'camarche/optics'
 import { calmm } from 'camarche/calmm'
 import { as } from 'camarche/adt'
 import { as_to, map_v_as_value } from '~/project/aux'
 
 import default_ from '~/project/default_'
 import { nav, main_view, step_stat, step_sample } from '~/project/types'
-import { location_state, orientation_state, step_stat_state, location_nav_state } from '~/project/state'
+import { nav_state, orientation_state, step_stat_state, inner_nav_state } from '~/project/state'
 
 //TODO: reformulate this shit with flex
 var rows = 3
@@ -118,7 +118,7 @@ var options =
 
 var Option = ({  name, screen }) =>
 	suppose (
-	( go_option = pin_first (l_sum ([ [ K (default_ (screen)), L .when (I), _screen => {;please (L_ .set (_screen)) (location_nav_state)} ], _ => {;alert ('Page under construction')} ])) 
+	( go_option = pin_first (l_sum ([ [ K (default_ (screen)), L .when (I), _screen => {;please (L_ .set (_screen)) (inner_nav_state)} ], _ => {;alert ('Page under construction')} ])) 
 	) =>
 	<TouchableOpacity style={styles .itemWrapper} onPress={go_option}>
 		<Text style={styles .itemText}>{ name }</Text>
@@ -126,7 +126,7 @@ var Option = ({  name, screen }) =>
 			<Icon style={styles .itemArrow} name="chevron-right" color="white" size={15} /> </View>
 		</TouchableOpacity> )
 
-var main_state = belief (as_to (nav) (main_view)) (location_state)
+var main_state = belief (as_to (nav) (main_view)) (nav_state)
 var today_steps_state = belief (pinpoint (as (step_stat) .by_days, L .first, map_v_as_value, as (step_sample) .steps), L .valueOr (0)) (step_stat_state)
 
 export default calmm (_ =>

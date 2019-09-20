@@ -2,7 +2,7 @@ import { ActivityIndicator, Text, View, TextInput, Button } from 'react-native'
 
 import { I, not, suppose, R, L } from 'camarche/core'
 import { l_sum, match, case_ } from 'camarche/optics'
-import { L_, belief, mark, please } from 'camarche/faith'
+import { L_, show, belief, mark, please } from 'camarche/faith'
 import { calmm } from 'camarche/calmm'
 import { go } from 'camarche/effects'
 import { as } from 'camarche/adt'
@@ -53,7 +53,7 @@ export default calmm (({ team_state, style }) =>
 	, invite_email = _ => {
 		;go .then (_ => {
 		;please (L_ .set (true)) (adding_yes_state) } ) .then (_ =>
-		api .invite ({ client: show (client_state), email: show (select_email_state) }) ) .then (_ =>
+		api .invite ({ _client: show (client_state), _email: show (select_email_state) }) ) .then (_ =>
 		api .team (show (client_state)) ) .then (_team => {
 		;please (L_ .set (_team)) (team_state) } )
 		.catch (I) .then (_ => {

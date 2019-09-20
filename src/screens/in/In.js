@@ -13,7 +13,7 @@ import { display_, as_to, as_into, nested_path_, path_screen_ } from '~/project/
 
 import default_ from '~/project/default_'
 import { nav, in_view, in_features, maybe } from '~/project/types'
-import { location_state, location_nav_state, undo_history, history_state } from '~/project/state'
+import { nav_state, inner_nav_state, undo_history, history_state } from '~/project/state'
 
 
 var styles = {
@@ -39,14 +39,14 @@ var styles = {
 
 var tab_index = _ => pinpoint
 	( L .elems
-	, L .when (_tab => L .isDefined (as_into (nav) (_tab)) (mark (location_state)))
+	, L .when (_tab => L .isDefined (as_into (nav) (_tab)) (mark (nav_state)))
 	, (_, i) => i ) (tabs)
 
 var tabs = [ in_view .main, in_view .contest ]
 
 
-var in_features_state = belief (as_to (nav) (maybe (in_features))) (location_state)
-var in_state = belief (as_to (nav) (in_view)) (location_state)
+var in_features_state = belief (as_to (nav) (maybe (in_features))) (nav_state)
+var in_state = belief (as_to (nav) (in_view)) (nav_state)
 var in_path_state = belief (nested_path_ ('view')) (in_state)
 var in_screen_state = belief ([ path_screen_ (in_screens), L .valueOr (K (null)) ]) (in_path_state)
 
@@ -56,7 +56,7 @@ export default calmm (_ =>
 	, _features = mark (in_features_state)
 	, _in = mark (in_state)
 	, go_back = _ => {;please (undo_history) (history_state)}
-	, log_out = _ => {;please (L_ .set (default_ (nav .login))) (location_state)}
+	, log_out = _ => {;please (L_ .set (default_ (nav .login))) (nav_state)}
 	) =>
 	match (
 	case_ (as_in (maybe .nothing)) (
@@ -73,7 +73,7 @@ export default calmm (_ =>
 		<Screen />
 		<View style={styles .tabContainer}>
 			<ButtonGroup
-				onPress={i => {;please (L_ .set (default_ (tabs [i]))) (location_nav_state)}}
+				onPress={i => {;please (L_ .set (default_ (tabs [i]))) (inner_nav_state)}}
 				selectedIndex={tab_index ()}
 				buttons={pinpoints (L .elems, display_) (tabs)}
 				innerBorderStyle={{ color: '#212121' }}

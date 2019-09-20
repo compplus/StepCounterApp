@@ -3,12 +3,17 @@ import { Dropdown } from 'react-native-material-dropdown'
 import { TextField } from 'react-native-material-textfield'
 import { DismissKeyboard } from '~/components'
 
-import { L, suppose, I } from 'camarche/core'
-import { pinpoint } from 'camarche/optics'
-import { L_, please, mark } from 'camarche/faith'
+import { L, suppose, I, not } from 'camarche/core'
+import { pinpoint, pinpoints } from 'camarche/optics'
+import { L_, please, mark, belief } from 'camarche/faith'
 import { calmm } from 'camarche/calmm'
-import { variants_ } from 'camarche/adt'
-import { display_ } from '~/project/aux'
+import { variants_, as_to, as } from 'camarche/adt'
+import { display_, name_variant_ } from '~/project/aux'
+
+import { unbound, category, gender, user } from '~/project/types'
+import { nav, signup_view, signup_step_two } from '~/project/types'
+import { nav_state } from '~/project/state'
+import { faculties, departments } from '~/project/domain-aux'
 
 var styles = {
 	buttonContainer: {
@@ -37,7 +42,7 @@ var genders = pinpoints (variants_, L .values, display_, value => ({ value })) (
 
 
 
-var signup_state = belief (as_to (nav) (signup_view)) (location_state)
+var signup_state = belief (as_to (nav) (signup_view)) (nav_state)
 
 var committing_yes_state = belief (as (signup_view) .committing_yes) (signup_state)
 

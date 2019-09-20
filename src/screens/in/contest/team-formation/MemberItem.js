@@ -2,15 +2,16 @@ import { TouchableOpacity, ActivityIndicator } from 'react-native'
 import { ListItem } from 'react-native-elements'
 import { MaterialIcons } from '@expo/vector-icons'
 
-import { K, not, suppose, L, by } from 'camarche/core'
+import { K, not, suppose, L, by, equals, I } from 'camarche/core'
 import { pinpoint, match, case_ } from 'camarche/optics'
 import { L_, belief, please, show, mark } from 'camarche/faith'
 import { calmm } from 'camarche/calmm'
-import { jinx } from 'camarche/effects'
+import { go, jinx } from 'camarche/effects'
 import { as } from 'camarche/adt'
 
+import { mention, team, user } from '~/project/types'
 import { team_state, user_state } from '~/project/state'
-import { user } from '~/project/types'
+import { id_user_state_, id_email_state_ } from  '~/project/api'
 import api from  '~/project/api'
 
 var styles = {
@@ -29,8 +30,8 @@ var Remove = _email => _ =>
 	suppose (
 	( remove = _ => {
 		;go
-		.then (_ => api .remove ({ email: _email }))
-		.then (_ => api .team ({})) }
+		.then (_ => api .remove ({ _email }))
+		.then (_ => api .team ()) }
 	) =>
 	<TouchableOpacity onPress={remove}>
 		<MaterialIcons name="cancel" color="darkslategray" size={35} /> </TouchableOpacity> )
@@ -40,7 +41,7 @@ var team_mines_yes_state = belief ([ as (user) .id, by (_ => equals (pinpoint (a
 
 export default calmm (({ user: _user }) =>
 	suppose (
-	( _id = trace_as ('hai') (pinpoint (as (user) .id) (_user))
+	( _id = pinpoint (as (user) .id) (_user)
 	, email_state = id_email_state_ (_id)
 	, _email = mark (email_state)
 	, team_mines_yes = mark (team_mines_yes_state)

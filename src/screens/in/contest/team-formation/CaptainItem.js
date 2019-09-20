@@ -9,9 +9,9 @@ import { calmm } from 'camarche/calmm'
 import { jinx } from 'camarche/effects'
 import { as } from 'camarche/adt'
 
-import { client_state, local_state } from '~/project/state'
 import { user } from '~/project/types'
-import api from  '~/project/api'
+import { client_state, local_state } from '~/project/state'
+import { id_email_state_ } from '~/project/api'
 
 var styles = {
 	item: {

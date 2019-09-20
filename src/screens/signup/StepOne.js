@@ -3,14 +3,14 @@ import Input from 'react-native-input-validation'
 import { DismissKeyboard } from '~/components'
 import { Images } from '__/assets/assets'
 
-import { L, equals, suppose, I } from 'camarche/core'
+import { L, equals, not, suppose, I } from 'camarche/core'
 import { pinpoint, as_match, case_ } from 'camarche/optics'
 import { L_, belief, please, show, mark } from 'camarche/faith'
 import { calmm } from 'camarche/calmm'
-import { as } from 'camarche/adt'
+import { as, as_to } from 'camarche/adt'
 
-import { signup_view, signup_step_one, signup_step_two } from '~/project/types'
-import { location_state } from '~/project/state'
+import { nav, signup_view, signup_step_one, signup_step_two } from '~/project/types'
+import { nav_state, inner_nav_state } from '~/project/state'
 import default_ from '~/project/default_'
 
 var styles = {
@@ -79,7 +79,7 @@ var styles = {
 		fontFamily: 'Gill Sans' } }
 
 	
-var signup_state = belief (as_to (nav) (signup_view)) (location_state)
+var signup_state = belief (as_to (nav) (signup_view)) (nav_state)
 
 var step_one_state = belief (as_to (signup_view) (signup_step_one)) (signup_state)
 var step_two_state = belief (as_to (signup_view) (signup_step_two)) (signup_state)
@@ -107,7 +107,7 @@ export default calmm (_ =>
 	, focus_password = _ => {;password_ref .focus ()}
 	, focus_password_confirmation = _ => {;password_confirmation_ref .focus ()}
 	, commit_step_one = _ => {;please (L_ .set (default_ (signup_step_two))) (step_two_state)}
-	, go_login = _ => {;please (L_ .set (default_ (nav .login))) (location_nav_state)}
+	, go_login = _ => {;please (L_ .set (default_ (nav .login))) (inner_nav_state)}
 	) =>
 	<DismissKeyboard>		
 		<ImageBackground source={Images .background} style={styles .container}>

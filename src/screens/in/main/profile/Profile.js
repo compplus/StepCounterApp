@@ -12,7 +12,7 @@ import { as_to, name_variant_, display_ } from '~/project/aux'
 
 import { nav, profile_view } from '~/project/types'
 import { user, category, gender } from '~/project/types'
-import { location_state, dimensions_state, local_state } from '~/project/state'
+import { nav_state, dimensions_state, local_state } from '~/project/state'
 import { departments, faculties } from '~/project/domain-aux'
 
 var { height } = Dimensions .get ('window')
@@ -100,7 +100,7 @@ var styles = {
 var categories = pinpoints (variants_, L .values, display_, value => ({ value })) (category)
 var genders = pinpoints (variants_, L .values, display_, value => ({ value })) (gender)
 
-var profile_state = belief (as_to (nav) (profile_view)) (location_state)
+var profile_state = belief (as_to (nav) (profile_view)) (nav_state)
 var unbound_user_state = belief (as (profile_view) .unbound_user) (profile_state)
 var committing_yes_state = belief (as (profile_view) .committing_yes) (profile_state)
 

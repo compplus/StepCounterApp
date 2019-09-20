@@ -16,7 +16,7 @@ import { display_stamp_, days_in_month_, month_ } from '~/project/domain-aux'
 import { calories_, hour_as_ordinal, day_as_ordinal, month_as_ordinal } from '~/project/domain-aux'
 import { nav, in_view, activity_view } from '~/project/types'
 import { step_sample, step_stat, time_unit, dimensions } from '~/project/types'
-import { location_state, width_state, height_state, step_stat_state } from '~/project/state'
+import { nav_state, width_state, height_state, step_stat_state } from '~/project/state'
 
 var styles = {
 	container: {
@@ -84,7 +84,7 @@ var tab_label_ = L .modify ([ as_string, L .first ]) (R .toUpper)
 
 var tabs = [ time_unit .day, time_unit .month ]
 
-var activity_state = belief (as_to (nav) (activity_view)) (location_state)
+var activity_state = belief (as_to (nav) (activity_view)) (nav_state)
 var tab_state = belief (as (activity_view) .time_unit) (activity_state)
 
 var samples_per_graph = 6

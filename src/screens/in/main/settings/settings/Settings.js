@@ -2,12 +2,12 @@ import { View, Linking } from 'react-native'
 import SettingsList from 'react-native-settings-list'
 
 import { suppose } from 'camarche/core'
-import { belief, please } from 'camarche/faith'
+import { L_, belief, please } from 'camarche/faith'
 import { as_to } from '~/project/aux'
 
 import default_ from '~/project/default_'
 import { nav, settings_view } from '~/project/types'
-import { location_state } from '~/project/state'
+import { nav_state } from '~/project/state'
 
 var styles = {
 	container: {
@@ -20,7 +20,7 @@ var styles = {
 		color: 'gray'
 	} }
 
-var settings_state = belief (as_to (nav) (settings_view)) (location_state)
+var settings_state = belief (as_to (nav) (settings_view)) (nav_state)
 
 export default _ =>
 	suppose (
