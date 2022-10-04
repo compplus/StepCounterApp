@@ -20,7 +20,7 @@
 		"@expo/vector-icons": "6.3.1",
 		"@fortawesome/free-solid-svg-icons": "^5.10.1",
 		"camarche": "0.0.28",
-		"expo": "^32.0.0",
+		"expo": "^46.0.14",
 		"expo-react-native-adapter": "^3.0.1",
 		"partial.lenses": "^14.17.0",
 		"ramda": "^0.26.1",
